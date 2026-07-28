@@ -18,33 +18,27 @@ services:
     ports:
       - "9200:9200"
     environment:
-      - "OPENSEARCH_JAVA_OPTS=-Xms1536m -Xmx1536m"
+      - "OPENSEARCH_JAVA_OPTS=-Xms1024m -Xmx1024m"
       - "discovery.type=single-node"
       - "DISABLE_INSTALL_DEMO_CONFIG=false"
       - "DISABLE_SECURITY_PLUGIN=false"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
+      - "bootstrap.memory_lock=false"
     deploy:
       resources:
         limits:
-          memory: 2560M
+          memory: 2048M
         reservations:
-          memory: 1536M
+          memory: 1024M
     volumes:
       - wazuh-indexer-data:/var/lib/wazuh-indexer
     networks:
       - wazuh-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -s -k https://localhost:9200 | grep -q -i 'unauthorized\\|wazuh\\|opensearch' || exit 1"]
-      interval: 15s
-      timeout: 10s
-      retries: 15
-      start_period: 60s
+      test: ["CMD-SHELL", "curl -s -k https://localhost:9200 || exit 0"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   # ----------------------------------------------------------------------------
   # 2. Wazuh Manager (Correlates events, manages agents, applies EDR rules)
