@@ -1,0 +1,240 @@
+<!--
+  ==============================================================================
+  ShieldEDR Custom Ruleset for MSME Security (local_rules.xml)
+  Target Platform: Wazuh 4.x / OpenSearch SIEM Integration
+  Custom Rule ID Range: 100001 - 100025
+  ==============================================================================
+  This ruleset provides endpoint protection for Small & Medium Businesses against:
+    - Ransomware execution, Volume Shadow Copy destruction & mass file encryption.
+    - Encoded Base64 PowerShell commands & download cradles.
+    - Windows Event Log & SSH Brute-Force authentication attacks.
+    - Critical Windows Sysmon events (LSASS memory access, process injection, office macros).
+  ==============================================================================
+-->
+
+<group name="local,sysmon,ransomware,powershell,authentication,windows,">
+
+  <!-- ===================================================================== -->
+  <!-- 1. RANSOMWARE & DESTRUCTIVE BEHAVIOR DETECTIONS                       -->
+  <!-- ===================================================================== -->
+
+  <!-- Shadow Copy Deletion via vssadmin.exe -->
+  <rule id="100001" level="12">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)vssadmin.*delete.*shadows</field>
+    <description>Ransomware Indicator: Volume shadow copies deletion attempt via vssadmin.exe</description>
+    <mitre>
+      <id>T1490</id>
+    </mitre>
+  </rule>
+
+  <!-- Recovery Disabled via bcdedit.exe -->
+  <rule id="100002" level="12">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)bcdedit.*/set.*recoveryenabled.*no</field>
+    <description>Ransomware Indicator: Boot recovery options disabled via bcdedit.exe</description>
+    <mitre>
+      <id>T1490</id>
+    </mitre>
+  </rule>
+
+  <!-- System Backup Catalog Deletion via wbadmin.exe -->
+  <rule id="100003" level="12">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)wbadmin.*delete.*(systemstatebackup|catalog)</field>
+    <description>Ransomware Indicator: System backup catalog deletion via wbadmin.exe</description>
+    <mitre>
+      <id>T1490</id>
+    </mitre>
+  </rule>
+
+  <!-- Stopping Volume Shadow Copy Service (VSS) -->
+  <rule id="100004" level="10">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)(net|sc).*(stop|config).*vss</field>
+    <description>Suspicious Activity: Volume Shadow Copy Service (VSS) stopped or disabled</description>
+    <mitre>
+      <id>T1489</id>
+    </mitre>
+  </rule>
+
+  <!-- Creation of Known Ransomware Extension Files (Sysmon Event ID 11: FileCreate) -->
+  <rule id="100005" level="13">
+    <if_sid>61613,18107</if_sid>
+    <field name="win.eventdata.targetFilename" search_type="pcre2">(?i)\.(locked|crypto|enc|ransom|crypted|locky|cerber|blackcat|royal|lockbit|phobos|hive)$</field>
+    <description>Critical Ransomware Alert: File created with known ransomware extension</description>
+    <mitre>
+      <id>T1486</id>
+    </mitre>
+  </rule>
+
+  <!-- Rapid Ransomware Outbreak: Multiple File Encryptions within short window -->
+  <rule id="100006" level="14" frequency="8" timeframe="30">
+    <if_matched_sid>100005</if_matched_sid>
+    <same_source_ip />
+    <description>Ransomware Outbreak: Rapid creation of encrypted files detected (8+ files in 30 seconds)</description>
+    <mitre>
+      <id>T1486</id>
+    </mitre>
+  </rule>
+
+
+  <!-- ===================================================================== -->
+  <!-- 2. POWERSHELL & SCRIPTING EXPLOITATION DETECTIONS                     -->
+  <!-- ===================================================================== -->
+
+  <!-- Encoded Base64 PowerShell Command Line Execution -->
+  <rule id="100007" level="11">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)powershell.*(-e|-encodedcommand|-enc)\s+[a-z0-9+/=]{20,}</field>
+    <description>Suspicious PowerShell: Encoded Base64 command execution detected</description>
+    <mitre>
+      <id>T1059.001</id>
+      <id>T1027</id>
+    </mitre>
+  </rule>
+
+  <!-- PowerShell Remote Payload Download Cradle -->
+  <rule id="100008" level="11">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)powershell.*(DownloadString|DownloadFile|Invoke-WebRequest|iwr|curl|wget)</field>
+    <description>Suspicious PowerShell: Remote payload download cradle detected</description>
+    <mitre>
+      <id>T1059.001</id>
+      <id>T1105</id>
+    </mitre>
+  </rule>
+
+  <!-- Stealth PowerShell Execution (ExecutionPolicy Bypass + Hidden Window) -->
+  <rule id="100009" level="9">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)powershell.*(-executionpolicy\s+bypass|-ep\s+bypass).*-w\s+hidden</field>
+    <description>Stealth PowerShell Execution: ExecutionPolicy bypass with hidden window parameter</description>
+    <mitre>
+      <id>T1059.001</id>
+      <id>T1562.001</id>
+    </mitre>
+  </rule>
+
+  <!-- Base64 String Decoding in PowerShell Execution Context -->
+  <rule id="100010" level="10">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)\[System\.Convert\]::FromBase64String</field>
+    <description>In-Memory Obfuscation: PowerShell FromBase64String execution detected</description>
+    <mitre>
+      <id>T1027</id>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+
+
+  <!-- ===================================================================== -->
+  <!-- 3. AUTHENTICATION & BRUTE-FORCE LOGINS DETECTIONS                     -->
+  <!-- ===================================================================== -->
+
+  <!-- Base Rule: Windows Failed Interactive Logon (Event 4625) -->
+  <rule id="100013" level="5">
+    <if_sid>60109,18105</if_sid>
+    <field name="win.system.eventId">^4625$</field>
+    <description>Windows Authentication Failure: Interactive logon attempt failed</description>
+  </rule>
+
+  <!-- Windows Brute-Force Login Attack (Multiple 4625 Failures) -->
+  <rule id="100014" level="11" frequency="5" timeframe="60">
+    <if_matched_sid>100013</if_matched_sid>
+    <same_source_ip />
+    <description>Brute-Force Attack: 5+ failed Windows logon attempts within 60s from same IP</description>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+  </rule>
+
+  <!-- Linux SSH Brute-Force Login Attack (Syslog) -->
+  <rule id="100015" level="10" frequency="6" timeframe="120">
+    <if_matched_sid>5710,5712</if_matched_sid>
+    <same_source_ip />
+    <description>SSH Brute-Force Attack: Multiple failed SSH authentication attempts detected</description>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+  </rule>
+
+  <!-- RDP Remote Desktop Brute-Force Attempt (Logon Type 10) -->
+  <rule id="100016" level="11" frequency="5" timeframe="60">
+    <if_matched_sid>60109</if_matched_sid>
+    <field name="win.eventdata.logonType">10</field>
+    <description>RDP Brute-Force Attack: Multiple Remote Desktop login failures from same IP</description>
+    <mitre>
+      <id>T1110.001</id>
+      <id>T1021.001</id>
+    </mitre>
+  </rule>
+
+
+  <!-- ===================================================================== -->
+  <!-- 4. WINDOWS SYSMON CORRELATION & PERSISTENCE DETECTIONS                -->
+  <!-- ===================================================================== -->
+
+  <!-- LSASS Memory Access / Credential Dumping (Sysmon Event ID 10: ProcessAccess) -->
+  <rule id="100017" level="12">
+    <if_sid>61612</if_sid>
+    <field name="win.eventdata.targetImage" search_type="pcre2">(?i)lsass\.exe</field>
+    <field name="win.eventdata.grantedAccess" search_type="pcre2">(?i)(0x1010|0x1f0fff|0x1410|0x1000)</field>
+    <description>Credential Dumping: Process requested suspicious access rights to lsass.exe (Mimikatz / ProcDump pattern)</description>
+    <mitre>
+      <id>T1003.001</id>
+    </mitre>
+  </rule>
+
+  <!-- CreateRemoteThread Process Injection (Sysmon Event ID 8) -->
+  <rule id="100018" level="11">
+    <if_sid>61610</if_sid>
+    <description>Process Injection: Remote thread created in external process space via Sysmon Event 8</description>
+    <mitre>
+      <id>T1055.002</id>
+    </mitre>
+  </rule>
+
+  <!-- Suspicious Parent Process: Office Document Spawning Cmd/PowerShell -->
+  <rule id="100019" level="12">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.parentImage" search_type="pcre2">(?i)(winword|excel|powerpnt|outlook|onenote)\.exe</field>
+    <field name="win.eventdata.image" search_type="pcre2">(?i)(cmd|powershell|pwsh|wscript|cscript|mshta)\.exe</field>
+    <description>Malicious Macro Execution: Office application spawned command line process</description>
+    <mitre>
+      <id>T1566.001</id>
+      <id>T1059.003</id>
+    </mitre>
+  </rule>
+
+  <!-- Registry Run/RunOnce Key Persistence Modification (Sysmon Event ID 13) -->
+  <rule id="100020" level="9">
+    <if_sid>61615</if_sid>
+    <field name="win.eventdata.targetObject" search_type="pcre2">(?i)\\Software\\Microsoft\\Windows\\CurrentVersion\\(Run|RunOnce)</field>
+    <description>Persistence Attempt: Windows Registry Run or RunOnce key modified</description>
+    <mitre>
+      <id>T1547.001</id>
+    </mitre>
+  </rule>
+
+  <!-- Suspicious Egress Connection from CLI Interpreters (Sysmon Event ID 3) -->
+  <rule id="100021" level="8">
+    <if_sid>61605</if_sid>
+    <field name="win.eventdata.image" search_type="pcre2">(?i)(cmd|powershell|pwsh|certutil|bitsadmin)\.exe</field>
+    <description>Suspicious Egress: Command line interpreter established outbound network connection</description>
+    <mitre>
+      <id>T1071</id>
+    </mitre>
+  </rule>
+
+  <!-- Abuse of Living off the Land Binaries (Lolbins: Certutil / Bitsadmin) -->
+  <rule id="100022" level="10">
+    <if_sid>60000,60100,18107</if_sid>
+    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)(certutil.*-urlcache|-split|bitsadmin.*/transfer)</field>
+    <description>Lolbin Abuse: Suspicious remote file download attempt via Certutil or Bitsadmin</description>
+    <mitre>
+      <id>T1105</id>
+    </mitre>
+  </rule>
+
+</group>
