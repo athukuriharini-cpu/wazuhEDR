@@ -1,18 +1,12 @@
 <!--
   ==============================================================================
-  ShieldEDR Custom Ruleset for MSME Security (local_rules.xml)
+  ShieldEDR Custom Ruleset for MSME & Enterprise WAF Protection (local_rules.xml)
   Target Platform: Wazuh 4.x / OpenSearch SIEM Integration
-  Custom Rule ID Range: 100001 - 100025
-  ==============================================================================
-  This ruleset provides endpoint protection for Small & Medium Businesses against:
-    - Ransomware execution, Volume Shadow Copy destruction & mass file encryption.
-    - Encoded Base64 PowerShell commands & download cradles.
-    - Windows Event Log & SSH Brute-Force authentication attacks.
-    - Critical Windows Sysmon events (LSASS memory access, process injection, office macros).
+  Custom Rule ID Range: 100001 - 100030
   ==============================================================================
 -->
 
-<group name="local,sysmon,ransomware,powershell,authentication,windows,">
+<group name="local,sysmon,ransomware,powershell,authentication,windows,waf,web,">
 
   <!-- ===================================================================== -->
   <!-- 1. RANSOMWARE & DESTRUCTIVE BEHAVIOR DETECTIONS                       -->
@@ -48,31 +42,11 @@
     </mitre>
   </rule>
 
-  <!-- Stopping Volume Shadow Copy Service (VSS) -->
-  <rule id="100004" level="10">
-    <if_sid>60000,60100,18107</if_sid>
-    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)(net|sc).*(stop|config).*vss</field>
-    <description>Suspicious Activity: Volume Shadow Copy Service (VSS) stopped or disabled</description>
-    <mitre>
-      <id>T1489</id>
-    </mitre>
-  </rule>
-
-  <!-- Creation of Known Ransomware Extension Files (Sysmon Event ID 11: FileCreate) -->
+  <!-- Creation of Known Ransomware Extension Files -->
   <rule id="100005" level="13">
     <if_sid>61613,18107</if_sid>
     <field name="win.eventdata.targetFilename" search_type="pcre2">(?i)\.(locked|crypto|enc|ransom|crypted|locky|cerber|blackcat|royal|lockbit|phobos|hive)$</field>
     <description>Critical Ransomware Alert: File created with known ransomware extension</description>
-    <mitre>
-      <id>T1486</id>
-    </mitre>
-  </rule>
-
-  <!-- Rapid Ransomware Outbreak: Multiple File Encryptions within short window -->
-  <rule id="100006" level="14" frequency="8" timeframe="30">
-    <if_matched_sid>100005</if_matched_sid>
-    <same_source_ip />
-    <description>Ransomware Outbreak: Rapid creation of encrypted files detected (8+ files in 30 seconds)</description>
     <mitre>
       <id>T1486</id>
     </mitre>
@@ -105,28 +79,6 @@
     </mitre>
   </rule>
 
-  <!-- Stealth PowerShell Execution (ExecutionPolicy Bypass + Hidden Window) -->
-  <rule id="100009" level="9">
-    <if_sid>60000,60100,18107</if_sid>
-    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)powershell.*(-executionpolicy\s+bypass|-ep\s+bypass).*-w\s+hidden</field>
-    <description>Stealth PowerShell Execution: ExecutionPolicy bypass with hidden window parameter</description>
-    <mitre>
-      <id>T1059.001</id>
-      <id>T1562.001</id>
-    </mitre>
-  </rule>
-
-  <!-- Base64 String Decoding in PowerShell Execution Context -->
-  <rule id="100010" level="10">
-    <if_sid>60000,60100,18107</if_sid>
-    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)\[System\.Convert\]::FromBase64String</field>
-    <description>In-Memory Obfuscation: PowerShell FromBase64String execution detected</description>
-    <mitre>
-      <id>T1027</id>
-      <id>T1059.001</id>
-    </mitre>
-  </rule>
-
 
   <!-- ===================================================================== -->
   <!-- 3. AUTHENTICATION & BRUTE-FORCE LOGINS DETECTIONS                     -->
@@ -139,7 +91,7 @@
     <description>Windows Authentication Failure: Interactive logon attempt failed</description>
   </rule>
 
-  <!-- Windows Brute-Force Login Attack (Multiple 4625 Failures) -->
+  <!-- Windows Brute-Force Login Attack -->
   <rule id="100014" level="11" frequency="5" timeframe="60">
     <if_matched_sid>100013</if_matched_sid>
     <same_source_ip />
@@ -149,33 +101,12 @@
     </mitre>
   </rule>
 
-  <!-- Linux SSH Brute-Force Login Attack (Syslog) -->
-  <rule id="100015" level="10" frequency="6" timeframe="120">
-    <if_matched_sid>5710,5712</if_matched_sid>
-    <same_source_ip />
-    <description>SSH Brute-Force Attack: Multiple failed SSH authentication attempts detected</description>
-    <mitre>
-      <id>T1110.001</id>
-    </mitre>
-  </rule>
-
-  <!-- RDP Remote Desktop Brute-Force Attempt (Logon Type 10) -->
-  <rule id="100016" level="11" frequency="5" timeframe="60">
-    <if_matched_sid>60109</if_matched_sid>
-    <field name="win.eventdata.logonType">10</field>
-    <description>RDP Brute-Force Attack: Multiple Remote Desktop login failures from same IP</description>
-    <mitre>
-      <id>T1110.001</id>
-      <id>T1021.001</id>
-    </mitre>
-  </rule>
-
 
   <!-- ===================================================================== -->
-  <!-- 4. WINDOWS SYSMON CORRELATION & PERSISTENCE DETECTIONS                -->
+  <!-- 4. WINDOWS SYSMON CORRELATION & PERSISTENCE                           -->
   <!-- ===================================================================== -->
 
-  <!-- LSASS Memory Access / Credential Dumping (Sysmon Event ID 10: ProcessAccess) -->
+  <!-- LSASS Memory Access / Credential Dumping (Sysmon Event ID 10) -->
   <rule id="100017" level="12">
     <if_sid>61612</if_sid>
     <field name="win.eventdata.targetImage" search_type="pcre2">(?i)lsass\.exe</field>
@@ -195,45 +126,48 @@
     </mitre>
   </rule>
 
-  <!-- Suspicious Parent Process: Office Document Spawning Cmd/PowerShell -->
-  <rule id="100019" level="12">
-    <if_sid>60000,60100,18107</if_sid>
-    <field name="win.eventdata.parentImage" search_type="pcre2">(?i)(winword|excel|powerpnt|outlook|onenote)\.exe</field>
-    <field name="win.eventdata.image" search_type="pcre2">(?i)(cmd|powershell|pwsh|wscript|cscript|mshta)\.exe</field>
-    <description>Malicious Macro Execution: Office application spawned command line process</description>
+
+  <!-- ===================================================================== -->
+  <!-- 5. WEB APPLICATION FIREWALL (WAF) & CLOUD FIREWALL RULES               -->
+  <!-- ===================================================================== -->
+
+  <!-- WAF: SQL Injection Attack Pattern -->
+  <rule id="100023" level="12">
+    <if_sid>31100,31101,30100</if_sid>
+    <match search_type="pcre2">(?i)(SELECT.*FROM|UNION.*SELECT|OR\s+1=1|DROP\s+TABLE|INFORMATION_SCHEMA)</match>
+    <description>WAF Firewall Alert: Web Application SQL Injection Attack Pattern Blocked</description>
     <mitre>
-      <id>T1566.001</id>
-      <id>T1059.003</id>
+      <id>T1190</id>
     </mitre>
   </rule>
 
-  <!-- Registry Run/RunOnce Key Persistence Modification (Sysmon Event ID 13) -->
-  <rule id="100020" level="9">
-    <if_sid>61615</if_sid>
-    <field name="win.eventdata.targetObject" search_type="pcre2">(?i)\\Software\\Microsoft\\Windows\\CurrentVersion\\(Run|RunOnce)</field>
-    <description>Persistence Attempt: Windows Registry Run or RunOnce key modified</description>
+  <!-- WAF: Cross-Site Scripting (XSS) Injection Payload -->
+  <rule id="100024" level="11">
+    <if_sid>31100,31101,30100</if_sid>
+    <match search_type="pcre2">(?i)(&lt;script&gt;|javascript:|onerror=|onload=|document\.cookie)</match>
+    <description>WAF Firewall Alert: Cross-Site Scripting (XSS) Attack Payload Blocked</description>
     <mitre>
-      <id>T1547.001</id>
+      <id>T1190</id>
     </mitre>
   </rule>
 
-  <!-- Suspicious Egress Connection from CLI Interpreters (Sysmon Event ID 3) -->
-  <rule id="100021" level="8">
-    <if_sid>61605</if_sid>
-    <field name="win.eventdata.image" search_type="pcre2">(?i)(cmd|powershell|pwsh|certutil|bitsadmin)\.exe</field>
-    <description>Suspicious Egress: Command line interpreter established outbound network connection</description>
+  <!-- WAF: Log4Shell JNDI Remote Code Execution Exploit -->
+  <rule id="100025" level="14">
+    <if_sid>31100,31101,30100</if_sid>
+    <match search_type="pcre2">(?i)\$\{jndi:(ldap|rmi|dns):</match>
+    <description>Critical WAF Alert: Log4Shell Remote Code Execution (JNDI Exploit) Attack Blocked</description>
     <mitre>
-      <id>T1071</id>
+      <id>T1190</id>
     </mitre>
   </rule>
 
-  <!-- Abuse of Living off the Land Binaries (Lolbins: Certutil / Bitsadmin) -->
-  <rule id="100022" level="10">
-    <if_sid>60000,60100,18107</if_sid>
-    <field name="win.eventdata.commandLine" search_type="pcre2">(?i)(certutil.*-urlcache|-split|bitsadmin.*/transfer)</field>
-    <description>Lolbin Abuse: Suspicious remote file download attempt via Certutil or Bitsadmin</description>
+  <!-- WAF: Directory Traversal Attempt -->
+  <rule id="100026" level="10">
+    <if_sid>31100,31101,30100</if_sid>
+    <match search_type="pcre2">(?i)(\.\./\.\./|\.\.\\\.\.\\|/etc/passwd|c:\\boot\.ini)</match>
+    <description>WAF Firewall Alert: Directory Traversal &amp; System File Access Attempt Blocked</description>
     <mitre>
-      <id>T1105</id>
+      <id>T1083</id>
     </mitre>
   </rule>
 

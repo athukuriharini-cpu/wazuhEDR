@@ -1,13 +1,12 @@
 """
-Wazuh Custom Detection Rule Builder
-====================================
+Wazuh Custom Detection & WAF Firewall Rule Builder
+==================================================
 Generates production-ready XML rules for Wazuh Manager (/var/ossec/etc/rules/local_rules.xml).
-Includes preset rules for Ransomware, Brute-Force, USB Exfiltration, and Suspicious PowerShell.
+Includes preset rules for Web Application Firewall (WAF), Ransomware, Brute-Force, USB Exfiltration, and Sysmon.
 """
 
-from dataclasses import dataclass, field
-from typing import List, Dict
-
+from dataclasses import dataclass
+from typing import List
 
 @dataclass
 class CustomRule:
@@ -38,21 +37,20 @@ class CustomRule:
         xml_lines.append('  </rule>')
         return "\n".join(xml_lines)
 
-
 DEFAULT_RULE_PRESETS = [
     CustomRule(
         rule_id=100001,
         level=14,
         description="Ransomware Activity: Rapid file extension modification (.locked, .crypto)",
         group="malware,ransomware",
-        category="Ransomware",
+        category="Impact",
         match_pattern="\\.locked|\\.crypto|\\.enc|\\.ransom",
         mitre_id="T1486",
     ),
     CustomRule(
         rule_id=100002,
         level=12,
-        description="Suspicious PowerShell Execution with Encoded Command or ExecutionPolicy Bypass",
+        description="Suspicious PowerShell Execution: Base64 Encoded Command or ExecutionPolicy Bypass",
         group="windows,powershell",
         category="Execution",
         match_pattern="powershell.*-Enc|powershell.*-ExecutionPolicy Bypass",
@@ -87,8 +85,34 @@ DEFAULT_RULE_PRESETS = [
         match_pattern="sudo.*root|runas.*/user:administrator",
         mitre_id="T1078",
     ),
+    CustomRule(
+        rule_id=100023,
+        level=12,
+        description="WAF Firewall Alert: Web Application SQL Injection Attack Pattern Detected",
+        group="web,waf,sqli",
+        category="Initial Access",
+        match_pattern="SELECT.*FROM|UNION.*SELECT|OR 1=1|DROP TABLE",
+        mitre_id="T1190",
+    ),
+    CustomRule(
+        rule_id=100024,
+        level=11,
+        description="WAF Firewall Alert: Cross-Site Scripting (XSS) Injection Payload Blocked",
+        group="web,waf,xss",
+        category="Initial Access",
+        match_pattern="<script>|javascript:|onError=|onload=",
+        mitre_id="T1190",
+    ),
+    CustomRule(
+        rule_id=100025,
+        level=14,
+        description="WAF Firewall Alert: Log4Shell Remote Code Execution (JNDI Exploit) Detected",
+        group="web,waf,exploit",
+        category="Initial Access",
+        match_pattern="\\$\\{jndi:(ldap|rmi|dns):",
+        mitre_id="T1190",
+    ),
 ]
-
 
 def generate_rules_file_xml(rules: List[CustomRule]) -> str:
     """Generate a complete local_rules.xml file content for Wazuh Manager."""
