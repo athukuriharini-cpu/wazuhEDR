@@ -127,6 +127,7 @@ services:
     ports:
       - "8501:8501"
     environment:
+      - PORT=8501
       - WAZUH_API_HOST=wazuh.manager
       - WAZUH_API_PORT=55000
       - SHIELD_DEMO_MODE=false
