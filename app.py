@@ -12,6 +12,7 @@ import streamlit as st
 # Ensure workspace root is in python path
 sys.path.insert(0, os.path.dirname(__file__))
 
+from components.auth import init_auth_session, render_auth_sidebar
 from components.shield import render_metric_card, render_shield
 from components.styles import inject_light_theme
 from config import APP_NAME, APP_TAGLINE, APP_VERSION
@@ -30,6 +31,7 @@ st.set_page_config(
 
 # Inject Premium Light Mode Styles
 inject_light_theme()
+init_auth_session()
 
 # ─────────────────────────────────────
 # Session State Initialization
@@ -136,6 +138,9 @@ with st.sidebar:
     st.markdown("### 📦 Quick Agent Deploy")
     st.code("msiexec.exe /i wazuh-agent.msi /q WAZUH_MANAGER=\"10.0.0.2\"", language="powershell")
     st.caption("Single-command deployment for Windows endpoints.")
+
+    # Render User Account Auth Panel
+    render_auth_sidebar()
 
 # ─────────────────────────────────────
 # Hero Header
