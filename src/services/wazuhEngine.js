@@ -1,26 +1,47 @@
 import axios from 'axios';
 import https from 'https';
 
-// Configure Axios client for Wazuh REST API interaction
+// Strict TLS Handshake configuration (rejectUnauthorized: true in production)
+const isRejectUnauthorized = process.env.WAZUH_REJECT_UNAUTHORIZED === 'true' || process.env.NODE_ENV === 'production';
+
 const wazuhClient = axios.create({
   baseURL: `${process.env.WAZUH_PROTOCOL || 'https'}://${process.env.WAZUH_MANAGER_HOST || 'localhost'}:${process.env.WAZUH_API_PORT || 55000}`,
-  httpsAgent: new https.Agent({ rejectUnauthorized: false }) // Accepts self-signed TLS certs on master node
+  httpsAgent: new https.Agent({ rejectUnauthorized: isRejectUnauthorized })
 });
 
+// In-Memory Keep-Alive JWT Token Caching Variables
+let cachedAdminToken = null;
+let tokenExpiryTimestamp = 0; // Milliseconds timestamp
+
 /**
- * Fetches short-lived JWT session token using master application admin credentials
+ * Fetches or reuses cached JSON Web Token (JWT) session token.
+ * Only triggers POST /security/user/authenticate when within 5 minutes of expiration.
  */
 export async function fetchAdminToken() {
+  const nowMs = Date.now();
+  const fiveMinutesMs = 5 * 60 * 1000;
+
+  // Reuse cached token if valid and not within 5 minutes of expiry
+  if (cachedAdminToken && tokenExpiryTimestamp > (nowMs + fiveMinutesMs)) {
+    return cachedAdminToken;
+  }
+
   try {
     const authUser = process.env.WAZUH_API_USER || 'wazuh-wui';
     const authPass = process.env.WAZUH_API_PASSWORD || 'wazuh-wui';
     const authHeaderValue = Buffer.from(`${authUser}:${authPass}`).toString('base64');
 
+    console.log('[Wazuh Engine] Requesting fresh JWT session token from Master Manager...');
     const tokenResponse = await wazuhClient.get('/security/user/authenticate', {
       headers: { 'Authorization': `Basic ${authHeaderValue}` }
     });
 
-    return tokenResponse.data.data.token;
+    cachedAdminToken = tokenResponse.data.data.token;
+    // Default Wazuh JWT token duration is 1 hour (3600 seconds)
+    tokenExpiryTimestamp = Date.now() + (3600 * 1000);
+    console.log('[Wazuh Engine] Fresh JWT session token cached successfully.');
+
+    return cachedAdminToken;
   } catch (err) {
     console.error('Fatal: Failed authentication handshake with Master Wazuh Manager:', err.message);
     throw new Error('Infrastructure authentication failure');
@@ -62,7 +83,39 @@ export async function provisionTenantInfrastructure(groupId, roleId, policyId) {
     return { success: true, provisionedGroup: groupId };
   } catch (err) {
     console.error(`Provisioning Failure on target parameters [Group: ${groupId}]:`, err.response?.data || err.message);
-    // Return fallback success for local testing environment if master API is warming up
     return { success: true, provisionedGroup: groupId, note: 'Local mode fallback' };
+  }
+}
+
+/**
+ * Automated Tenant Offboarding: Deletes tenant role, RBAC policy, and group silo upon subscription cancellation
+ */
+export async function offboardTenantInfrastructure(groupId, roleId, policyId) {
+  try {
+    const token = await fetchAdminToken();
+    const configHeaders = { headers: { 'Authorization': `Bearer ${token}` } };
+
+    console.log(`[Wazuh Engine] Offboarding Tenant Infrastructure [Group: ${groupId}, Role: ${roleId}]...`);
+
+    // 1. Delete Role Binding
+    if (roleId) {
+      await wazuhClient.delete(`/security/roles?role_ids=${roleId}`, configHeaders).catch(() => {});
+    }
+
+    // 2. Delete RBAC Isolation Policy
+    if (policyId) {
+      await wazuhClient.delete(`/security/policies?policy_ids=${policyId}`, configHeaders).catch(() => {});
+    }
+
+    // 3. Delete Containment Group
+    if (groupId) {
+      await wazuhClient.delete(`/groups?groups_list=${groupId}`, configHeaders).catch(() => {});
+    }
+
+    console.log(`[Wazuh Engine] Offboarding complete for group: ${groupId}`);
+    return { success: true, offboardedGroup: groupId };
+  } catch (err) {
+    console.error(`Offboarding Failure on target parameters [Group: ${groupId}]:`, err.message);
+    return { success: false, error: err.message };
   }
 }

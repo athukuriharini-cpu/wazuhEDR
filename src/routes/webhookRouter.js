@@ -1,11 +1,15 @@
 import express from 'express';
 import Stripe from 'stripe';
 import { PrismaClient } from '@prisma/client';
-import { provisionTenantInfrastructure } from '../services/wazuhEngine.js';
+import { provisionTenantInfrastructure, offboardTenantInfrastructure } from '../services/wazuhEngine.js';
+import { webhookLimiter } from '../middlewares/rateLimiter.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_mock');
 const prisma = new PrismaClient();
 const router = express.Router();
+
+// Apply aggressive rate limiter (Max 5 attempts / minute per IP)
+router.use('/stripe', webhookLimiter);
 
 router.post('/stripe', express.raw({ type: 'application/json' }), async (req, res) => {
   const cryptographicSignature = req.headers['stripe-signature'];
@@ -28,7 +32,7 @@ router.post('/stripe', express.raw({ type: 'application/json' }), async (req, re
     return res.status(400).send(`Webhook Signature Authentication Violated`);
   }
 
-  // Intercept explicit completed transaction instances
+  // 1. Intercept explicit completed checkout sessions (ONBOARDING)
   if (verifiedEvent.type === 'checkout.session.completed') {
     const activeSessionObject = verifiedEvent.data.object;
     const clientCustomerEmail = activeSessionObject.customer_details?.email || activeSessionObject.customer_email;
@@ -37,16 +41,13 @@ router.post('/stripe', express.raw({ type: 'application/json' }), async (req, re
       return res.status(400).send('Missing critical email profile inside payment context metadata');
     }
 
-    // Generate strict, unique asset tokens for database tracking and Wazuh definitions
     const generationToken = Math.random().toString(36).substring(2, 11);
     const tenantGroupId = `grp_${generationToken}`;
     const tenantRoleId = `role_${generationToken}`;
     const tenantPolicyId = `policy_${generationToken}`;
 
     try {
-      // Execute multi-stage persistence operations as a single unit
       await prisma.$transaction(async (transactionEngine) => {
-        // Upgrade system data status parameters indicating successful paid authorization
         await transactionEngine.user.update({
           where: { email: clientCustomerEmail },
           data: {
@@ -58,7 +59,6 @@ router.post('/stripe', express.raw({ type: 'application/json' }), async (req, re
           }
         });
 
-        // Trigger remote API operations on the Master Wazuh instance
         await provisionTenantInfrastructure(tenantGroupId, tenantRoleId, tenantPolicyId);
       });
 
@@ -66,6 +66,34 @@ router.post('/stripe', express.raw({ type: 'application/json' }), async (req, re
     } catch (transactionCrashError) {
       console.error(`Critical Error: Onboarding Pipeline Failure for account ${clientCustomerEmail}:`, transactionCrashError);
       return res.status(500).send('Internal infrastructure alignment crash');
+    }
+  }
+
+  // 2. Intercept canceled or deleted subscriptions (OFFBOARDING)
+  if (verifiedEvent.type === 'customer.subscription.deleted' || verifiedEvent.type === 'customer.subscription.updated') {
+    const subObject = verifiedEvent.data.object;
+
+    if (subObject.status === 'canceled' || subObject.status === 'unpaid' || verifiedEvent.type === 'customer.subscription.deleted') {
+      try {
+        const tenantUser = await prisma.user.findFirst({
+          where: { stripeCustomerId: subObject.customer }
+        });
+
+        if (tenantUser && tenantUser.wazuhGroupId) {
+          console.log(`[Stripe Webhook] Subscription Canceled/Deleted for customer: ${tenantUser.email}`);
+
+          // Trigger Automated Offboarding in Master Wazuh Server
+          await offboardTenantInfrastructure(tenantUser.wazuhGroupId, tenantUser.wazuhRoleId, tenantUser.wazuhPolicyId);
+
+          // Update DB Status
+          await prisma.user.update({
+            where: { id: tenantUser.id },
+            data: { paymentStatus: 'canceled' }
+          });
+        }
+      } catch (offboardError) {
+        console.error('Error executing automated offboarding pipeline:', offboardError.message);
+      }
     }
   }
 
