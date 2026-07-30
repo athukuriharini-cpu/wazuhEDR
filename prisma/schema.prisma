@@ -1,0 +1,32 @@
+// ==============================================================================
+// Multi-Tenant Wazuh EDR SaaS — Database Schema (Prisma ORM)
+// ==============================================================================
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               String   @id @default(uuid())
+  email            String   @unique
+  passwordHash     String
+  businessName     String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Payment Tracking Architecture (Stripe / Razorpay / UPI)
+  stripeCustomerId String?  @unique
+  paymentStatus    String   @default("unpaid") // Values: unpaid, active, past_due, canceled
+  paidAmount       Float?   @default(1000.0)
+  currency         String   @default("INR")
+
+  // Wazuh Multi-Tenant Isolation Constraints
+  wazuhGroupId     String?  @unique // Maps directly to Wazuh 'group_id' (e.g. grp_abc123)
+  wazuhPolicyId    String?  @unique // Maps to internal Wazuh access-control policy ID
+  wazuhRoleId      String?  @unique // Maps to individual tenant entry role ID
+}

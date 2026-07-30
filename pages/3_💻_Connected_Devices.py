@@ -55,13 +55,14 @@ with tab_win:
     It automatically installs the Wazuh EDR agent and links it to your Central Cloud Server!
     """)
 
-    server_ip = WAZUH_API_HOST if WAZUH_API_HOST != "localhost" else "YOUR_SERVER_IP"
+    # Tenant Isolation Group Token
+    tenant_group_id = f"grp_{user_email.split('@')[0]}"
 
     # Pre-configured Windows Batch Script Content
     bat_content = f"""@echo off
 :: ==============================================================================
 :: ShieldEDR One-Click Agent Installer for Windows
-:: Central Server: {server_ip}
+:: Central Server: {server_ip} | Tenant Silo: {tenant_group_id}
 :: ==============================================================================
 echo ==============================================================================
 echo   🛡️ ShieldEDR — 24/7 Cyber Security & Ransomware Protection Agent Setup
@@ -80,7 +81,7 @@ echo [1/3] Downloading Wazuh EDR Agent package...
 powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"
 
 echo [2/3] Installing EDR Agent and linking to Central Server ({server_ip})...
-msiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="{server_ip}" WAZUH_REGISTRATION_SERVER="{server_ip}"
+msiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="{server_ip}" WAZUH_REGISTRATION_SERVER="{server_ip}" WAZUH_AGENT_GROUP="{tenant_group_id}"
 
 echo [3/3] Starting ShieldEDR Protection Service...
 net start WazuhSvc >nul 2>&1
@@ -100,7 +101,7 @@ pause
         type="primary",
     )
 
-    st.code(f"""msiexec.exe /i wazuh-agent-4.9.0-1.msi /q WAZUH_MANAGER='{server_ip}' WAZUH_REGISTRATION_SERVER='{server_ip}'
+    st.code(f"""msiexec.exe /i wazuh-agent-4.9.0-1.msi /q WAZUH_MANAGER='{server_ip}' WAZUH_REGISTRATION_SERVER='{server_ip}' WAZUH_AGENT_GROUP='{tenant_group_id}'
 net start WazuhSvc""", language="powershell")
 
 with tab_linux:
