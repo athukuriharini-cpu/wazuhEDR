@@ -11,7 +11,7 @@ from datetime import datetime
 from firestore_db import record_payment
 
 # Configuration
-UPI_ID = "shieldedr@upi"
+UPI_ID = "6305001481@ybl"
 BUSINESS_NAME = "ShieldEDR Security"
 PLAN_PRICE_INR = 1000
 
