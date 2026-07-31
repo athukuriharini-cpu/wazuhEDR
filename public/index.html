@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShieldEDR — Enterprise Multi-Tenant EDR & WAF Command Center</title>
+    <title>ShieldEDR — Executive SOC Command Center</title>
     <meta name="description" content="24/7 AI-Powered Endpoint Security, WAF Firewall Protection, and Automated Active Response Engine for MSMEs.">
     
-    <!-- Google Fonts: Inter & Outfit -->
+    <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -14,13 +14,346 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Application Styles -->
-    <link rel="stylesheet" href="/src/App.css">
-</head>
-<body class="bg-obsidian">
-    <div id="app-root"></div>
+    <style>
+        :root {
+            --bg-obsidian: #07090e;
+            --bg-card: rgba(15, 23, 42, 0.8);
+            --border-card: rgba(139, 92, 246, 0.3);
+            --neon-purple: #a855f7;
+            --neon-emerald: #10b981;
+            --neon-cyan: #06b6d4;
+            --neon-rose: #f43f5e;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-    <!-- Application Entrypoint -->
-    <script type="module" src="/src/main.js"></script>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-obsidian);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; }
+
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+
+        .glass-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .glass-panel:hover { border-color: rgba(168, 85, 247, 0.5); }
+
+        .badge-emerald {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 0.35rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .pulse-dot {
+            width: 8px; height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #34d399;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.9; }
+            50% { transform: scale(1.3); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.9; }
+        }
+
+        .btn-gradient-purple {
+            background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.5);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+
+        .btn-gradient-purple:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(236, 72, 153, 0.6);
+        }
+
+        .code-container {
+            background: #0b0f19;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            padding: 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #34d399;
+            font-size: 0.88rem;
+            overflow-x: auto;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(12px);
+            display: flex; align-items: center; justify-content: center; z-index: 9999;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Topbar -->
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: white;"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading" style="font-size: 1.6rem; font-weight: 900; background: linear-gradient(90deg, #c084fc 0%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ShieldEDR</h1>
+                    <p style="color: #94a3b8; font-size: 0.8rem; font-weight: 600;">Executive SOC Command Center</p>
+                </div>
+            </div>
+
+            <div id="auth-nav-container">
+                <button id="btn-open-login" class="btn-gradient-purple">
+                    <i class="fa-solid fa-lock"></i> Firebase Login
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Status Banner -->
+        <div class="glass-panel" style="padding: 2.2rem; margin-bottom: 2rem; border-color: rgba(168, 85, 247, 0.35);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+                <div>
+                    <div class="badge-emerald" style="margin-bottom: 1rem;">
+                        <span class="pulse-dot"></span> WAZUH SIEM MANAGER & WAF FIREWALL ACTIVE
+                    </div>
+                    <h2 class="font-heading" style="font-size: 2.4rem; font-weight: 900; color: #f8fafc; margin-bottom: 0.4rem;">
+                        24/7 Automated Threat Detection & Active Isolation
+                    </h2>
+                    <p style="color: #94a3b8; font-size: 1.05rem;">
+                        Multi-Tenant Isolation Silo: <code id="tenant-silo-id" style="color: #c084fc; background: rgba(192, 132, 252, 0.15); padding: 0.2rem 0.6rem; border-radius: 6px;">grp_demo01</code>
+                    </p>
+                </div>
+                <div>
+                    <a href="#payment-section" class="btn-gradient-purple">
+                        <i class="fa-solid fa-credit-card"></i> Manage Subscription (₹1,000/yr)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metric Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;">
+            <div class="glass-panel" style="padding: 1.5rem; border-color: rgba(16, 185, 129, 0.35);">
+                <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Protected Endpoints</div>
+                <div style="font-size: 2.3rem; font-weight: 900; color: #34d399; margin-top: 0.2rem;">15 Active</div>
+                <div style="font-size: 0.82rem; color: #34d399; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-circle-check"></i> 100% Monitored & Safe</div>
+            </div>
+
+            <div class="glass-panel" style="padding: 1.5rem; border-color: rgba(168, 85, 247, 0.35);">
+                <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Critical Alerts</div>
+                <div style="font-size: 2.3rem; font-weight: 900; color: #c084fc; margin-top: 0.2rem;">0 Threats</div>
+                <div style="font-size: 0.82rem; color: #c084fc; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-shield"></i> All Processes Normal</div>
+            </div>
+
+            <div class="glass-panel" style="padding: 1.5rem; border-color: rgba(6, 182, 212, 0.35);">
+                <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">WAF Attacks Blocked</div>
+                <div style="font-size: 2.3rem; font-weight: 900; color: #38bdf8; margin-top: 0.2rem;">142 Payloads</div>
+                <div style="font-size: 0.82rem; color: #38bdf8; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-fire-flame-curved"></i> SQLi & XSS Mitigated</div>
+            </div>
+
+            <div class="glass-panel" style="padding: 1.5rem; border-color: rgba(16, 185, 129, 0.35);">
+                <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Health & Uptime</div>
+                <div style="font-size: 2.3rem; font-weight: 900; color: #34d399; margin-top: 0.2rem;">99.98%</div>
+                <div style="font-size: 0.82rem; color: #34d399; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-server"></i> Manager Healthy</div>
+            </div>
+        </div>
+
+        <!-- PhonePe Payment Section -->
+        <div id="payment-section" class="glass-panel" style="padding: 2.2rem; margin-bottom: 2rem; background: linear-gradient(180deg, rgba(46, 16, 101, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%); border-color: #8b5cf6;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <span style="background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%); color: white; padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: 800;">🔥 MSME YEARLY SUBSCRIPTION</span>
+                    <h3 class="font-heading" style="font-size: 2.2rem; font-weight: 900; color: #ffffff; margin-top: 0.8rem;">
+                        MSME Enterprise Protection — ₹1,000 / year
+                    </h3>
+                    <p style="color: #c084fc; font-weight: bold; font-size: 1.1rem; margin-bottom: 1.2rem;">
+                        (Just ₹83 / month per computer)
+                    </p>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; max-width: 500px;">
+                        Direct bank transfers with 0% gateway fees via PhonePe, GPay, Paytm, BHIM UPI directly to <b>6305001481@ybl</b>.
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 1.2rem; border-radius: 16px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi%3A%2F%2Fpay%3Fpa%3D6305001481%40ybl%26pn%3DShieldEDR%2520Security%26am%3D1000%26cu%3DINR" alt="PhonePe UPI QR Code" style="width: 180px; height: 180px; display: block; margin: 0 auto;">
+                    <p style="color: #0f172a; font-weight: 800; font-size: 0.88rem; margin-top: 0.6rem;">Scan to pay ₹1,000</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1-Click Agent Installer Box -->
+        <div class="glass-panel" style="padding: 2rem; margin-bottom: 2rem; border-color: rgba(6, 182, 212, 0.4);">
+            <h3 class="font-heading" style="color: #38bdf8; font-size: 1.5rem; margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-download"></i> 1-Click Agent Installer (Windows Batch Setup)
+            </h3>
+            <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1rem;">
+                Run this command on your Windows client devices to automatically bind them to your isolated group silo:
+            </p>
+
+            <div class="code-container" id="agent-command-box">
+                msiexec.exe /i wazuh-agent-4.9.0-1.msi /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="grp_demo01"
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Firebase Authentication Modal -->
+    <div id="auth-modal" class="modal-overlay hidden">
+        <div class="glass-panel" style="width: 420px; padding: 2.2rem; border-color: rgba(168, 85, 247, 0.4); position: relative;">
+            <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">&times;</button>
+            
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #c084fc; margin-bottom: 0.5rem;"></i>
+                <h2 class="font-heading" style="font-size: 1.8rem; color: #f8fafc;">ShieldEDR Account</h2>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Firebase Authentication & Multi-Tenant Access</p>
+            </div>
+
+            <div id="auth-error" class="hidden" style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; padding: 0.6rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
+
+            <form id="login-form">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; color: #cbd5e1; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Email Address</label>
+                    <input type="email" id="email-input" required placeholder="admin@yourcompany.com" style="width: 100%; background: #0f172a; border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 10px; padding: 0.7rem; color: white; outline: none;">
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <label style="display: block; color: #cbd5e1; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Password</label>
+                    <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #0f172a; border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 10px; padding: 0.7rem; color: white; outline: none;">
+                </div>
+
+                <button type="submit" class="btn-gradient-purple" style="width: 100%; justify-content: center; margin-bottom: 0.8rem;">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In with Email
+                </button>
+            </form>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0;">
+                <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
+                <span style="color: #64748b; font-size: 0.75rem; padding: 0 0.8rem; font-weight: 600;">OR</span>
+                <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
+            </div>
+
+            <button id="btn-google-auth" style="width: 100%; background: #ffffff; color: #0f172a; border: none; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
+            </button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK v10 Modular Import -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDemoKey_ShieldEDR2026_Secured",
+            authDomain: "zenith-301b7.firebaseapp.com",
+            projectId: "zenith-301b7",
+            storageBucket: "zenith-301b7.appspot.com",
+            messagingSenderId: "987654321098",
+            appId: "1:987654321098:web:a1b2c3d4e5f6a7b8c9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        const authModal = document.getElementById('auth-modal');
+        const btnOpenLogin = document.getElementById('btn-open-login');
+        const btnCloseModal = document.getElementById('close-modal');
+        const loginForm = document.getElementById('login-form');
+        const btnGoogleAuth = document.getElementById('btn-google-auth');
+        const authError = document.getElementById('auth-error');
+        const authNavContainer = document.getElementById('auth-nav-container');
+        const tenantSiloId = document.getElementById('tenant-silo-id');
+        const agentCommandBox = document.getElementById('agent-command-box');
+
+        btnOpenLogin.onclick = () => authModal.classList.remove('hidden');
+        btnCloseModal.onclick = () => authModal.classList.add('hidden');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                authModal.classList.add('hidden');
+                const groupToken = `grp_${user.uid.substring(0, 8)}`;
+                tenantSiloId.textContent = groupToken;
+                agentCommandBox.textContent = `msiexec.exe /i wazuh-agent-4.9.0-1.msi /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="${groupToken}"`;
+
+                authNavContainer.innerHTML = `
+                    <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(139, 92, 246, 0.3); padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem;">
+                        <i class="fa-solid fa-user-shield" style="color: #34d399;"></i>
+                        <span style="font-size: 0.85rem; color: #f8fafc; font-weight: 600;">${user.email}</span>
+                        <button id="btn-logout" style="background: none; border: none; color: #f43f5e; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    </div>
+                `;
+                document.getElementById('btn-logout').onclick = () => signOut(auth);
+            } else {
+                tenantSiloId.textContent = 'grp_demo01';
+                authNavContainer.innerHTML = `
+                    <button id="btn-open-login" class="btn-gradient-purple">
+                        <i class="fa-solid fa-lock"></i> Firebase Login
+                    </button>
+                `;
+                document.getElementById('btn-open-login').onclick = () => authModal.classList.remove('hidden');
+            }
+        });
+
+        loginForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            const pass = document.getElementById('pass-input').value;
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+            } catch (err) {
+                authError.textContent = err.message;
+                authError.classList.remove('hidden');
+            }
+        };
+
+        btnGoogleAuth.onclick = async () => {
+            try {
+                await signInWithPopup(auth, provider);
+            } catch (err) {
+                authError.textContent = err.message;
+                authError.classList.remove('hidden');
+            }
+        };
+    </script>
 </body>
 </html>
