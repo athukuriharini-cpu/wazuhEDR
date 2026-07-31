@@ -9,10 +9,18 @@
     "rewrites": [
       {
         "source": "**",
-        "run": {
-          "serviceId": "shield-edr-dashboard",
-          "region": "us-central1"
-        }
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
       }
     ]
   }
