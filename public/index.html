@@ -280,7 +280,7 @@
     <!-- Firebase SDK v10 Modular Import -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyDOEUe0o6lJoqo8cv7OwPstE-lkyHqagQw",
@@ -306,7 +306,7 @@
         const tenantSiloId = document.getElementById('tenant-silo-id');
         const agentCommandBox = document.getElementById('agent-command-box');
 
-        btnOpenLogin.onclick = () => authModal.classList.remove('hidden');
+        btnOpenLogin.onclick = () => { authError.classList.add('hidden'); authModal.classList.remove('hidden'); };
         btnCloseModal.onclick = () => authModal.classList.add('hidden');
 
         onAuthStateChanged(auth, (user) => {
@@ -319,7 +319,7 @@
                 authNavContainer.innerHTML = `
                     <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(139, 92, 246, 0.3); padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem;">
                         <i class="fa-solid fa-user-shield" style="color: #34d399;"></i>
-                        <span style="font-size: 0.85rem; color: #f8fafc; font-weight: 600;">${user.email}</span>
+                        <span style="font-size: 0.85rem; color: #f8fafc; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
                         <button id="btn-logout" style="background: none; border: none; color: #f43f5e; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
                 `;
@@ -331,27 +331,45 @@
                         <i class="fa-solid fa-lock"></i> Firebase Login
                     </button>
                 `;
-                document.getElementById('btn-open-login').onclick = () => authModal.classList.remove('hidden');
+                document.getElementById('btn-open-login').onclick = () => { authError.classList.add('hidden'); authModal.classList.remove('hidden'); };
             }
         });
 
+        // Email Form Submit (Sign In or Auto Register)
         loginForm.onsubmit = async (e) => {
             e.preventDefault();
+            authError.classList.add('hidden');
             const email = document.getElementById('email-input').value;
             const pass = document.getElementById('pass-input').value;
             try {
                 await signInWithEmailAndPassword(auth, email, pass);
             } catch (err) {
-                authError.textContent = err.message;
-                authError.classList.remove('hidden');
+                // If user doesn't exist, auto create account!
+                if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
+                    try {
+                        await createUserWithEmailAndPassword(auth, email, pass);
+                    } catch (regErr) {
+                        authError.textContent = regErr.message;
+                        authError.classList.remove('hidden');
+                    }
+                } else {
+                    authError.textContent = err.message;
+                    authError.classList.remove('hidden');
+                }
             }
         };
 
+        // Google Sign-In Handler with setup alert fallback
         btnGoogleAuth.onclick = async () => {
+            authError.classList.add('hidden');
             try {
                 await signInWithPopup(auth, provider);
             } catch (err) {
-                authError.textContent = err.message;
+                if (err.code === 'auth/unauthorized-domain' || err.code === 'auth/operation-not-allowed') {
+                    authError.innerHTML = `<b>Google Provider Setup Needed:</b> Enable <b>Google</b> under <i>Firebase Console -> Authentication -> Sign-in method</i>. In the meantime, use Email/Password sign-in above!`;
+                } else {
+                    authError.textContent = err.message;
+                }
                 authError.classList.remove('hidden');
             }
         };
