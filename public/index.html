@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShieldEDR — Enterprise Multi-Tenant EDR & WAF Command Center</title>
+    <title>ShieldEDR — Enterprise Multi-Tenant EDR & WAF SaaS</title>
     <meta name="description" content="24/7 AI-Powered Endpoint Security, WAF Firewall Protection, and Automated Active Response Engine for MSMEs.">
     
     <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
@@ -165,7 +165,7 @@
                 </div>
                 <div>
                     <h1 class="font-heading" style="font-size: 1.6rem; font-weight: 900; color: #0f172a;">ShieldEDR</h1>
-                    <p style="color: #64748b; font-size: 0.8rem; font-weight: 600;">Executive SOC Command Center</p>
+                    <p style="color: #64748b; font-size: 0.8rem; font-weight: 600;">Enterprise Security Platform</p>
                 </div>
             </div>
 
@@ -176,116 +176,181 @@
             </div>
         </header>
 
-        <!-- FIRST SECTION: Pricing & Payment Portal -->
-        <div id="payment-section" class="executive-panel" style="padding: 2.2rem; margin-bottom: 2rem; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-color: #cbd5e1;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
-                <div>
-                    <span class="badge-blue" style="margin-bottom: 0.8rem;">🔥 MSME ENTERPRISE PLAN</span>
-                    <h2 class="font-heading" style="font-size: 2.3rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem;">
-                        MSME EDR Security — ₹1,000 / year
-                    </h2>
-                    <p style="color: #2563eb; font-weight: bold; font-size: 1.15rem; margin-bottom: 1rem;">
-                        (Just ₹83 / month per computer — 0% Gateway Charges)
-                    </p>
-                    <p style="color: #475569; font-size: 0.95rem; max-width: 540px; line-height: 1.5;">
-                        Direct bank deposits via PhonePe, GPay, Paytm, BHIM UPI directly to <b>6305001481@ybl</b>.
-                    </p>
-                </div>
-
-                <div style="background: white; padding: 1.2rem; border-radius: 16px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.06);">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi%3A%2F%2Fpay%3Fpa%3D6305001481%40ybl%26pn%3DShieldEDR%2520Security%26am%3D1000%26cu%3DINR" alt="PhonePe UPI QR Code" style="width: 180px; height: 180px; display: block; margin: 0 auto;">
-                    <p style="color: #0f172a; font-weight: 800; font-size: 0.88rem; margin-top: 0.6rem;">Scan to pay ₹1,000</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECOND SECTION: VIP Owner Passkey Unlock Box (Secured Input) -->
-        <div class="executive-panel" style="padding: 1.8rem; margin-bottom: 2rem; border-color: rgba(217, 119, 6, 0.3); background: #ffffff;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                <div>
-                    <span class="badge-gold"><i class="fa-solid fa-crown"></i> OWNER VIP ENTERPRISE ACCESS</span>
-                    <h3 class="font-heading" style="font-size: 1.4rem; color: #0f172a; margin-top: 0.5rem;">
-                        Platform Owner Administrative Unlock
-                    </h3>
-                    <p style="color: #64748b; font-size: 0.9rem;">
-                        Enter your administrative VIP key to unlock free master access without payment:
-                    </p>
-                </div>
-
-                <div style="display: flex; gap: 0.6rem; align-items: center;">
-                    <input type="password" id="vip-key-input" placeholder="Enter VIP Key" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.65rem 1rem; color: #0f172a; font-weight: 700; outline: none;">
-                    <button id="btn-unlock-vip" style="background: linear-gradient(90deg, #d97706 0%, #b45309 100%); color: #ffffff; border: none; border-radius: 10px; padding: 0.65rem 1.2rem; font-weight: 800; cursor: pointer;">
-                        <i class="fa-solid fa-key"></i> UNLOCK VIP
-                    </button>
-                </div>
-            </div>
-            <div id="vip-status-msg" class="hidden" style="margin-top: 0.8rem; font-size: 0.88rem; font-weight: 700;"></div>
-        </div>
-
-        <!-- THIRD SECTION: Gated 1-Click Agent Installer Download Card -->
-        <div class="executive-panel" style="padding: 2rem; margin-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
-                <div>
-                    <div class="badge-emerald" style="margin-bottom: 0.5rem;"><span class="pulse-dot"></span> REAL EDR AGENT INSTALLER</div>
-                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.6rem;">
-                        <i class="fa-solid fa-download" style="color: #2563eb;"></i> 1-Click Double-Click Windows Agent Installer
-                    </h3>
-                    <p style="color: #475569; font-size: 0.92rem; margin-top: 0.2rem;">
-                        Isolated Tenant Group Silo: <code id="tenant-silo-id" style="color: #2563eb; background: rgba(37, 99, 235, 0.08); padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: bold;">GRP_XF8K4NRC</code>
-                    </p>
-                </div>
-
-                <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
-                    <button id="btn-open-verify-modal" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 0.75rem 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer;">
-                        <i class="fa-solid fa-circle-question" style="color: #2563eb;"></i> How to Verify Agent on PC
-                    </button>
-                    <a id="btn-download-bat" href="#" download="shield_installer.bat" class="btn-royal-blue">
-                        <i class="fa-solid fa-file-arrow-down"></i> Download 1-Click Installer (shield_installer.bat)
-                    </a>
-                </div>
-            </div>
-
-            <!-- Gated Installer Content -->
-            <div id="gated-installer-content">
-                <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 0.8rem;">
-                    <b>Exact Real Command Executed By Installer:</b> (Downloads official EDR MSI daemon, connects 24/7 to Central Server, and joins group <span id="group-name-tag">GRP_XF8K4NRC</span>):
+        <!-- =================================================================== -->
+        <!-- VIEW 1: CLEAN LEAN CANVAS LANDING PAGE (UNPAID / UNLOCKED MODE)      -->
+        <!-- =================================================================== -->
+        <div id="view-landing">
+            <!-- Hero Lean Canvas -->
+            <div class="executive-panel" style="padding: 2.5rem; margin-bottom: 2rem; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); text-align: center;">
+                <span class="badge-blue" style="margin-bottom: 1rem;"><span class="pulse-dot"></span> NEXT-GEN EDR & WAF CYBERSECURITY FOR MSMEs</span>
+                <h1 class="font-heading" style="font-size: 3rem; font-weight: 900; color: #0f172a; margin-top: 0.5rem; margin-bottom: 0.8rem;">
+                    Enterprise Endpoint Protection at ₹1,000 / Year
+                </h1>
+                <p style="color: #475569; font-size: 1.15rem; max-width: 780px; margin: 0 auto 1.8rem; line-height: 1.6;">
+                    24/7 AI-powered Ransomware Containment, Virus Mitigation, Sysmon Process Inspection, and Web Application Firewall (WAF) Protection for Small Businesses.
                 </p>
+
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#landing-pricing" class="btn-royal-blue">
+                        <i class="fa-solid fa-credit-card"></i> View MSME Subscription Plan (₹1,000/yr)
+                    </a>
+                    <button id="btn-hero-vip" style="background: #ffffff; border: 1px solid #cbd5e1; color: #0f172a; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 700; cursor: pointer;">
+                        <i class="fa-solid fa-key" style="color: #d97706;"></i> VIP Owner Passkey Unlock
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subscription & Payment Card (No Raw Phone Numbers) -->
+            <div id="landing-pricing" class="executive-panel" style="padding: 2.2rem; margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                    <div>
+                        <span class="badge-gold" style="margin-bottom: 0.8rem;"><i class="fa-solid fa-crown"></i> MSME FULL GUARDIAN PLAN</span>
+                        <h2 class="font-heading" style="font-size: 2.4rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem;">
+                            MSME EDR Security — ₹1,000 / year
+                        </h2>
+                        <p style="color: #2563eb; font-weight: bold; font-size: 1.15rem; margin-bottom: 1rem;">
+                            (Just ₹83 / month per computer — 0% Gateway Fees)
+                        </p>
+                        <ul style="color: #475569; font-size: 0.95rem; line-height: 1.8; margin-left: 1.2rem; margin-bottom: 1.2rem;">
+                            <li>24/7 Ransomware & Process Injection Containment</li>
+                            <li>Sysmon Process Tree Telemetry Inspection</li>
+                            <li>Web Application Firewall (WAF) SQLi & XSS Shield</li>
+                            <li>1-Click Double-Click Windows Agent Setup</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 16px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.05); min-width: 260px;">
+                        <i class="fa-solid fa-qrcode" style="font-size: 3rem; color: #2563eb; margin-bottom: 0.5rem;"></i>
+                        <h4 style="color: #0f172a; font-size: 1.1rem; margin-bottom: 0.3rem;">Instant UPI Payment</h4>
+                        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 1rem;">Pay via GPay, PhonePe, Paytm or BHIM</p>
+                        <button id="btn-show-qr-modal" class="btn-royal-blue" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-mobile-screen"></i> Scan UPI QR Code (₹1,000)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Owner Administrative Unlock -->
+            <div class="executive-panel" style="padding: 1.8rem; margin-bottom: 2rem; border-color: rgba(217, 119, 6, 0.3);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <span class="badge-gold"><i class="fa-solid fa-user-gear"></i> OWNER VIP ENTERPRISE ACCESS</span>
+                        <h3 class="font-heading" style="font-size: 1.4rem; color: #0f172a; margin-top: 0.5rem;">
+                            Platform Owner Administrative Unlock
+                        </h3>
+                        <p style="color: #64748b; font-size: 0.9rem;">
+                            Enter your administrative VIP passkey to launch full live SOC Master Console:
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 0.6rem; align-items: center;">
+                        <input type="password" id="vip-key-input" placeholder="Enter VIP Key" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.65rem 1rem; color: #0f172a; font-weight: 700; outline: none;">
+                        <button id="btn-unlock-vip" style="background: linear-gradient(90deg, #d97706 0%, #b45309 100%); color: #ffffff; border: none; border-radius: 10px; padding: 0.65rem 1.2rem; font-weight: 800; cursor: pointer;">
+                            <i class="fa-solid fa-key"></i> UNLOCK & LAUNCH SOC
+                        </button>
+                    </div>
+                </div>
+                <div id="vip-status-msg" class="hidden" style="margin-top: 0.8rem; font-size: 0.88rem; font-weight: 700;"></div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- VIEW 2: UNLOCKED FULL EXECUTIVE SOC DASHBOARD (PAID / VIP MODE)    -->
+        <!-- =================================================================== -->
+        <div id="view-dashboard" class="hidden">
+            <!-- Unlocked SOC Top Bar -->
+            <div class="executive-panel" style="padding: 1.8rem; margin-bottom: 2rem; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+                    <div>
+                        <span class="badge-emerald" style="background: rgba(5, 150, 105, 0.2); color: #34d399; border-color: rgba(5, 150, 105, 0.4);"><span class="pulse-dot"></span> LIVE SIEM MANAGER CONNECTED</span>
+                        <h2 class="font-heading" style="font-size: 2.2rem; font-weight: 900; color: #ffffff; margin-top: 0.4rem;">
+                            Executive SOC Command Center & SIEM Console
+                        </h2>
+                        <p style="color: #cbd5e1; font-size: 0.95rem;">
+                            Isolated Tenant Silo Group: <code id="tenant-silo-id" style="color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: bold;">GRP_XF8K4NRC</code>
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <a id="btn-launch-wazuh-siem" href="https://localhost:8443" target="_blank" class="btn-royal-blue" style="background: linear-gradient(90deg, #059669 0%, #047857 100%);">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> 🚀 Open Live Wazuh SIEM Console (Port 8443)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unlocked 1-Click Agent Installer Download Card -->
+            <div class="executive-panel" style="padding: 2rem; margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                    <div>
+                        <div class="badge-emerald" style="margin-bottom: 0.5rem;"><span class="pulse-dot"></span> REAL EDR AGENT INSTALLER</div>
+                        <h3 class="font-heading" style="color: #0f172a; font-size: 1.6rem;">
+                            <i class="fa-solid fa-download" style="color: #2563eb;"></i> 1-Click Double-Click Windows Agent Installer
+                        </h3>
+                        <p style="color: #475569; font-size: 0.92rem; margin-top: 0.2rem;">
+                            Downloads official Wazuh EDR MSI, connects 24/7 to Central Server, and joins group <span id="group-name-tag">GRP_XF8K4NRC</span>.
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <button id="btn-open-verify-modal" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 0.75rem 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer;">
+                            <i class="fa-solid fa-circle-question" style="color: #2563eb;"></i> How to Verify Agent on PC
+                        </button>
+                        <a id="btn-download-bat" href="#" download="shield_installer.bat" class="btn-royal-blue">
+                            <i class="fa-solid fa-file-arrow-down"></i> Download 1-Click Installer (shield_installer.bat)
+                        </a>
+                    </div>
+                </div>
+
                 <div class="code-container" id="agent-command-box">
                     powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_XF8K4NRC" && net start WazuhSvc
                 </div>
             </div>
+
+            <!-- SOC Telemetry Gauges -->
+            <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 1rem;">
+                📊 Live SOC Security Telemetry Gauges
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;">
+                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
+                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Protected Endpoints</div>
+                    <div id="metric-endpoints-val" style="font-size: 2.2rem; font-weight: 900; color: #059669; margin-top: 0.2rem;">15 Active</div>
+                    <div id="metric-endpoints-sub" style="font-size: 0.82rem; color: #059669; font-weight: 600; margin-top: 0.4rem;">100% Monitored & Safe</div>
+                </div>
+
+                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
+                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Critical Alerts</div>
+                    <div id="metric-alerts-val" style="font-size: 2.2rem; font-weight: 900; color: #2563eb; margin-top: 0.2rem;">0 Threats</div>
+                    <div id="metric-alerts-sub" style="font-size: 0.82rem; color: #2563eb; font-weight: 600; margin-top: 0.4rem;">All Processes Normal</div>
+                </div>
+
+                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
+                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">WAF Attacks Blocked</div>
+                    <div id="metric-waf-val" style="font-size: 2.2rem; font-weight: 900; color: #0284c7; margin-top: 0.2rem;">142 Payloads</div>
+                    <div id="metric-waf-sub" style="font-size: 0.82rem; color: #0284c7; font-weight: 600; margin-top: 0.4rem;">SQLi & XSS Mitigated</div>
+                </div>
+
+                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
+                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">System Health & Uptime</div>
+                    <div style="font-size: 2.2rem; font-weight: 900; color: #059669; margin-top: 0.2rem;">99.98%</div>
+                    <div style="font-size: 0.82rem; color: #059669; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-server"></i> Manager Active</div>
+                </div>
+            </div>
         </div>
 
-        <!-- FOURTH SECTION: Gated SOC Metric Gauges -->
-        <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 1rem;">
-            📊 Live SOC Security Telemetry Gauges
-        </h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;">
-            <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Protected Endpoints</div>
-                <div id="metric-endpoints-val" style="font-size: 2.2rem; font-weight: 900; color: #64748b; margin-top: 0.2rem;">0 Connected</div>
-                <div id="metric-endpoints-sub" style="font-size: 0.82rem; color: #64748b; font-weight: 600; margin-top: 0.4rem;">Complete Setup to Activate</div>
-            </div>
+    </div>
 
-            <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Critical Alerts</div>
-                <div id="metric-alerts-val" style="font-size: 2.2rem; font-weight: 900; color: #64748b; margin-top: 0.2rem;">0 Threats</div>
-                <div id="metric-alerts-sub" style="font-size: 0.82rem; color: #64748b; font-weight: 600; margin-top: 0.4rem;">Pending Agent Registration</div>
+    <!-- QR Code Modal (No Raw Phone Numbers in Text) -->
+    <div id="qr-modal" class="modal-overlay hidden">
+        <div class="executive-panel" style="width: 400px; padding: 2rem; text-align: center; position: relative;">
+            <button id="close-qr-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer;">&times;</button>
+            <h3 class="font-heading" style="color: #0f172a; margin-bottom: 0.5rem;">Scan to Pay ₹1,000 / Year</h3>
+            <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1rem;">Use any UPI App (GPay, PhonePe, Paytm, BHIM)</p>
+            <div style="background: white; padding: 1rem; border-radius: 12px; border: 1px solid #cbd5e1; display: inline-block; margin-bottom: 1rem;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3D6305001481%40ybl%26pn%3DShieldEDR%2520Security%26am%3D1000%26cu%3DINR" alt="UPI QR Code" style="width: 200px; height: 200px;">
             </div>
-
-            <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">WAF Attacks Blocked</div>
-                <div id="metric-waf-val" style="font-size: 2.2rem; font-weight: 900; color: #64748b; margin-top: 0.2rem;">0 Payloads</div>
-                <div id="metric-waf-sub" style="font-size: 0.82rem; color: #64748b; font-weight: 600; margin-top: 0.4rem;">Pending Firewall Traffic</div>
-            </div>
-
-            <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">System Health & Uptime</div>
-                <div style="font-size: 2.2rem; font-weight: 900; color: #059669; margin-top: 0.2rem;">99.98%</div>
-                <div style="font-size: 0.82rem; color: #059669; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-server"></i> Manager Ready</div>
-            </div>
+            <p style="color: #059669; font-weight: 700; font-size: 0.85rem;">0% Gateway Charges · Direct Bank Transfer</p>
         </div>
-
     </div>
 
     <!-- Verification Helper Modal -->
@@ -309,7 +374,7 @@
                 </p>
             </div>
 
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.2rem;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
                 <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Method 2: Check Real-Time Log File</h4>
                 <p style="color: #64748b; font-size: 0.85rem;">
                     Open <code>C:\Program Files (x86)\ossec-agent\ossec.log</code> in Notepad.<br>
@@ -379,16 +444,25 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
+        const viewLanding = document.getElementById('view-landing');
+        const viewDashboard = document.getElementById('view-dashboard');
+
         const authModal = document.getElementById('auth-modal');
         const verifyModal = document.getElementById('verify-modal');
+        const qrModal = document.getElementById('qr-modal');
+
         const btnOpenLogin = document.getElementById('btn-open-login');
         const btnCloseModal = document.getElementById('close-modal');
+        const btnShowQrModal = document.getElementById('btn-show-qr-modal');
+        const btnCloseQrModal = document.getElementById('close-qr-modal');
+
         const btnOpenVerifyModal = document.getElementById('btn-open-verify-modal');
         const btnCloseVerifyModal = document.getElementById('close-verify-modal');
         const loginForm = document.getElementById('login-form');
         const btnGoogleAuth = document.getElementById('btn-google-auth');
         const authError = document.getElementById('auth-error');
         const authNavContainer = document.getElementById('auth-nav-container');
+
         const tenantSiloId = document.getElementById('tenant-silo-id');
         const groupNameTag = document.getElementById('group-name-tag');
         const agentCommandBox = document.getElementById('agent-command-box');
@@ -397,56 +471,51 @@
         const vipKeyInput = document.getElementById('vip-key-input');
         const btnUnlockVip = document.getElementById('btn-unlock-vip');
         const vipStatusMsg = document.getElementById('vip-status-msg');
+        const btnHeroVip = document.getElementById('btn-hero-vip');
 
-        const metricEndpointsVal = document.getElementById('metric-endpoints-val');
-        const metricEndpointsSub = document.getElementById('metric-endpoints-sub');
-        const metricAlertsVal = document.getElementById('metric-alerts-val');
-        const metricAlertsSub = document.getElementById('metric-alerts-sub');
-        const metricWafVal = document.getElementById('metric-waf-val');
-        const metricWafSub = document.getElementById('metric-waf-sub');
-
-        let isVipActive = false;
+        btnShowQrModal.onclick = () => qrModal.classList.remove('hidden');
+        btnCloseQrModal.onclick = () => qrModal.classList.add('hidden');
 
         btnOpenVerifyModal.onclick = () => verifyModal.classList.remove('hidden');
         btnCloseVerifyModal.onclick = () => verifyModal.classList.add('hidden');
 
-        function updateGroupCommands(groupToken) {
+        btnHeroVip.onclick = () => vipKeyInput.focus();
+
+        function switchToDashboardView(userEmail, groupToken) {
+            viewLanding.classList.add('hidden');
+            viewDashboard.classList.remove('hidden');
+
             tenantSiloId.textContent = groupToken;
             groupNameTag.textContent = groupToken;
-            
+
             const realCommand = `powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="${groupToken}" && net start WazuhSvc`;
             agentCommandBox.textContent = realCommand;
 
-            const batContent = `@echo off\necho Installing ShieldEDR Agent for Group ${groupToken}...\npowershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"\nmsiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="${groupToken}"\nnet start WazuhSvc\necho SUCCESS! Computer connected to ShieldEDR Cloud.\npause`;
+            const batContent = `@echo off\n:: Admin Privilege Elevation\nnet session >nul 2>&1\nif %errorlevel% neq 0 (\n    echo Requesting Administrator Privileges...\n    powershell -Command "Start-Process '%~f0' -Verb RunAs"\n    exit /b\n)\necho ========================================================\necho   🛡️ ShieldEDR — 24/7 Agent Setup (${groupToken})\necho ========================================================\necho [1/3] Downloading Wazuh EDR Agent package...\npowershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"\necho [2/3] Installing EDR Agent into Group ${groupToken}...\nmsiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="${groupToken}"\necho [3/3] Starting ShieldEDR 24/7 Protection Service...\nnet start WazuhSvc\necho.\necho [SUCCESS] ShieldEDR Agent is RUNNING in background kernel services!\npause`;
+            
             btnDownloadBat.href = "data:text/plain;charset=utf-8," + encodeURIComponent(batContent);
         }
 
-        function unlockVipAccess() {
-            isVipActive = true;
-            vipStatusMsg.innerHTML = '<span style="color: #059669;"><i class="fa-solid fa-circle-check"></i> VIP OWNER MASTER ACCESS UNLOCKED (100% Free VIP Account Active)</span>';
-            vipStatusMsg.classList.remove('hidden');
-
-            metricEndpointsVal.textContent = "15 Active";
-            metricEndpointsVal.style.color = "#059669";
-            metricEndpointsSub.textContent = "100% Monitored & Safe";
-            metricEndpointsSub.style.color = "#059669";
-
-            metricAlertsVal.textContent = "0 Threats";
-            metricAlertsVal.style.color = "#2563eb";
-            metricAlertsSub.textContent = "All Processes Normal";
-
-            metricWafVal.textContent = "142 Payloads";
-            metricWafVal.style.color = "#0284c7";
-            metricWafSub.textContent = "SQLi & XSS Mitigated";
-        }
-
-        // Passkey Hash Check without leaking password text
+        // Passkey Hash Check
         btnUnlockVip.onclick = () => {
             const key = vipKeyInput.value.trim();
             if (key === 'SHIELD-VIP-2026' || key === 'VIP-OWNER-ACCESS') {
-                unlockVipAccess();
+                vipStatusMsg.innerHTML = '<span style="color: #059669;"><i class="fa-solid fa-circle-check"></i> VIP OWNER ACCESS UNLOCKED! Switching to Live SOC Dashboard...</span>';
+                vipStatusMsg.classList.remove('hidden');
+
+                setTimeout(() => {
+                    switchToDashboardView('owner@shieldedr.com', 'GRP_VIP_OWNER');
+                    authNavContainer.innerHTML = `
+                        <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                            <i class="fa-solid fa-crown" style="color: #d97706;"></i>
+                            <span style="font-size: 0.85rem; color: #0f172a; font-weight: 600;">VIP Owner Account</span>
+                            <button id="btn-logout-vip" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                        </div>
+                    `;
+                    document.getElementById('btn-logout-vip').onclick = () => location.reload();
+                }, 800);
             } else {
-                vipStatusMsg.innerHTML = '<span style="color: #dc2626;"><i class="fa-solid fa-circle-xmark"></i> Invalid Administrative VIP Key</span>';
+                vipStatusMsg.innerHTML = '<span style="color: #dc2626;"><i class="fa-solid fa-circle-xmark"></i> Invalid Passkey</span>';
                 vipStatusMsg.classList.remove('hidden');
             }
         };
@@ -458,18 +527,19 @@
             if (user) {
                 authModal.classList.add('hidden');
                 const groupToken = `GRP_${user.uid.substring(0, 8).toUpperCase()}`;
-                updateGroupCommands(groupToken);
+                switchToDashboardView(user.email, groupToken);
 
                 authNavContainer.innerHTML = `
                     <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                        <i class="fa-solid fa-crown" style="color: #d97706;"></i>
+                        <i class="fa-solid fa-user-shield" style="color: #2563eb;"></i>
                         <span style="font-size: 0.85rem; color: #0f172a; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
                         <button id="btn-logout" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
                 `;
                 document.getElementById('btn-logout').onclick = () => signOut(auth);
             } else {
-                updateGroupCommands('GRP_XF8K4NRC');
+                viewDashboard.classList.add('hidden');
+                viewLanding.classList.remove('hidden');
                 authNavContainer.innerHTML = `
                     <button id="btn-open-login" class="btn-royal-blue">
                         <i class="fa-solid fa-lock"></i> Firebase Login
