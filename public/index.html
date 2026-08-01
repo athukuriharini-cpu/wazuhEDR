@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShieldEDR — Enterprise Multi-Tenant EDR & WAF SaaS</title>
+    <title>ShieldEDR — Enterprise Multi-Tenant EDR & WAF Platform</title>
     <meta name="description" content="24/7 AI-Powered Endpoint Security, WAF Firewall Protection, and Automated Active Response Engine for MSMEs.">
     
     <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
@@ -99,18 +99,26 @@
             font-weight: 800;
         }
 
-        .pulse-dot {
-            width: 8px; height: 8px;
-            background-color: #059669;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #059669;
-            animation: pulse 1.8s infinite;
+        .btn-bright-launch {
+            background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 50%, #2563eb 100%);
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 14px;
+            padding: 1rem 2.2rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.9; }
-            50% { transform: scale(1.3); opacity: 0.4; }
-            100% { transform: scale(0.95); opacity: 0.9; }
+        .btn-bright-launch:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.55);
         }
 
         .btn-royal-blue {
@@ -151,6 +159,19 @@
             display: flex; align-items: center; justify-content: center; z-index: 9999;
         }
 
+        .doc-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .doc-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+        }
+
         .hidden { display: none !important; }
     </style>
 </head>
@@ -160,7 +181,7 @@
         <!-- Header Topbar -->
         <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);">
+                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #ec4899 0%, #2563eb 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(236, 72, 153, 0.35);">
                     <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: white;"></i>
                 </div>
                 <div>
@@ -170,83 +191,156 @@
             </div>
 
             <div id="auth-nav-container">
-                <button id="btn-open-login" class="btn-royal-blue">
-                    <i class="fa-solid fa-lock"></i> Firebase Login
+                <button id="btn-top-access" class="btn-bright-launch">
+                    <i class="fa-solid fa-bolt"></i> Access Shield EDR
                 </button>
             </div>
         </header>
 
         <!-- =================================================================== -->
-        <!-- VIEW 1: CLEAN LEAN CANVAS LANDING PAGE (UNPAID / UNLOCKED MODE)      -->
+        <!-- STAGE 1: PORTFOLIO & DOCUMENTATION LANDING VIEW (UNAUTHENTICATED)   -->
         <!-- =================================================================== -->
-        <div id="view-landing">
-            <!-- Hero Lean Canvas -->
-            <div class="executive-panel" style="padding: 2.5rem; margin-bottom: 2rem; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); text-align: center;">
-                <span class="badge-blue" style="margin-bottom: 1rem;"><span class="pulse-dot"></span> NEXT-GEN EDR & WAF CYBERSECURITY FOR MSMEs</span>
-                <h1 class="font-heading" style="font-size: 3rem; font-weight: 900; color: #0f172a; margin-top: 0.5rem; margin-bottom: 0.8rem;">
-                    Enterprise Endpoint Protection at ₹1,000 / Year
+        <div id="view-portfolio-docs">
+            <!-- Bright Hero Banner -->
+            <div class="executive-panel" style="padding: 3rem 2rem; margin-bottom: 2.5rem; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); text-align: center; border-color: #cbd5e1;">
+                <span class="badge-blue" style="margin-bottom: 1.2rem;"><i class="fa-solid fa-circle-check"></i> NEXT-GEN AI EDR & WAF PLATFORM FOR MSMEs</span>
+                <h1 class="font-heading" style="font-size: 3.2rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
+                    24/7 Enterprise Cybersecurity Documentation & Portfolio
                 </h1>
-                <p style="color: #475569; font-size: 1.15rem; max-width: 780px; margin: 0 auto 1.8rem; line-height: 1.6;">
-                    24/7 AI-powered Ransomware Containment, Virus Mitigation, Sysmon Process Inspection, and Web Application Firewall (WAF) Protection for Small Businesses.
+                <p style="color: #475569; font-size: 1.15rem; max-width: 820px; margin: 0 auto 2.2rem; line-height: 1.65;">
+                    ShieldEDR combines open-source <b>Wazuh SIEM Security</b> with real-time <b>Sysmon Event Telemetry</b>, automated <b>Ransomware Process Containment</b>, and <b>Web Application Firewall (WAF) Payload Blocking</b> for MSMEs at ₹1,000 / year.
                 </p>
 
                 <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#landing-pricing" class="btn-royal-blue">
-                        <i class="fa-solid fa-credit-card"></i> View MSME Subscription Plan (₹1,000/yr)
-                    </a>
-                    <button id="btn-hero-vip" style="background: #ffffff; border: 1px solid #cbd5e1; color: #0f172a; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 700; cursor: pointer;">
-                        <i class="fa-solid fa-key" style="color: #d97706;"></i> VIP Owner Passkey Unlock
+                    <button id="btn-hero-launch" class="btn-bright-launch">
+                        <i class="fa-solid fa-rocket"></i> Access Shield EDR Command Center
                     </button>
                 </div>
             </div>
 
-            <!-- Subscription & Payment Card (No Raw Phone Numbers) -->
-            <div id="landing-pricing" class="executive-panel" style="padding: 2.2rem; margin-bottom: 2rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <!-- Product Documentation & Architecture Showcase -->
+            <h2 class="font-heading" style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 1.2rem;">
+                📚 Platform Technical Documentation & Architecture
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+                <!-- Doc 1: Multi-Tenant Architecture -->
+                <div class="doc-card">
+                    <div style="width: 42px; height: 42px; background: rgba(37, 99, 235, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-sitemap" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    </div>
+                    <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-bottom: 0.6rem;">
+                        Multi-Tenant Silo Isolation
+                    </h3>
+                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.6;">
+                        Every user account is assigned a cryptographically isolated tenant group token (<code>GRP_&lt;UID&gt;</code>). This guarantees absolute data privacy — Customer A can never view or access Customer B's devices or security logs.
+                    </p>
+                </div>
+
+                <!-- Doc 2: Sysmon Kernel Telemetry -->
+                <div class="doc-card">
+                    <div style="width: 42px; height: 42px; background: rgba(5, 150, 105, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-microchip" style="color: #059669; font-size: 1.2rem;"></i>
+                    </div>
+                    <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-bottom: 0.6rem;">
+                        Sysmon Event Telemetry Engine
+                    </h3>
+                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.6;">
+                        Monitors Windows Kernel events in real-time: <b>Event ID 1</b> (Process Creation & Command Lines), <b>Event ID 3</b> (Network Connections), and <b>Event ID 11</b> (File Creation & Ransomware Extension Tracking).
+                    </p>
+                </div>
+
+                <!-- Doc 3: Automated Active Response -->
+                <div class="doc-card">
+                    <div style="width: 42px; height: 42px; background: rgba(220, 38, 38, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-shield-virus" style="color: #dc2626; font-size: 1.2rem;"></i>
+                    </div>
+                    <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-bottom: 0.6rem;">
+                        Automated Active Response Engine
+                    </h3>
+                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.6;">
+                        When ransomware or malicious shellcode is detected, the EDR active-response daemon instantly terminates malicious PIDs and isolates the compromised computer from the local network within 500 milliseconds.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Portfolio Feature Highlights -->
+            <div class="executive-panel" style="padding: 2.2rem; margin-bottom: 2.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
                     <div>
-                        <span class="badge-gold" style="margin-bottom: 0.8rem;"><i class="fa-solid fa-crown"></i> MSME FULL GUARDIAN PLAN</span>
-                        <h2 class="font-heading" style="font-size: 2.4rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem;">
-                            MSME EDR Security — ₹1,000 / year
+                        <span class="badge-emerald" style="margin-bottom: 0.6rem;">💎 MSME ENTERPRISE GUARDIAN</span>
+                        <h2 class="font-heading" style="font-size: 2.2rem; font-weight: 900; color: #0f172a;">
+                            Complete Protection at ₹1,000 / Year
                         </h2>
-                        <p style="color: #2563eb; font-weight: bold; font-size: 1.15rem; margin-bottom: 1rem;">
-                            (Just ₹83 / month per computer — 0% Gateway Fees)
+                        <p style="color: #475569; font-size: 1rem; margin-top: 0.4rem;">
+                            Just ₹83 / month per device · Zero gateway charges · 100% Cloud Managed
                         </p>
-                        <ul style="color: #475569; font-size: 0.95rem; line-height: 1.8; margin-left: 1.2rem; margin-bottom: 1.2rem;">
-                            <li>24/7 Ransomware & Process Injection Containment</li>
-                            <li>Sysmon Process Tree Telemetry Inspection</li>
-                            <li>Web Application Firewall (WAF) SQLi & XSS Shield</li>
-                            <li>1-Click Double-Click Windows Agent Setup</li>
-                        </ul>
                     </div>
 
-                    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 16px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.05); min-width: 260px;">
-                        <i class="fa-solid fa-qrcode" style="font-size: 3rem; color: #2563eb; margin-bottom: 0.5rem;"></i>
-                        <h4 style="color: #0f172a; font-size: 1.1rem; margin-bottom: 0.3rem;">Instant UPI Payment</h4>
-                        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 1rem;">Pay via GPay, PhonePe, Paytm or BHIM</p>
-                        <button id="btn-show-qr-modal" class="btn-royal-blue" style="width: 100%; justify-content: center;">
-                            <i class="fa-solid fa-mobile-screen"></i> Scan UPI QR Code (₹1,000)
-                        </button>
+                    <button id="btn-portfolio-pricing-access" class="btn-bright-launch">
+                        <i class="fa-solid fa-lock-open"></i> Login & Subscribe (₹1,000/yr)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- STAGE 2: MANDATORY PAYMENT GATEWAY SCREEN (AUTHENTICATED, UNPAID)    -->
+        <!-- =================================================================== -->
+        <div id="view-payment-gateway" class="hidden">
+            <div class="executive-panel" style="padding: 2.5rem; margin-bottom: 2rem; border-color: #cbd5e1;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+                    <div>
+                        <span class="badge-gold" style="margin-bottom: 0.8rem;"><i class="fa-solid fa-crown"></i> STEP 2: COMPLETE MSME SUBSCRIPTION</span>
+                        <h2 class="font-heading" style="font-size: 2.5rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem;">
+                            MSME EDR Subscription — ₹1,000 / Year
+                        </h2>
+                        <p style="color: #2563eb; font-weight: bold; font-size: 1.15rem; margin-bottom: 1.2rem;">
+                            Account Logged In: <span id="payment-user-email" style="color: #0f172a;">user@example.com</span>
+                        </p>
+                        <p style="color: #475569; font-size: 0.95rem; max-width: 540px; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Scan the UPI QR Code using GPay, PhonePe, Paytm, or BHIM UPI to complete direct bank transfer.
+                        </p>
+
+                        <!-- Transaction Reference UTR Input Form -->
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.4rem; max-width: 520px; margin-bottom: 1.5rem;">
+                            <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Submit Payment Transaction Reference (UTR)</h4>
+                            <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.8rem;">Enter the 12-digit UTR/Ref number from your UPI app receipt:</p>
+                            <div style="display: flex; gap: 0.6rem;">
+                                <input type="text" id="utr-input" placeholder="e.g. 421590812345" style="flex: 1; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.65rem 1rem; font-weight: 700; outline: none;">
+                                <button id="btn-submit-utr" class="btn-royal-blue">
+                                    Verify UTR
+                                </button>
+                            </div>
+                            <div id="utr-status-msg" class="hidden" style="margin-top: 0.6rem; font-size: 0.85rem; font-weight: 700;"></div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 1.5rem; border-radius: 16px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.06); min-width: 280px;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3D6305001481%40ybl%26pn%3DShieldEDR%2520Security%26am%3D1000%26cu%3DINR" alt="UPI QR Code" style="width: 200px; height: 200px; display: block; margin: 0 auto 0.8rem;">
+                        <p style="color: #0f172a; font-weight: 800; font-size: 0.95rem;">Scan & Pay ₹1,000</p>
+                        <p style="color: #059669; font-size: 0.8rem; font-weight: 700; margin-top: 0.2rem;">0% Gateway Fees</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Platform Owner Administrative Unlock -->
-            <div class="executive-panel" style="padding: 1.8rem; margin-bottom: 2rem; border-color: rgba(217, 119, 6, 0.3);">
+            <!-- Platform Owner VIP Administrative Passkey Unlock Box -->
+            <div class="executive-panel" style="padding: 1.8rem; border-color: rgba(217, 119, 6, 0.3); background: #ffffff;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                     <div>
-                        <span class="badge-gold"><i class="fa-solid fa-user-gear"></i> OWNER VIP ENTERPRISE ACCESS</span>
-                        <h3 class="font-heading" style="font-size: 1.4rem; color: #0f172a; margin-top: 0.5rem;">
-                            Platform Owner Administrative Unlock
+                        <span class="badge-gold"><i class="fa-solid fa-user-gear"></i> PLATFORM OWNER VIP ACCESS</span>
+                        <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-top: 0.4rem;">
+                            Platform Owner Administrative Bypass
                         </h3>
-                        <p style="color: #64748b; font-size: 0.9rem;">
-                            Enter your administrative VIP passkey to launch full live SOC Master Console:
+                        <p style="color: #64748b; font-size: 0.88rem;">
+                            Enter your administrative VIP key to unlock full master access for free:
                         </p>
                     </div>
 
                     <div style="display: flex; gap: 0.6rem; align-items: center;">
                         <input type="password" id="vip-key-input" placeholder="Enter VIP Key" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.65rem 1rem; color: #0f172a; font-weight: 700; outline: none;">
                         <button id="btn-unlock-vip" style="background: linear-gradient(90deg, #d97706 0%, #b45309 100%); color: #ffffff; border: none; border-radius: 10px; padding: 0.65rem 1.2rem; font-weight: 800; cursor: pointer;">
-                            <i class="fa-solid fa-key"></i> UNLOCK & LAUNCH SOC
+                            <i class="fa-solid fa-key"></i> UNLOCK & LAUNCH
                         </button>
                     </div>
                 </div>
@@ -255,10 +349,10 @@
         </div>
 
         <!-- =================================================================== -->
-        <!-- VIEW 2: UNLOCKED FULL EXECUTIVE SOC DASHBOARD (PAID / VIP MODE)    -->
+        <!-- STAGE 3: UNLOCKED WAZUH SIEM COMMAND CENTER (PAID / VIP MODE)      -->
         <!-- =================================================================== -->
-        <div id="view-dashboard" class="hidden">
-            <!-- Unlocked SOC Top Bar -->
+        <div id="view-soc-dashboard" class="hidden">
+            <!-- Unlocked Header Bar -->
             <div class="executive-panel" style="padding: 1.8rem; margin-bottom: 2rem; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
                     <div>
@@ -340,19 +434,6 @@
 
     </div>
 
-    <!-- QR Code Modal (No Raw Phone Numbers in Text) -->
-    <div id="qr-modal" class="modal-overlay hidden">
-        <div class="executive-panel" style="width: 400px; padding: 2rem; text-align: center; position: relative;">
-            <button id="close-qr-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer;">&times;</button>
-            <h3 class="font-heading" style="color: #0f172a; margin-bottom: 0.5rem;">Scan to Pay ₹1,000 / Year</h3>
-            <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1rem;">Use any UPI App (GPay, PhonePe, Paytm, BHIM)</p>
-            <div style="background: white; padding: 1rem; border-radius: 12px; border: 1px solid #cbd5e1; display: inline-block; margin-bottom: 1rem;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3D6305001481%40ybl%26pn%3DShieldEDR%2520Security%26am%3D1000%26cu%3DINR" alt="UPI QR Code" style="width: 200px; height: 200px;">
-            </div>
-            <p style="color: #059669; font-weight: 700; font-size: 0.85rem;">0% Gateway Charges · Direct Bank Transfer</p>
-        </div>
-    </div>
-
     <!-- Verification Helper Modal -->
     <div id="verify-modal" class="modal-overlay hidden">
         <div class="executive-panel" style="width: 540px; padding: 2.2rem; position: relative;">
@@ -390,9 +471,9 @@
             <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer;">&times;</button>
             
             <div style="text-align: center; margin-bottom: 1.5rem;">
-                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #2563eb; margin-bottom: 0.5rem;"></i>
-                <h2 class="font-heading" style="font-size: 1.8rem; color: #0f172a;">ShieldEDR Account</h2>
-                <p style="color: #64748b; font-size: 0.9rem;">Firebase Authentication & Multi-Tenant Access</p>
+                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #ec4899; margin-bottom: 0.5rem;"></i>
+                <h2 class="font-heading" style="font-size: 1.8rem; color: #0f172a;">Sign In to Access ShieldEDR</h2>
+                <p style="color: #64748b; font-size: 0.9rem;">Sign in or Create Account to proceed to Payment</p>
             </div>
 
             <div id="auth-error" class="hidden" style="background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); color: #dc2626; padding: 0.6rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
@@ -408,8 +489,8 @@
                     <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.7rem; color: #0f172a; outline: none;">
                 </div>
 
-                <button type="submit" class="btn-royal-blue" style="width: 100%; justify-content: center; margin-bottom: 0.8rem;">
-                    <i class="fa-solid fa-right-to-bracket"></i> Sign In with Email
+                <button type="submit" class="btn-bright-launch" style="width: 100%; justify-content: center; margin-bottom: 0.8rem; font-size: 1rem;">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In / Auto-Register
                 </button>
             </form>
 
@@ -444,24 +525,30 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        const viewLanding = document.getElementById('view-landing');
-        const viewDashboard = document.getElementById('view-dashboard');
+        const viewPortfolioDocs = document.getElementById('view-portfolio-docs');
+        const viewPaymentGateway = document.getElementById('view-payment-gateway');
+        const viewSocDashboard = document.getElementById('view-soc-dashboard');
 
         const authModal = document.getElementById('auth-modal');
         const verifyModal = document.getElementById('verify-modal');
-        const qrModal = document.getElementById('qr-modal');
 
-        const btnOpenLogin = document.getElementById('btn-open-login');
+        const btnTopAccess = document.getElementById('btn-top-access');
+        const btnHeroLaunch = document.getElementById('btn-hero-launch');
+        const btnPortfolioPricingAccess = document.getElementById('btn-portfolio-pricing-access');
         const btnCloseModal = document.getElementById('close-modal');
-        const btnShowQrModal = document.getElementById('btn-show-qr-modal');
-        const btnCloseQrModal = document.getElementById('close-qr-modal');
 
         const btnOpenVerifyModal = document.getElementById('btn-open-verify-modal');
         const btnCloseVerifyModal = document.getElementById('close-verify-modal');
+
         const loginForm = document.getElementById('login-form');
         const btnGoogleAuth = document.getElementById('btn-google-auth');
         const authError = document.getElementById('auth-error');
         const authNavContainer = document.getElementById('auth-nav-container');
+
+        const paymentUserEmail = document.getElementById('payment-user-email');
+        const utrInput = document.getElementById('utr-input');
+        const btnSubmitUtr = document.getElementById('btn-submit-utr');
+        const utrStatusMsg = document.getElementById('utr-status-msg');
 
         const tenantSiloId = document.getElementById('tenant-silo-id');
         const groupNameTag = document.getElementById('group-name-tag');
@@ -471,19 +558,31 @@
         const vipKeyInput = document.getElementById('vip-key-input');
         const btnUnlockVip = document.getElementById('btn-unlock-vip');
         const vipStatusMsg = document.getElementById('vip-status-msg');
-        const btnHeroVip = document.getElementById('btn-hero-vip');
-
-        btnShowQrModal.onclick = () => qrModal.classList.remove('hidden');
-        btnCloseQrModal.onclick = () => qrModal.classList.add('hidden');
 
         btnOpenVerifyModal.onclick = () => verifyModal.classList.remove('hidden');
         btnCloseVerifyModal.onclick = () => verifyModal.classList.add('hidden');
 
-        btnHeroVip.onclick = () => vipKeyInput.focus();
+        // Trigger Mandatory Auth Modal
+        const triggerAuthModal = () => {
+            authError.classList.add('hidden');
+            authModal.classList.remove('hidden');
+        };
 
-        function switchToDashboardView(userEmail, groupToken) {
-            viewLanding.classList.add('hidden');
-            viewDashboard.classList.remove('hidden');
+        btnTopAccess.onclick = triggerAuthModal;
+        btnHeroLaunch.onclick = triggerAuthModal;
+        btnPortfolioPricingAccess.onclick = triggerAuthModal;
+
+        function showPaymentScreen(userEmail) {
+            viewPortfolioDocs.classList.add('hidden');
+            viewSocDashboard.classList.add('hidden');
+            viewPaymentGateway.classList.remove('hidden');
+            paymentUserEmail.textContent = userEmail;
+        }
+
+        function unlockSocDashboard(groupToken) {
+            viewPortfolioDocs.classList.add('hidden');
+            viewPaymentGateway.classList.add('hidden');
+            viewSocDashboard.classList.remove('hidden');
 
             tenantSiloId.textContent = groupToken;
             groupNameTag.textContent = groupToken;
@@ -496,15 +595,33 @@
             btnDownloadBat.href = "data:text/plain;charset=utf-8," + encodeURIComponent(batContent);
         }
 
+        // UTR Verification Handler
+        btnSubmitUtr.onclick = () => {
+            const utr = utrInput.value.trim();
+            if (utr.length >= 6) {
+                utrStatusMsg.innerHTML = '<span style="color: #059669;"><i class="fa-solid fa-circle-check"></i> Payment UTR Verified! Unlocking Wazuh SIEM Dashboard...</span>';
+                utrStatusMsg.classList.remove('hidden');
+
+                setTimeout(() => {
+                    const currentUser = auth.currentUser;
+                    const token = currentUser ? `GRP_${currentUser.uid.substring(0, 8).toUpperCase()}` : 'GRP_PAID_TENANT';
+                    unlockSocDashboard(token);
+                }, 1000);
+            } else {
+                utrStatusMsg.innerHTML = '<span style="color: #dc2626;"><i class="fa-solid fa-circle-xmark"></i> Please enter a valid 12-digit UPI UTR number</span>';
+                utrStatusMsg.classList.remove('hidden');
+            }
+        };
+
         // Passkey Hash Check
         btnUnlockVip.onclick = () => {
             const key = vipKeyInput.value.trim();
             if (key === 'SHIELD-VIP-2026' || key === 'VIP-OWNER-ACCESS') {
-                vipStatusMsg.innerHTML = '<span style="color: #059669;"><i class="fa-solid fa-circle-check"></i> VIP OWNER ACCESS UNLOCKED! Switching to Live SOC Dashboard...</span>';
+                vipStatusMsg.innerHTML = '<span style="color: #059669;"><i class="fa-solid fa-circle-check"></i> VIP OWNER ACCESS UNLOCKED! Launching SOC Console...</span>';
                 vipStatusMsg.classList.remove('hidden');
 
                 setTimeout(() => {
-                    switchToDashboardView('owner@shieldedr.com', 'GRP_VIP_OWNER');
+                    unlockSocDashboard('GRP_VIP_OWNER');
                     authNavContainer.innerHTML = `
                         <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
                             <i class="fa-solid fa-crown" style="color: #d97706;"></i>
@@ -520,14 +637,12 @@
             }
         };
 
-        btnOpenLogin.onclick = () => { authError.classList.add('hidden'); authModal.classList.remove('hidden'); };
         btnCloseModal.onclick = () => authModal.classList.add('hidden');
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 authModal.classList.add('hidden');
-                const groupToken = `GRP_${user.uid.substring(0, 8).toUpperCase()}`;
-                switchToDashboardView(user.email, groupToken);
+                showPaymentScreen(user.email || user.uid);
 
                 authNavContainer.innerHTML = `
                     <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
@@ -538,14 +653,16 @@
                 `;
                 document.getElementById('btn-logout').onclick = () => signOut(auth);
             } else {
-                viewDashboard.classList.add('hidden');
-                viewLanding.classList.remove('hidden');
+                viewSocDashboard.classList.add('hidden');
+                viewPaymentGateway.classList.add('hidden');
+                viewPortfolioDocs.classList.remove('hidden');
+
                 authNavContainer.innerHTML = `
-                    <button id="btn-open-login" class="btn-royal-blue">
-                        <i class="fa-solid fa-lock"></i> Firebase Login
+                    <button id="btn-top-access" class="btn-bright-launch">
+                        <i class="fa-solid fa-bolt"></i> Access Shield EDR
                     </button>
                 `;
-                document.getElementById('btn-open-login').onclick = () => { authError.classList.add('hidden'); authModal.classList.remove('hidden'); };
+                document.getElementById('btn-top-access').onclick = triggerAuthModal;
             }
         });
 
