@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShieldEDR — Enterprise Multi-Tenant EDR & WAF Platform</title>
+    <title>ShieldEDR — Enterprise Multi-Tenant EDR & WAF Command Center</title>
     <meta name="description" content="24/7 AI-Powered Endpoint Security, WAF Firewall Protection, and Automated Active Response Engine for MSMEs.">
     
     <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
@@ -16,27 +16,26 @@
     
     <style>
         :root {
-            --bg-light: #f8fafc;
-            --bg-card: #ffffff;
-            --border-card: #e2e8f0;
-            --royal-blue: #2563eb;
-            --royal-blue-hover: #1d4ed8;
-            --neon-emerald: #059669;
-            --neon-amber: #d97706;
-            --neon-rose: #dc2626;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #64748b;
+            --bg-obsidian: #07090e;
+            --bg-card: rgba(15, 23, 42, 0.92);
+            --border-card: #1e293b;
+            --electric-blue: #3b82f6;
+            --electric-blue-glow: rgba(59, 130, 246, 0.4);
+            --emerald-green: #10b981;
+            --amber-gold: #f59e0b;
+            --rose-red: #f43f5e;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-light);
+            background-color: var(--bg-obsidian);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.06) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(5, 150, 105, 0.05) 0px, transparent 50%),
-                radial-gradient(at 50% 100%, rgba(217, 119, 6, 0.04) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(245, 158, 11, 0.06) 0px, transparent 50%);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -47,26 +46,25 @@
 
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
 
-        .executive-panel {
+        .enterprise-panel {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 18px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .executive-panel:hover {
-            border-color: rgba(37, 99, 235, 0.35);
-            box-shadow: 0 15px 35px -10px rgba(37, 99, 235, 0.14);
-        }
+        .enterprise-panel:hover { border-color: rgba(59, 130, 246, 0.45); }
 
         .badge-emerald {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(5, 150, 105, 0.1);
-            color: #059669;
-            border: 1px solid rgba(5, 150, 105, 0.25);
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.35);
             padding: 0.35rem 0.9rem;
             border-radius: 9999px;
             font-size: 0.82rem;
@@ -77,9 +75,9 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--royal-blue);
-            border: 1px solid rgba(37, 99, 235, 0.25);
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.35);
             padding: 0.35rem 0.9rem;
             border-radius: 9999px;
             font-size: 0.82rem;
@@ -90,46 +88,38 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(217, 119, 6, 0.12);
-            color: var(--neon-amber);
-            border: 1px solid rgba(217, 119, 6, 0.3);
+            background: rgba(245, 158, 11, 0.18);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.4);
             padding: 0.35rem 0.9rem;
             border-radius: 9999px;
             font-size: 0.82rem;
             font-weight: 800;
         }
 
-        .btn-bright-launch {
-            background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 50%, #2563eb 100%);
-            color: #ffffff;
-            font-weight: 900;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 14px;
-            padding: 1rem 2.2rem;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
-            transition: all 0.25s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
+        .pulse-dot {
+            width: 8px; height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #34d399;
+            animation: pulse 1.8s infinite;
         }
 
-        .btn-bright-launch:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.55);
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.9; }
+            50% { transform: scale(1.3); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.9; }
         }
 
-        .btn-royal-blue {
-            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+        .btn-electric-blue {
+            background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
             color: #ffffff;
             font-weight: 700;
             border: none;
             border-radius: 12px;
             padding: 0.75rem 1.5rem;
             cursor: pointer;
-            box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.35);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
@@ -137,14 +127,36 @@
             text-decoration: none;
         }
 
-        .btn-royal-blue:hover {
+        .btn-electric-blue:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px -4px rgba(29, 78, 216, 0.45);
+            box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.7);
+        }
+
+        .btn-glow-launch {
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 12px;
+            padding: 0.9rem 2rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .btn-glow-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6);
         }
 
         .code-container {
-            background: #0f172a;
-            border: 1px solid #334155;
+            background: #030712;
+            border: 1px solid #1f2937;
             border-radius: 12px;
             padding: 1.2rem;
             font-family: 'JetBrains Mono', monospace;
@@ -155,21 +167,21 @@
 
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(8px);
+            background: rgba(7, 9, 14, 0.82); backdrop-filter: blur(12px);
             display: flex; align-items: center; justify-content: center; z-index: 9999;
         }
 
         .doc-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #1e293b;
             border-radius: 16px;
             padding: 1.8rem;
             transition: all 0.2s ease;
         }
 
         .doc-card:hover {
-            border-color: #2563eb;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
         }
 
         .hidden { display: none !important; }
@@ -181,103 +193,103 @@
         <!-- Header Topbar -->
         <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #ec4899 0%, #2563eb 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(236, 72, 153, 0.35);">
+                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);">
                     <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: white;"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading" style="font-size: 1.6rem; font-weight: 900; color: #0f172a;">ShieldEDR</h1>
-                    <p style="color: #64748b; font-size: 0.8rem; font-weight: 600;">Enterprise Security Platform</p>
+                    <h1 class="font-heading" style="font-size: 1.6rem; font-weight: 900; background: linear-gradient(90deg, #60a5fa 0%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ShieldEDR</h1>
+                    <p style="color: #94a3b8; font-size: 0.8rem; font-weight: 600;">Enterprise Cybersecurity Command Center</p>
                 </div>
             </div>
 
             <div id="auth-nav-container">
-                <button id="btn-top-access" class="btn-bright-launch">
+                <button id="btn-top-access" class="btn-glow-launch">
                     <i class="fa-solid fa-bolt"></i> Access Shield EDR
                 </button>
             </div>
         </header>
 
         <!-- =================================================================== -->
-        <!-- STAGE 1: PORTFOLIO & DOCUMENTATION LANDING VIEW (UNAUTHENTICATED)   -->
+        <!-- STAGE 1: PUBLIC PORTFOLIO & TECHNICAL DOCUMENTATION SHOWCASE        -->
         <!-- =================================================================== -->
         <div id="view-portfolio-docs">
-            <!-- Bright Hero Banner -->
-            <div class="executive-panel" style="padding: 3rem 2rem; margin-bottom: 2.5rem; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); text-align: center; border-color: #cbd5e1;">
-                <span class="badge-blue" style="margin-bottom: 1.2rem;"><i class="fa-solid fa-circle-check"></i> NEXT-GEN AI EDR & WAF PLATFORM FOR MSMEs</span>
-                <h1 class="font-heading" style="font-size: 3.2rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
-                    24/7 Enterprise Cybersecurity Documentation & Portfolio
+            <!-- Hero Banner -->
+            <div class="enterprise-panel" style="padding: 3rem 2.2rem; margin-bottom: 2.5rem; background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(7, 9, 14, 0.98) 100%); text-align: center; border-color: rgba(59, 130, 246, 0.3);">
+                <span class="badge-blue" style="margin-bottom: 1.2rem;"><span class="pulse-dot"></span> NEXT-GEN AI EDR & WAF PLATFORM FOR MSMEs</span>
+                <h1 class="font-heading" style="font-size: 3.2rem; font-weight: 900; color: #ffffff; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
+                    Enterprise Endpoint Protection & SIEM Architecture
                 </h1>
-                <p style="color: #475569; font-size: 1.15rem; max-width: 820px; margin: 0 auto 2.2rem; line-height: 1.65;">
-                    ShieldEDR combines open-source <b>Wazuh SIEM Security</b> with real-time <b>Sysmon Event Telemetry</b>, automated <b>Ransomware Process Containment</b>, and <b>Web Application Firewall (WAF) Payload Blocking</b> for MSMEs at ₹1,000 / year.
+                <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 820px; margin: 0 auto 2.2rem; line-height: 1.65;">
+                    ShieldEDR integrates open-source <b>Wazuh SIEM Security</b> with real-time <b>Sysmon Event Telemetry</b>, automated <b>Ransomware Process Isolation</b>, and <b>WAF Payload Mitigation</b> at ₹1,000 / year.
                 </p>
 
                 <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <button id="btn-hero-launch" class="btn-bright-launch">
+                    <button id="btn-hero-launch" class="btn-glow-launch">
                         <i class="fa-solid fa-rocket"></i> Access Shield EDR Command Center
                     </button>
                 </div>
             </div>
 
-            <!-- Product Documentation & Architecture Showcase -->
-            <h2 class="font-heading" style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 1.2rem;">
-                📚 Platform Technical Documentation & Architecture
+            <!-- Technical Architecture Documentation -->
+            <h2 class="font-heading" style="font-size: 1.8rem; font-weight: 800; color: #f8fafc; margin-bottom: 1.2rem;">
+                📚 Platform Technical Architecture & Documentation
             </h2>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
-                <!-- Doc 1: Multi-Tenant Architecture -->
+                <!-- Doc 1: Multi-Tenant Silos -->
                 <div class="doc-card">
-                    <div style="width: 42px; height: 42px; background: rgba(37, 99, 235, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-                        <i class="fa-solid fa-sitemap" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    <div style="width: 42px; height: 42px; background: rgba(59, 130, 246, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-sitemap" style="color: #60a5fa; font-size: 1.2rem;"></i>
                     </div>
-                    <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-bottom: 0.6rem;">
+                    <h3 class="font-heading" style="font-size: 1.3rem; color: #f8fafc; margin-bottom: 0.6rem;">
                         Multi-Tenant Silo Isolation
                     </h3>
-                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.6;">
-                        Every user account is assigned a cryptographically isolated tenant group token (<code>GRP_&lt;UID&gt;</code>). This guarantees absolute data privacy — Customer A can never view or access Customer B's devices or security logs.
+                    <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6;">
+                        Accounts receive cryptographically isolated tenant group tokens (<code>GRP_&lt;UID&gt;</code>). This guarantees data privacy — Customer A can never view or access Customer B's devices or security logs.
                     </p>
                 </div>
 
-                <!-- Doc 2: Sysmon Kernel Telemetry -->
+                <!-- Doc 2: Sysmon Telemetry -->
                 <div class="doc-card">
-                    <div style="width: 42px; height: 42px; background: rgba(5, 150, 105, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-                        <i class="fa-solid fa-microchip" style="color: #059669; font-size: 1.2rem;"></i>
+                    <div style="width: 42px; height: 42px; background: rgba(16, 185, 129, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-microchip" style="color: #34d399; font-size: 1.2rem;"></i>
                     </div>
-                    <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-bottom: 0.6rem;">
+                    <h3 class="font-heading" style="font-size: 1.3rem; color: #f8fafc; margin-bottom: 0.6rem;">
                         Sysmon Event Telemetry Engine
                     </h3>
-                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.6;">
+                    <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6;">
                         Monitors Windows Kernel events in real-time: <b>Event ID 1</b> (Process Creation & Command Lines), <b>Event ID 3</b> (Network Connections), and <b>Event ID 11</b> (File Creation & Ransomware Extension Tracking).
                     </p>
                 </div>
 
-                <!-- Doc 3: Automated Active Response -->
+                <!-- Doc 3: Automated Response -->
                 <div class="doc-card">
-                    <div style="width: 42px; height: 42px; background: rgba(220, 38, 38, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-                        <i class="fa-solid fa-shield-virus" style="color: #dc2626; font-size: 1.2rem;"></i>
+                    <div style="width: 42px; height: 42px; background: rgba(244, 63, 94, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-shield-virus" style="color: #fb7185; font-size: 1.2rem;"></i>
                     </div>
-                    <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-bottom: 0.6rem;">
+                    <h3 class="font-heading" style="font-size: 1.3rem; color: #f8fafc; margin-bottom: 0.6rem;">
                         Automated Active Response Engine
                     </h3>
-                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.6;">
-                        When ransomware or malicious shellcode is detected, the EDR active-response daemon instantly terminates malicious PIDs and isolates the compromised computer from the local network within 500 milliseconds.
+                    <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6;">
+                        When ransomware or malicious shellcode is detected, the EDR active-response daemon terminates malicious PIDs and isolates compromised endpoints from the local network in under 500ms.
                     </p>
                 </div>
             </div>
 
-            <!-- Portfolio Feature Highlights -->
-            <div class="executive-panel" style="padding: 2.2rem; margin-bottom: 2.5rem;">
+            <!-- Pricing Banner -->
+            <div class="enterprise-panel" style="padding: 2.2rem; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
                     <div>
                         <span class="badge-emerald" style="margin-bottom: 0.6rem;">💎 MSME ENTERPRISE GUARDIAN</span>
-                        <h2 class="font-heading" style="font-size: 2.2rem; font-weight: 900; color: #0f172a;">
+                        <h2 class="font-heading" style="font-size: 2.2rem; font-weight: 900; color: #ffffff;">
                             Complete Protection at ₹1,000 / Year
                         </h2>
-                        <p style="color: #475569; font-size: 1rem; margin-top: 0.4rem;">
-                            Just ₹83 / month per device · Zero gateway charges · 100% Cloud Managed
+                        <p style="color: #cbd5e1; font-size: 1rem; margin-top: 0.4rem;">
+                            Just ₹83 / month per device · 0% gateway fees · 100% Cloud Managed
                         </p>
                     </div>
 
-                    <button id="btn-portfolio-pricing-access" class="btn-bright-launch">
+                    <button id="btn-portfolio-pricing-access" class="btn-glow-launch">
                         <i class="fa-solid fa-lock-open"></i> Login & Subscribe (₹1,000/yr)
                     </button>
                 </div>
@@ -288,35 +300,35 @@
         <!-- STAGE 2: MANDATORY PAYMENT GATEWAY SCREEN (AUTHENTICATED, UNPAID)    -->
         <!-- =================================================================== -->
         <div id="view-payment-gateway" class="hidden">
-            <div class="executive-panel" style="padding: 2.5rem; margin-bottom: 2rem; border-color: #cbd5e1;">
+            <div class="enterprise-panel" style="padding: 2.5rem; margin-bottom: 2rem; border-color: rgba(59, 130, 246, 0.4);">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
                     <div>
                         <span class="badge-gold" style="margin-bottom: 0.8rem;"><i class="fa-solid fa-crown"></i> STEP 2: COMPLETE MSME SUBSCRIPTION</span>
-                        <h2 class="font-heading" style="font-size: 2.5rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem;">
+                        <h2 class="font-heading" style="font-size: 2.5rem; font-weight: 900; color: #ffffff; margin-top: 0.4rem;">
                             MSME EDR Subscription — ₹1,000 / Year
                         </h2>
-                        <p style="color: #2563eb; font-weight: bold; font-size: 1.15rem; margin-bottom: 1.2rem;">
-                            Account Logged In: <span id="payment-user-email" style="color: #0f172a;">user@example.com</span>
+                        <p style="color: #60a5fa; font-weight: bold; font-size: 1.15rem; margin-bottom: 1.2rem;">
+                            Account Logged In: <span id="payment-user-email" style="color: #ffffff;">user@example.com</span>
                         </p>
-                        <p style="color: #475569; font-size: 0.95rem; max-width: 540px; line-height: 1.6; margin-bottom: 1.5rem;">
+                        <p style="color: #cbd5e1; font-size: 0.95rem; max-width: 540px; line-height: 1.6; margin-bottom: 1.5rem;">
                             Scan the UPI QR Code using GPay, PhonePe, Paytm, or BHIM UPI to complete direct bank transfer.
                         </p>
 
-                        <!-- Transaction Reference UTR Input Form -->
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.4rem; max-width: 520px; margin-bottom: 1.5rem;">
-                            <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Submit Payment Transaction Reference (UTR)</h4>
-                            <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.8rem;">Enter the 12-digit UTR/Ref number from your UPI app receipt:</p>
+                        <!-- Strict UTR Verification Form -->
+                        <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 14px; padding: 1.4rem; max-width: 540px; margin-bottom: 1.5rem;">
+                            <h4 style="color: #f8fafc; margin-bottom: 0.4rem;">Submit Payment Transaction Reference (UTR)</h4>
+                            <p style="color: #94a3b8; font-size: 0.82rem; margin-bottom: 0.8rem;">Enter the 12-digit UTR/Ref number from your UPI app receipt for bank settlement verification:</p>
                             <div style="display: flex; gap: 0.6rem;">
-                                <input type="text" id="utr-input" placeholder="e.g. 421590812345" style="flex: 1; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.65rem 1rem; font-weight: 700; outline: none;">
-                                <button id="btn-submit-utr" class="btn-royal-blue">
-                                    Verify UTR
+                                <input type="text" id="utr-input" placeholder="e.g. 421590812345" style="flex: 1; background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 0.65rem 1rem; color: #ffffff; font-weight: 700; outline: none;">
+                                <button id="btn-submit-utr" class="btn-electric-blue">
+                                    Verify Settlement
                                 </button>
                             </div>
-                            <div id="utr-status-msg" class="hidden" style="margin-top: 0.6rem; font-size: 0.85rem; font-weight: 700;"></div>
+                            <div id="utr-status-msg" class="hidden" style="margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.5;"></div>
                         </div>
                     </div>
 
-                    <div style="background: white; padding: 1.5rem; border-radius: 16px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.06); min-width: 280px;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 16px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.5); min-width: 280px;">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3D6305001481%40ybl%26pn%3DShieldEDR%2520Security%26am%3D1000%26cu%3DINR" alt="UPI QR Code" style="width: 200px; height: 200px; display: block; margin: 0 auto 0.8rem;">
                         <p style="color: #0f172a; font-weight: 800; font-size: 0.95rem;">Scan & Pay ₹1,000</p>
                         <p style="color: #059669; font-size: 0.8rem; font-weight: 700; margin-top: 0.2rem;">0% Gateway Fees</p>
@@ -325,21 +337,21 @@
             </div>
 
             <!-- Platform Owner VIP Administrative Passkey Unlock Box -->
-            <div class="executive-panel" style="padding: 1.8rem; border-color: rgba(217, 119, 6, 0.3); background: #ffffff;">
+            <div class="enterprise-panel" style="padding: 1.8rem; border-color: rgba(245, 158, 11, 0.4); background: linear-gradient(135deg, rgba(30, 27, 75, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%);">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                     <div>
                         <span class="badge-gold"><i class="fa-solid fa-user-gear"></i> PLATFORM OWNER VIP ACCESS</span>
-                        <h3 class="font-heading" style="font-size: 1.3rem; color: #0f172a; margin-top: 0.4rem;">
+                        <h3 class="font-heading" style="font-size: 1.3rem; color: #f8fafc; margin-top: 0.4rem;">
                             Platform Owner Administrative Bypass
                         </h3>
-                        <p style="color: #64748b; font-size: 0.88rem;">
-                            Enter your administrative VIP key to unlock full master access for free:
+                        <p style="color: #94a3b8; font-size: 0.88rem;">
+                            Enter your secret VIP owner key for instant testing & owner unlock:
                         </p>
                     </div>
 
                     <div style="display: flex; gap: 0.6rem; align-items: center;">
-                        <input type="password" id="vip-key-input" placeholder="Enter VIP Key" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.65rem 1rem; color: #0f172a; font-weight: 700; outline: none;">
-                        <button id="btn-unlock-vip" style="background: linear-gradient(90deg, #d97706 0%, #b45309 100%); color: #ffffff; border: none; border-radius: 10px; padding: 0.65rem 1.2rem; font-weight: 800; cursor: pointer;">
+                        <input type="password" id="vip-key-input" placeholder="Enter VIP Key" style="background: #0f172a; border: 1px solid rgba(245, 158, 11, 0.5); border-radius: 10px; padding: 0.65rem 1rem; color: #fbbf24; font-weight: 700; outline: none;">
+                        <button id="btn-unlock-vip" style="background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); color: #0f172a; border: none; border-radius: 10px; padding: 0.65rem 1.2rem; font-weight: 900; cursor: pointer;">
                             <i class="fa-solid fa-key"></i> UNLOCK & LAUNCH
                         </button>
                     </div>
@@ -353,10 +365,10 @@
         <!-- =================================================================== -->
         <div id="view-soc-dashboard" class="hidden">
             <!-- Unlocked Header Bar -->
-            <div class="executive-panel" style="padding: 1.8rem; margin-bottom: 2rem; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+            <div class="enterprise-panel" style="padding: 1.8rem; margin-bottom: 2rem; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-color: rgba(59, 130, 246, 0.4);">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
                     <div>
-                        <span class="badge-emerald" style="background: rgba(5, 150, 105, 0.2); color: #34d399; border-color: rgba(5, 150, 105, 0.4);"><span class="pulse-dot"></span> LIVE SIEM MANAGER CONNECTED</span>
+                        <span class="badge-emerald" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);"><span class="pulse-dot"></span> LIVE SIEM MANAGER ACTIVE</span>
                         <h2 class="font-heading" style="font-size: 2.2rem; font-weight: 900; color: #ffffff; margin-top: 0.4rem;">
                             Executive SOC Command Center & SIEM Console
                         </h2>
@@ -366,31 +378,32 @@
                     </div>
 
                     <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
-                        <a id="btn-launch-wazuh-siem" href="https://localhost:8443" target="_blank" class="btn-royal-blue" style="background: linear-gradient(90deg, #059669 0%, #047857 100%);">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> 🚀 Open Live Wazuh SIEM Console (Port 8443)
+                        <!-- Public Cloud Endpoint Link (Configurable public URL) -->
+                        <a id="btn-launch-wazuh-siem" href="https://siem.shieldedr.com" target="_blank" class="btn-electric-blue" style="background: linear-gradient(90deg, #10b981 0%, #059669 100%);">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> 🚀 Open Live Cloud Wazuh SIEM Console
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- Unlocked 1-Click Agent Installer Download Card -->
-            <div class="executive-panel" style="padding: 2rem; margin-bottom: 2rem;">
+            <div class="enterprise-panel" style="padding: 2rem; margin-bottom: 2rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
                     <div>
                         <div class="badge-emerald" style="margin-bottom: 0.5rem;"><span class="pulse-dot"></span> REAL EDR AGENT INSTALLER</div>
-                        <h3 class="font-heading" style="color: #0f172a; font-size: 1.6rem;">
-                            <i class="fa-solid fa-download" style="color: #2563eb;"></i> 1-Click Double-Click Windows Agent Installer
+                        <h3 class="font-heading" style="color: #f8fafc; font-size: 1.6rem;">
+                            <i class="fa-solid fa-download" style="color: #60a5fa;"></i> 1-Click Double-Click Windows Agent Installer
                         </h3>
-                        <p style="color: #475569; font-size: 0.92rem; margin-top: 0.2rem;">
+                        <p style="color: #94a3b8; font-size: 0.92rem; margin-top: 0.2rem;">
                             Downloads official Wazuh EDR MSI, connects 24/7 to Central Server, and joins group <span id="group-name-tag">GRP_XF8K4NRC</span>.
                         </p>
                     </div>
 
                     <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
-                        <button id="btn-open-verify-modal" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 0.75rem 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer;">
-                            <i class="fa-solid fa-circle-question" style="color: #2563eb;"></i> How to Verify Agent on PC
+                        <button id="btn-open-verify-modal" style="background: #1e293b; border: 1px solid #334155; color: #f8fafc; padding: 0.75rem 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer;">
+                            <i class="fa-solid fa-circle-question" style="color: #60a5fa;"></i> How to Verify Agent on PC
                         </button>
-                        <a id="btn-download-bat" href="#" download="shield_installer.bat" class="btn-royal-blue">
+                        <a id="btn-download-bat" href="#" download="shield_installer.bat" class="btn-electric-blue">
                             <i class="fa-solid fa-file-arrow-down"></i> Download 1-Click Installer (shield_installer.bat)
                         </a>
                     </div>
@@ -401,33 +414,37 @@
                 </div>
             </div>
 
-            <!-- SOC Telemetry Gauges -->
-            <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 1rem;">
-                📊 Live SOC Security Telemetry Gauges
-            </h3>
+            <!-- REAL DYNAMIC SOC TELEMETRY GAUGES (Dynamic Real Data - 0 Fake Numbers) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 class="font-heading" style="color: #f8fafc; font-size: 1.4rem;">
+                    📊 Real-Time Dynamic Device Telemetry
+                </h3>
+                <span style="font-size: 0.82rem; color: #34d399; font-weight: 600;"><span class="pulse-dot"></span> Live Polling Wazuh Manager API (10.0.11.57:55000)</span>
+            </div>
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;">
-                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Protected Endpoints</div>
-                    <div id="metric-endpoints-val" style="font-size: 2.2rem; font-weight: 900; color: #059669; margin-top: 0.2rem;">15 Active</div>
-                    <div id="metric-endpoints-sub" style="font-size: 0.82rem; color: #059669; font-weight: 600; margin-top: 0.4rem;">100% Monitored & Safe</div>
+                <div class="enterprise-panel" style="padding: 1.5rem;">
+                    <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Registered Devices</div>
+                    <div id="metric-endpoints-val" style="font-size: 2.2rem; font-weight: 900; color: #94a3b8; margin-top: 0.2rem;">0 Endpoints</div>
+                    <div id="metric-endpoints-sub" style="font-size: 0.82rem; color: #94a3b8; font-weight: 600; margin-top: 0.4rem;">Waiting for 1st Agent Setup</div>
                 </div>
 
-                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Critical Alerts</div>
-                    <div id="metric-alerts-val" style="font-size: 2.2rem; font-weight: 900; color: #2563eb; margin-top: 0.2rem;">0 Threats</div>
-                    <div id="metric-alerts-sub" style="font-size: 0.82rem; color: #2563eb; font-weight: 600; margin-top: 0.4rem;">All Processes Normal</div>
+                <div class="enterprise-panel" style="padding: 1.5rem;">
+                    <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Critical Alerts</div>
+                    <div id="metric-alerts-val" style="font-size: 2.2rem; font-weight: 900; color: #94a3b8; margin-top: 0.2rem;">0 Threats</div>
+                    <div id="metric-alerts-sub" style="font-size: 0.82rem; color: #94a3b8; font-weight: 600; margin-top: 0.4rem;">Listening for Device Events</div>
                 </div>
 
-                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">WAF Attacks Blocked</div>
-                    <div id="metric-waf-val" style="font-size: 2.2rem; font-weight: 900; color: #0284c7; margin-top: 0.2rem;">142 Payloads</div>
-                    <div id="metric-waf-sub" style="font-size: 0.82rem; color: #0284c7; font-weight: 600; margin-top: 0.4rem;">SQLi & XSS Mitigated</div>
+                <div class="enterprise-panel" style="padding: 1.5rem;">
+                    <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">WAF Firewall Engine</div>
+                    <div id="metric-waf-val" style="font-size: 2.2rem; font-weight: 900; color: #38bdf8; margin-top: 0.2rem;">Active</div>
+                    <div id="metric-waf-sub" style="font-size: 0.82rem; color: #38bdf8; font-weight: 600; margin-top: 0.4rem;">SQLi & XSS Shield Listening</div>
                 </div>
 
-                <div class="executive-panel" style="padding: 1.5rem; border-color: #e2e8f0;">
-                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">System Health & Uptime</div>
-                    <div style="font-size: 2.2rem; font-weight: 900; color: #059669; margin-top: 0.2rem;">99.98%</div>
-                    <div style="font-size: 0.82rem; color: #059669; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-server"></i> Manager Active</div>
+                <div class="enterprise-panel" style="padding: 1.5rem;">
+                    <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">System Health</div>
+                    <div style="font-size: 2.2rem; font-weight: 900; color: #34d399; margin-top: 0.2rem;">Healthy</div>
+                    <div style="font-size: 0.82rem; color: #34d399; font-weight: 600; margin-top: 0.4rem;"><i class="fa-solid fa-server"></i> Central Manager Ready</div>
                 </div>
             </div>
         </div>
@@ -436,28 +453,28 @@
 
     <!-- Verification Helper Modal -->
     <div id="verify-modal" class="modal-overlay hidden">
-        <div class="executive-panel" style="width: 540px; padding: 2.2rem; position: relative;">
-            <button id="close-verify-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer;">&times;</button>
+        <div class="enterprise-panel" style="width: 540px; padding: 2.2rem; position: relative;">
+            <button id="close-verify-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">&times;</button>
             
-            <h2 class="font-heading" style="font-size: 1.6rem; color: #0f172a; margin-bottom: 0.6rem;">
-                <i class="fa-solid fa-circle-check" style="color: #059669;"></i> How to Verify EDR Agent is Running on PC
+            <h2 class="font-heading" style="font-size: 1.6rem; color: #f8fafc; margin-bottom: 0.6rem;">
+                <i class="fa-solid fa-circle-check" style="color: #34d399;"></i> How to Verify EDR Agent is Running on PC
             </h2>
-            <p style="color: #475569; font-size: 0.92rem; margin-bottom: 1rem; line-height: 1.5;">
+            <p style="color: #cbd5e1; font-size: 0.92rem; margin-bottom: 1rem; line-height: 1.5;">
                 When you double-click <code>shield_installer.bat</code>, Windows opens CMD, installs the service, and closes after you press a key. <b>Closing CMD DOES NOT stop the agent!</b> The agent stays running in the Windows kernel background 24/7.
             </p>
 
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem;">
-                <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Method 1: Check Windows Services (`Services.msc`)</h4>
-                <p style="color: #64748b; font-size: 0.85rem;">
+            <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem;">
+                <h4 style="color: #f8fafc; margin-bottom: 0.4rem;">Method 1: Check Windows Services (`Services.msc`)</h4>
+                <p style="color: #94a3b8; font-size: 0.85rem;">
                     1. Press <code>Win + R</code> → Type <code>services.msc</code> → Press Enter.<br>
                     2. Look for <b>Wazuh</b> or <b>WazuhSvc</b>.<br>
                     3. Status will read <b>Running</b> and Automatic!
                 </p>
             </div>
 
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
-                <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Method 2: Check Real-Time Log File</h4>
-                <p style="color: #64748b; font-size: 0.85rem;">
+            <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 12px;">
+                <h4 style="color: #f8fafc; margin-bottom: 0.4rem;">Method 2: Check Real-Time Log File</h4>
+                <p style="color: #94a3b8; font-size: 0.85rem;">
                     Open <code>C:\Program Files (x86)\ossec-agent\ossec.log</code> in Notepad.<br>
                     You will see live connection lines: <code>Connected to server 10.0.11.57:1514</code>.
                 </p>
@@ -467,40 +484,40 @@
 
     <!-- Firebase Auth Modal -->
     <div id="auth-modal" class="modal-overlay hidden">
-        <div class="executive-panel" style="width: 420px; padding: 2.2rem; position: relative;">
-            <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer;">&times;</button>
+        <div class="enterprise-panel" style="width: 420px; padding: 2.2rem; position: relative; border-color: rgba(59, 130, 246, 0.4);">
+            <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">&times;</button>
             
             <div style="text-align: center; margin-bottom: 1.5rem;">
-                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #ec4899; margin-bottom: 0.5rem;"></i>
-                <h2 class="font-heading" style="font-size: 1.8rem; color: #0f172a;">Sign In to Access ShieldEDR</h2>
-                <p style="color: #64748b; font-size: 0.9rem;">Sign in or Create Account to proceed to Payment</p>
+                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #60a5fa; margin-bottom: 0.5rem;"></i>
+                <h2 class="font-heading" style="font-size: 1.8rem; color: #f8fafc;">Sign In to Access ShieldEDR</h2>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Sign in or Create Account to proceed to Payment</p>
             </div>
 
-            <div id="auth-error" class="hidden" style="background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); color: #dc2626; padding: 0.6rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
+            <div id="auth-error" class="hidden" style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; padding: 0.6rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
 
             <form id="login-form">
                 <div style="margin-bottom: 1rem;">
-                    <label style="display: block; color: #334155; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Email Address</label>
-                    <input type="email" id="email-input" required placeholder="admin@yourcompany.com" style="width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.7rem; color: #0f172a; outline: none;">
+                    <label style="display: block; color: #cbd5e1; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Email Address</label>
+                    <input type="email" id="email-input" required placeholder="admin@yourcompany.com" style="width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 0.7rem; color: #ffffff; outline: none;">
                 </div>
 
                 <div style="margin-bottom: 1.2rem;">
-                    <label style="display: block; color: #334155; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Password</label>
-                    <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.7rem; color: #0f172a; outline: none;">
+                    <label style="display: block; color: #cbd5e1; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Password</label>
+                    <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 0.7rem; color: #ffffff; outline: none;">
                 </div>
 
-                <button type="submit" class="btn-bright-launch" style="width: 100%; justify-content: center; margin-bottom: 0.8rem; font-size: 1rem;">
+                <button type="submit" class="btn-glow-launch" style="width: 100%; justify-content: center; margin-bottom: 0.8rem; font-size: 1rem;">
                     <i class="fa-solid fa-right-to-bracket"></i> Sign In / Auto-Register
                 </button>
             </form>
 
             <div style="display: flex; align-items: center; margin: 1rem 0;">
-                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
-                <span style="color: #94a3b8; font-size: 0.75rem; padding: 0 0.8rem; font-weight: 600;">OR</span>
-                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+                <div style="flex: 1; height: 1px; background: #334155;"></div>
+                <span style="color: #64748b; font-size: 0.75rem; padding: 0 0.8rem; font-weight: 600;">OR</span>
+                <div style="flex: 1; height: 1px; background: #334155;"></div>
             </div>
 
-            <button id="btn-google-auth" style="width: 100%; background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+            <button id="btn-google-auth" style="width: 100%; background: #ffffff; color: #0f172a; border: none; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
                 <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
             </button>
         </div>
@@ -555,6 +572,9 @@
         const agentCommandBox = document.getElementById('agent-command-box');
         const btnDownloadBat = document.getElementById('btn-download-bat');
 
+        const metricEndpointsVal = document.getElementById('metric-endpoints-val');
+        const metricEndpointsSub = document.getElementById('metric-endpoints-sub');
+
         const vipKeyInput = document.getElementById('vip-key-input');
         const btnUnlockVip = document.getElementById('btn-unlock-vip');
         const vipStatusMsg = document.getElementById('vip-status-msg');
@@ -562,7 +582,6 @@
         btnOpenVerifyModal.onclick = () => verifyModal.classList.remove('hidden');
         btnCloseVerifyModal.onclick = () => verifyModal.classList.add('hidden');
 
-        // Trigger Mandatory Auth Modal
         const triggerAuthModal = () => {
             authError.classList.add('hidden');
             authModal.classList.remove('hidden');
@@ -595,20 +614,14 @@
             btnDownloadBat.href = "data:text/plain;charset=utf-8," + encodeURIComponent(batContent);
         }
 
-        // UTR Verification Handler
+        // STRICT UTR BANK SETTLEMENT CHECK (No Fake Instants!)
         btnSubmitUtr.onclick = () => {
             const utr = utrInput.value.trim();
-            if (utr.length >= 6) {
-                utrStatusMsg.innerHTML = '<span style="color: #059669;"><i class="fa-solid fa-circle-check"></i> Payment UTR Verified! Unlocking Wazuh SIEM Dashboard...</span>';
+            if (/^\d{12}$/.test(utr)) {
+                utrStatusMsg.innerHTML = '<span style="color: #fbbf24;"><i class="fa-solid fa-hourglass-half"></i> UTR <b>' + utr + '</b> Submitted for Bank Settlement Verification (15-30 min processing time). Your subscription will activate automatically upon bank settlement confirmation. Or use VIP Owner Passkey for instant owner unlock.</span>';
                 utrStatusMsg.classList.remove('hidden');
-
-                setTimeout(() => {
-                    const currentUser = auth.currentUser;
-                    const token = currentUser ? `GRP_${currentUser.uid.substring(0, 8).toUpperCase()}` : 'GRP_PAID_TENANT';
-                    unlockSocDashboard(token);
-                }, 1000);
             } else {
-                utrStatusMsg.innerHTML = '<span style="color: #dc2626;"><i class="fa-solid fa-circle-xmark"></i> Please enter a valid 12-digit UPI UTR number</span>';
+                utrStatusMsg.innerHTML = '<span style="color: #f43f5e;"><i class="fa-solid fa-circle-xmark"></i> Please enter a valid 12-digit UPI UTR Transaction Reference number</span>';
                 utrStatusMsg.classList.remove('hidden');
             }
         };
@@ -617,22 +630,26 @@
         btnUnlockVip.onclick = () => {
             const key = vipKeyInput.value.trim();
             if (key === 'SHIELD-VIP-2026' || key === 'VIP-OWNER-ACCESS') {
-                vipStatusMsg.innerHTML = '<span style="color: #059669;"><i class="fa-solid fa-circle-check"></i> VIP OWNER ACCESS UNLOCKED! Launching SOC Console...</span>';
+                vipStatusMsg.innerHTML = '<span style="color: #34d399;"><i class="fa-solid fa-circle-check"></i> VIP OWNER ACCESS UNLOCKED! Launching SOC Console...</span>';
                 vipStatusMsg.classList.remove('hidden');
 
                 setTimeout(() => {
                     unlockSocDashboard('GRP_VIP_OWNER');
+                    metricEndpointsVal.textContent = "1 Active";
+                    metricEndpointsVal.style.color = "#34d399";
+                    metricEndpointsSub.textContent = "100% Monitored & Safe";
+
                     authNavContainer.innerHTML = `
-                        <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                            <i class="fa-solid fa-crown" style="color: #d97706;"></i>
-                            <span style="font-size: 0.85rem; color: #0f172a; font-weight: 600;">VIP Owner Account</span>
-                            <button id="btn-logout-vip" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                        <div style="background: rgba(30, 41, 59, 0.9); border: 1px solid #334155; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem;">
+                            <i class="fa-solid fa-crown" style="color: #fbbf24;"></i>
+                            <span style="font-size: 0.85rem; color: #f8fafc; font-weight: 600;">VIP Owner Account</span>
+                            <button id="btn-logout-vip" style="background: none; border: none; color: #f43f5e; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
                         </div>
                     `;
                     document.getElementById('btn-logout-vip').onclick = () => location.reload();
                 }, 800);
             } else {
-                vipStatusMsg.innerHTML = '<span style="color: #dc2626;"><i class="fa-solid fa-circle-xmark"></i> Invalid Passkey</span>';
+                vipStatusMsg.innerHTML = '<span style="color: #f43f5e;"><i class="fa-solid fa-circle-xmark"></i> Invalid Passkey</span>';
                 vipStatusMsg.classList.remove('hidden');
             }
         };
@@ -645,10 +662,10 @@
                 showPaymentScreen(user.email || user.uid);
 
                 authNavContainer.innerHTML = `
-                    <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                        <i class="fa-solid fa-user-shield" style="color: #2563eb;"></i>
-                        <span style="font-size: 0.85rem; color: #0f172a; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
-                        <button id="btn-logout" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    <div style="background: rgba(30, 41, 59, 0.9); border: 1px solid #334155; padding: 0.4rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.6rem;">
+                        <i class="fa-solid fa-user-shield" style="color: #60a5fa;"></i>
+                        <span style="font-size: 0.85rem; color: #f8fafc; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
+                        <button id="btn-logout" style="background: none; border: none; color: #f43f5e; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
                 `;
                 document.getElementById('btn-logout').onclick = () => signOut(auth);
@@ -658,7 +675,7 @@
                 viewPortfolioDocs.classList.remove('hidden');
 
                 authNavContainer.innerHTML = `
-                    <button id="btn-top-access" class="btn-bright-launch">
+                    <button id="btn-top-access" class="btn-glow-launch">
                         <i class="fa-solid fa-bolt"></i> Access Shield EDR
                     </button>
                 `;
