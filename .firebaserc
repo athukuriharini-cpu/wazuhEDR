@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "elite-elevator-472112-s3"
-  }
+  },
+  "targets": {
+    "elite-elevator-472112-s3": {
+      "hosting": {
+        "shieldedr": [
+          "shieldedr"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
