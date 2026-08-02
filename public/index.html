@@ -298,31 +298,31 @@
                 </div>
             </div>
 
-            <!-- ALL TERMINAL COMMAND SHELL VARIANTS (AUTO ELEVATING POWERSHELL ADDED) -->
+            <!-- ALL TERMINAL COMMAND SHELL VARIANTS -->
             <div class="executive-panel">
                 <h2 class="font-heading" style="color: #0f172a; font-size: 1.6rem; margin-bottom: 0.4rem;">
                     💻 Terminal Commands for All Shell Environments
                 </h2>
                 <p style="color: #dc2626; font-size: 0.88rem; font-weight: 700; margin-bottom: 1.2rem;">
-                    ⚠️ IMPORTANT: Standard PowerShell blocks MSI installation. You MUST run PowerShell as Administrator!
+                    ⚠️ NOTE: Open PowerShell as Administrator (Right Click -> Run as Administrator)
                 </p>
 
-                <!-- Variant 1: Auto-Elevating PowerShell -->
+                <!-- Variant 1: Clean PowerShell Admin -->
                 <div style="margin-bottom: 1.5rem;">
                     <h4 style="color: #0f172a; font-size: 1.05rem; margin-bottom: 0.4rem;">
-                        <i class="fa-solid fa-terminal" style="color: #2563eb;"></i> Option 1: Auto-Elevating PowerShell (Triggers Admin Prompt automatically)
+                        <i class="fa-solid fa-terminal" style="color: #2563eb;"></i> Option 1: PowerShell (Run as Administrator)
                     </h4>
-                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;">Paste into PowerShell — automatically triggers Windows UAC Administrator prompt:</p>
-                    <div class="code-container">Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '\$env:TEMP\wazuh-agent.msi'; Start-Process msiexec.exe -ArgumentList '/i', '\$env:TEMP\wazuh-agent.msi', '/q', 'WAZUH_MANAGER=\`"10.0.11.57\`"', 'WAZUH_REGISTRATION_SERVER=\`"10.0.11.57\`"', 'WAZUH_AGENT_GROUP=\`"GRP_MSME_FLEET_CORP\`"' -Wait; Get-Service -Name Wazuh*, Ossec* | Start-Service`""</div>
+                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;">Copy & paste directly into Administrator PowerShell window:</p>
+                    <div class="code-container">Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile "$env:TEMP\wazuh-agent.msi" ; Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wazuh-agent.msi", '/q', 'WAZUH_MANAGER="10.0.11.57"', 'WAZUH_REGISTRATION_SERVER="10.0.11.57"', 'WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"' -Wait ; Start-Service WazuhSvc</div>
                 </div>
 
-                <!-- Variant 2: CMD Command Prompt -->
+                <!-- Variant 2: Auto-Elevating Launcher -->
                 <div style="margin-bottom: 1.5rem;">
                     <h4 style="color: #0f172a; font-size: 1.05rem; margin-bottom: 0.4rem;">
-                        <i class="fa-solid fa-terminal" style="color: #059669;"></i> Option 2: Windows Command Prompt (CMD.exe Admin)
+                        <i class="fa-solid fa-terminal" style="color: #059669;"></i> Option 2: Auto-Elevating PowerShell (Triggers Admin UAC Prompt)
                     </h4>
-                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;">Run in CMD Administrator window:</p>
-                    <div class="code-container">powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc</div>
+                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;">Paste into standard PowerShell — prompts Windows Administrator popup:</p>
+                    <div class="code-container">Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '$env:TEMP\wazuh-agent.msi' ; Start-Process msiexec.exe -ArgumentList '/i', `"$env:TEMP\wazuh-agent.msi`", '/q', 'WAZUH_MANAGER=`"10.0.11.57`"', 'WAZUH_REGISTRATION_SERVER=`"10.0.11.57`"', 'WAZUH_AGENT_GROUP=`"GRP_MSME_FLEET_CORP`"' -Wait ; Start-Service WazuhSvc"</div>
                 </div>
 
                 <!-- Variant 3: Batch File -->
@@ -330,7 +330,7 @@
                     <h4 style="color: #0f172a; font-size: 1.05rem; margin-bottom: 0.4rem;">
                         <i class="fa-solid fa-file-code" style="color: #d97706;"></i> Option 3: Double-Click Batch File (`msme_fleet_deploy.bat`)
                     </h4>
-                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;"><b>Easiest Option</b> — Click the green download button above, right-click → <b>Run as administrator</b>.</p>
+                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;"><b>Easiest Option</b> — Click green button above, right-click → <b>Run as administrator</b>.</p>
                 </div>
             </div>
         </div>
