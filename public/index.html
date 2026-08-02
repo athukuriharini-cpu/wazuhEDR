@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShieldEDR — Free 24/7 AI-Powered Endpoint Security & WAF</title>
+    <title>ShieldEDR — Free 24/7 AI Endpoint Security & WAF</title>
     <meta name="description" content="100% Free Open-Source Endpoint Detection & Response (EDR), Sysmon Event Telemetry, and WAF Firewall Protection for MSMEs and Enterprise Workstations.">
     
     <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
@@ -19,28 +19,27 @@
 
     <style>
         :root {
-            --bg-obsidian: #07090e;
-            --bg-card: rgba(15, 23, 42, 0.92);
-            --border-card: rgba(139, 92, 246, 0.35);
-            --gradient-vibrant: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #3b82f6 100%);
-            --gradient-emerald: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --electric-blue: #3b82f6;
-            --emerald-green: #10b981;
-            --amber-gold: #f59e0b;
-            --neon-pink: #ec4899;
-            --text-primary: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --royal-blue: #2563eb;
+            --royal-blue-hover: #1d4ed8;
+            --emerald-green: #059669;
+            --amber-gold: #d97706;
+            --rose-red: #dc2626;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-obsidian);
+            background-color: var(--bg-light);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-                radial-gradient(at 50% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(5, 150, 105, 0.05) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(217, 119, 6, 0.03) 0px, transparent 50%);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -51,34 +50,26 @@
 
         h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
 
-        .vibrant-panel {
+        .executive-panel {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
-            border-radius: 22px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08);
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .vibrant-panel:hover {
-            border-color: rgba(236, 72, 153, 0.5);
-            box-shadow: 0 25px 60px -15px rgba(139, 92, 246, 0.3);
-        }
-
-        .text-gradient {
-            background: var(--gradient-vibrant);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .executive-panel:hover {
+            border-color: rgba(37, 99, 235, 0.35);
+            box-shadow: 0 15px 35px -10px rgba(37, 99, 235, 0.14);
         }
 
         .badge-free {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.15);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(5, 150, 105, 0.1);
+            color: #059669;
+            border: 1px solid rgba(5, 150, 105, 0.25);
             padding: 0.4rem 1.1rem;
             border-radius: 9999px;
             font-size: 0.88rem;
@@ -86,13 +77,13 @@
             text-transform: uppercase;
         }
 
-        .badge-vibrant {
+        .badge-blue {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(236, 72, 153, 0.15);
-            color: #f472b6;
-            border: 1px solid rgba(236, 72, 153, 0.35);
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--royal-blue);
+            border: 1px solid rgba(37, 99, 235, 0.25);
             padding: 0.4rem 1rem;
             border-radius: 9999px;
             font-size: 0.85rem;
@@ -103,9 +94,9 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(245, 158, 11, 0.18);
-            color: #fbbf24;
-            border: 1px solid rgba(245, 158, 11, 0.4);
+            background: rgba(217, 119, 6, 0.12);
+            color: var(--amber-gold);
+            border: 1px solid rgba(217, 119, 6, 0.3);
             padding: 0.4rem 1rem;
             border-radius: 9999px;
             font-size: 0.85rem;
@@ -114,9 +105,9 @@
 
         .pulse-dot {
             width: 9px; height: 9px;
-            background-color: #34d399;
+            background-color: #059669;
             border-radius: 50%;
-            box-shadow: 0 0 10px #34d399;
+            box-shadow: 0 0 8px #059669;
             animation: pulse 1.8s infinite;
         }
 
@@ -126,16 +117,16 @@
             100% { transform: scale(0.95); opacity: 0.9; }
         }
 
-        .btn-gradient-launch {
-            background: var(--gradient-vibrant);
+        .btn-royal-blue {
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
             color: #ffffff;
-            font-weight: 900;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.05rem;
             border: none;
             border-radius: 14px;
-            padding: 1rem 2.2rem;
+            padding: 0.9rem 2rem;
             cursor: pointer;
-            box-shadow: 0 12px 35px rgba(236, 72, 153, 0.45);
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.35);
             transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
@@ -143,21 +134,21 @@
             text-decoration: none;
         }
 
-        .btn-gradient-launch:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 18px 45px rgba(139, 92, 246, 0.65);
+        .btn-royal-blue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px -5px rgba(29, 78, 216, 0.45);
         }
 
         .btn-emerald-launch {
-            background: var(--gradient-emerald);
+            background: linear-gradient(90deg, #059669 0%, #047857 100%);
             color: #ffffff;
             font-weight: 900;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             border: none;
             border-radius: 14px;
-            padding: 0.9rem 2rem;
+            padding: 1rem 2.2rem;
             cursor: pointer;
-            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 12px 30px rgba(5, 150, 105, 0.35);
             transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
@@ -166,14 +157,14 @@
         }
 
         .btn-emerald-launch:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(16, 185, 129, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(5, 150, 105, 0.5);
         }
 
-        .btn-outline-glow {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            color: #ffffff;
+        .btn-outline-slate {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
             font-weight: 700;
             border-radius: 14px;
             padding: 0.85rem 1.8rem;
@@ -185,15 +176,15 @@
             text-decoration: none;
         }
 
-        .btn-outline-glow:hover {
-            border-color: #ec4899;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
-            color: #f472b6;
+        .btn-outline-slate:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
         }
 
         .code-container {
-            background: #030712;
-            border: 1px solid #1f2937;
+            background: #0f172a;
+            border: 1px solid #334155;
             border-radius: 12px;
             padding: 1.2rem;
             font-family: 'JetBrains Mono', monospace;
@@ -202,30 +193,23 @@
             overflow-x: auto;
         }
 
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(14px);
-            display: flex; align-items: center; justify-content: center; z-index: 9999;
-        }
-
         .doc-card {
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 18px;
             padding: 2rem;
             transition: all 0.25s ease;
         }
 
         .doc-card:hover {
-            border-color: #ec4899;
-            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+            border-color: #2563eb;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.1);
             transform: translateY(-3px);
         }
 
-        /* Ad Placement Slot Styling */
         .ad-container-slot {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px dashed rgba(148, 163, 184, 0.3);
+            background: #ffffff;
+            border: 1px dashed #cbd5e1;
             border-radius: 14px;
             padding: 1rem;
             text-align: center;
@@ -233,7 +217,7 @@
         }
 
         .nav-link {
-            color: #cbd5e1;
+            color: #475569;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.92rem;
@@ -241,7 +225,7 @@
             cursor: pointer;
         }
 
-        .nav-link:hover { color: #f472b6; }
+        .nav-link:hover { color: #2563eb; }
 
         .hidden { display: none !important; }
     </style>
@@ -252,12 +236,12 @@
         <!-- Header Topbar with Navigation Links -->
         <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <div style="width: 48px; height: 48px; background: var(--gradient-vibrant); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(236, 72, 153, 0.5);">
+                <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);">
                     <i class="fa-solid fa-shield-halved" style="font-size: 1.6rem; color: white;"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading text-gradient" style="font-size: 1.8rem; font-weight: 900;">ShieldEDR</h1>
-                    <p style="color: #94a3b8; font-size: 0.82rem; font-weight: 600;">100% Free Open-Source EDR & WAF</p>
+                    <h1 class="font-heading" style="font-size: 1.8rem; font-weight: 900; color: #0f172a;">ShieldEDR</h1>
+                    <p style="color: #64748b; font-size: 0.82rem; font-weight: 600;">100% Free Open-Source EDR & WAF</p>
                 </div>
             </div>
 
@@ -265,22 +249,22 @@
             <nav style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
                 <a class="nav-link" id="nav-docs"><i class="fa-solid fa-book"></i> Platform Docs</a>
                 <a class="nav-link" id="nav-how"><i class="fa-solid fa-gears"></i> How It Works</a>
+                <a class="nav-link" id="nav-manus"><i class="fa-solid fa-wand-magic-sparkles"></i> Manus AI Light Prompt</a>
                 <a class="nav-link" id="nav-sponsor"><i class="fa-solid fa-hand-holding-dollar"></i> Sponsorship Tiers</a>
-                <a class="nav-link" id="nav-tools"><i class="fa-solid fa-wand-magic-sparkles"></i> AI & Auth Guide</a>
                 <a class="nav-link" id="nav-legal"><i class="fa-solid fa-scale-balanced"></i> Terms & Privacy</a>
             </nav>
 
             <div id="auth-nav-container">
-                <button id="btn-top-download" class="btn-emerald-launch" style="padding: 0.75rem 1.4rem; font-size: 0.95rem;">
+                <a id="btn-top-download" href="#" download="shield_installer.bat" class="btn-emerald-launch" style="padding: 0.75rem 1.4rem; font-size: 0.95rem;">
                     <i class="fa-solid fa-download"></i> 100% Free Download
-                </button>
+                </a>
             </div>
         </header>
 
         <!-- Google AdSense / Sponsor Banner Slot (Top Header) -->
         <div class="ad-container-slot">
             <span style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">📢 ADVERTISEMENT / SPONSOR BANNER SPACE</span>
-            <div style="min-height: 90px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.88rem;">
+            <div style="min-height: 90px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.88rem;">
                 <ins class="adsbygoogle" style="display:block; width:100%; height:90px;" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000"></ins>
                 <span>Google AdSense / Official Sponsor Banner Active</span>
             </div>
@@ -290,13 +274,13 @@
         <!-- MAIN PORTFOLIO & 100% FREE DOWNLOAD SHOWCASE                        -->
         <!-- =================================================================== -->
         <div id="view-main-portfolio">
-            <!-- Radiant Hero Banner -->
-            <div class="vibrant-panel" style="padding: 3.5rem 2.2rem; margin-bottom: 2.8rem; text-align: center;">
+            <!-- Executive Light Hero Banner -->
+            <div class="executive-panel" style="padding: 3.5rem 2.2rem; margin-bottom: 2.8rem; text-align: center; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);">
                 <span class="badge-free" style="margin-bottom: 1.2rem;"><span class="pulse-dot"></span> 100% FREE SOFTWARE · 0 RUPEES CHARGED TO USERS</span>
-                <h1 class="font-heading" style="font-size: 3.4rem; font-weight: 900; color: #ffffff; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
-                    24/7 AI-Powered Endpoint Security & <span class="text-gradient">Wazuh SIEM Docs</span>
+                <h1 class="font-heading" style="font-size: 3.4rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
+                    24/7 AI Endpoint Protection & <span style="color: #2563eb;">Wazuh SIEM Docs</span>
                 </h1>
-                <p style="color: #cbd5e1; font-size: 1.2rem; max-width: 840px; margin: 0 auto 2.2rem; line-height: 1.65;">
+                <p style="color: #475569; font-size: 1.2rem; max-width: 840px; margin: 0 auto 2.2rem; line-height: 1.65;">
                     Protect your Windows PCs against Ransomware, Malware, and Web Attacks with open-source <b>Wazuh SIEM</b> and <b>Sysmon Event Telemetry</b>. Completely free for all users forever!
                 </p>
 
@@ -304,21 +288,21 @@
                     <a id="btn-hero-free-download" href="#" download="shield_installer.bat" class="btn-emerald-launch">
                         <i class="fa-solid fa-file-arrow-down"></i> 📥 Free Download 1-Click Agent (shield_installer.bat)
                     </a>
-                    <button id="btn-hero-view-docs" class="btn-outline-glow">
-                        <i class="fa-solid fa-book-open"></i> Read Platform Technical Docs
+                    <button id="btn-hero-view-docs" class="btn-outline-slate">
+                        <i class="fa-solid fa-book-open"></i> Read Technical Documentation
                     </button>
                 </div>
             </div>
 
             <!-- FREE INSTALLER CODE & STEPS CARD -->
-            <div class="vibrant-panel" style="padding: 2.2rem; margin-bottom: 2.8rem;">
+            <div class="executive-panel" style="padding: 2.2rem; margin-bottom: 2.8rem; background: #ffffff;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
                     <div>
-                        <span class="badge-vibrant"><i class="fa-solid fa-cube"></i> FREE WINDOWS INSTALLER PACKAGE</span>
-                        <h3 class="font-heading" style="color: #ffffff; font-size: 1.8rem; margin-top: 0.4rem;">
-                            🚀 1-Click Free Windows Agent Deployment
+                        <span class="badge-blue"><i class="fa-solid fa-cube"></i> FREE WINDOWS INSTALLER PACKAGE</span>
+                        <h3 class="font-heading" style="color: #0f172a; font-size: 1.8rem; margin-top: 0.4rem;">
+                            🚀 1-Click Free Windows Agent Setup
                         </h3>
-                        <p style="color: #cbd5e1; font-size: 0.95rem; margin-top: 0.2rem;">
+                        <p style="color: #475569; font-size: 0.95rem; margin-top: 0.2rem;">
                             Downloads official Wazuh EDR MSI daemon, connects 24/7 to Central Cloud Server, and starts protection service.
                         </p>
                     </div>
@@ -330,19 +314,19 @@
 
                 <!-- 3-Step Setup Instructions -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 1.5rem;">
-                    <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 14px; padding: 1.2rem;">
-                        <h4 style="color: #f8fafc; font-size: 1rem; margin-bottom: 0.4rem;">Step 1: Download Free Script</h4>
-                        <p style="color: #94a3b8; font-size: 0.85rem;">Click the download button to get <code>shield_installer.bat</code> (0 rupees cost).</p>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.2rem;">
+                        <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">Step 1: Download Free Script</h4>
+                        <p style="color: #64748b; font-size: 0.85rem;">Click the download button to get <code>shield_installer.bat</code> (0 rupees cost).</p>
                     </div>
 
-                    <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 14px; padding: 1.2rem;">
-                        <h4 style="color: #f8fafc; font-size: 1rem; margin-bottom: 0.4rem;">Step 2: Run as Administrator</h4>
-                        <p style="color: #94a3b8; font-size: 0.85rem;">Right-click <code>shield_installer.bat</code> → Select <b>"Run as administrator"</b> (accept UAC prompt).</p>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.2rem;">
+                        <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">Step 2: Run as Administrator</h4>
+                        <p style="color: #64748b; font-size: 0.85rem;">Right-click <code>shield_installer.bat</code> → Select <b>"Run as administrator"</b> (accept UAC prompt).</p>
                     </div>
 
-                    <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 14px; padding: 1.2rem;">
-                        <h4 style="color: #f8fafc; font-size: 1rem; margin-bottom: 0.4rem;">Step 3: Background Service Active</h4>
-                        <p style="color: #94a3b8; font-size: 0.85rem;">Script installs and starts <code>WazuhSvc</code> in background kernel services 24/7.</p>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.2rem;">
+                        <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">Step 3: Background Service Active</h4>
+                        <p style="color: #64748b; font-size: 0.85rem;">Script installs and starts <code>WazuhSvc</code> in background kernel services 24/7.</p>
                     </div>
                 </div>
 
@@ -351,107 +335,142 @@
                 </div>
             </div>
 
+            <!-- MANUS AI LIGHT MODE MASTER PROMPT & 1-CLICK BUTTON GUIDE -->
+            <div id="section-manus" class="executive-panel" style="padding: 2.5rem; margin-bottom: 2.8rem; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-color: #cbd5e1;">
+                <span class="badge-gold" style="margin-bottom: 0.8rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> MANUS AI LIGHT MODE BLUEPRINT</span>
+                <h2 class="font-heading" style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 0.8rem;">
+                    ✨ Manus AI (1.6 Lite) Light Mode Master Prompt & 1-Click Button Guide
+                </h2>
+                <p style="color: #475569; font-size: 1.05rem; margin-bottom: 1.5rem;">
+                    Copy and paste this prompt into <b>Manus AI</b> (or Gemini Flash 1.6 Lite / v0) to build a Pristine Light Mode Portfolio site:
+                </p>
+
+                <!-- Copyable Manus AI Light Mode Prompt Box -->
+                <div class="code-container" style="background: #0f172a; color: #38bdf8; margin-bottom: 1.5rem; white-space: pre-wrap;">
+Role: Senior Principal Frontend Engineer & UX Architect.
+
+Task: Build a single-page responsive Light Mode Portfolio & Technical Documentation Web Application for "ShieldEDR" — a 100% Free Open-Source Endpoint Security Platform.
+
+Light Mode Theme & Aesthetic Requirements:
+- Theme: Pristine Executive Light Theme with Slate White Background (#f8fafc), White Panels (#ffffff) with crisp border (#e2e8f0), and subtle box-shadows.
+- Color Accents: Corporate Royal Blue (#2563eb), Emerald Green (#059669) for 100% free badges, and Amber Gold (#d97706) for sponsorships.
+- Typography: Outfit (Headings) and Inter (Body). FontAwesome 6 icons included.
+
+Key Components Required:
+1. Top Navigation Bar: Logo, links (Platform Docs, How It Works, Sponsorship Tiers, Terms & Privacy), and a prominent "📥 100% Free Download" button.
+2. Hero Section: Headline "24/7 AI Endpoint Protection & Wazuh SIEM Docs" with a prominent 1-Click "📥 Free Download 1-Click Agent (shield_installer.bat)" button.
+3. 1-Click Batch Download Button Logic: Implement JavaScript generating a data:text/plain URI containing the Windows agent installation batch script.
+4. Ad Placement Slots: Responsive Google AdSense containers (<ins class="adsbygoogle">) in header, docs content, and footer.
+5. Sponsorship Portal: Tiers for Silver (₹5K/mo), Gold (₹15K/mo), Platinum (₹50K/mo) with direct mailto:hariniathukuri1@gmail.com link.
+6. Optional Firebase Auth: Firebase SDK v10 script for Email/Password & Google Sign-In.
+
+Deliverable: Self-contained HTML5 file with embedded Vanilla CSS and ES6 modules.
+                </div>
+
+                <!-- 1-Click Batch Download Code Guide -->
+                <h4 style="color: #0f172a; font-size: 1.1rem; margin-bottom: 0.5rem;">💡 How to Code the 1-Click `shield_installer.bat` Button in Manus AI:</h4>
+                <div class="code-container">
+// How to build 1-Click Batch Download in Manus AI JavaScript:
+const batScript = `@echo off\n:: Windows EDR Agent Setup\npowershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"\nmsiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_PUBLIC_FREE"\nnet start WazuhSvc\npause`;
+
+const downloadBtn = document.getElementById('btn-download');
+downloadBtn.href = "data:text/plain;charset=utf-8," + encodeURIComponent(batScript);
+downloadBtn.download = "shield_installer.bat";
+                </div>
+            </div>
+
             <!-- Technical Architecture Documentation Section -->
             <div id="section-docs">
-                <h2 class="font-heading text-gradient" style="font-size: 2rem; font-weight: 800; margin-bottom: 1.4rem;">
+                <h2 class="font-heading" style="font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 1.4rem;">
                     📚 Platform Technical Architecture & Documentation
                 </h2>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.8rem; margin-bottom: 2.8rem;">
                     <!-- Doc 1: Multi-Tenant Silos -->
                     <div class="doc-card">
-                        <div style="width: 46px; height: 46px; background: rgba(236, 72, 153, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-                            <i class="fa-solid fa-sitemap" style="color: #ec4899; font-size: 1.3rem;"></i>
+                        <div style="width: 46px; height: 46px; background: rgba(37, 99, 235, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                            <i class="fa-solid fa-sitemap" style="color: #2563eb; font-size: 1.3rem;"></i>
                         </div>
-                        <h3 class="font-heading" style="font-size: 1.35rem; color: #f8fafc; margin-bottom: 0.6rem;">
+                        <h3 class="font-heading" style="font-size: 1.35rem; color: #0f172a; margin-bottom: 0.6rem;">
                             Multi-Tenant Silo Isolation
                         </h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.65;">
+                        <p style="color: #475569; font-size: 0.95rem; line-height: 1.65;">
                             Accounts receive cryptographically isolated tenant group tokens (<code>GRP_&lt;UID&gt;</code>). This guarantees absolute data privacy — User A can never view or access User B's devices or security logs.
                         </p>
                     </div>
 
                     <!-- Doc 2: Sysmon Kernel Telemetry -->
                     <div class="doc-card">
-                        <div style="width: 46px; height: 46px; background: rgba(139, 92, 246, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-                            <i class="fa-solid fa-microchip" style="color: #c084fc; font-size: 1.3rem;"></i>
+                        <div style="width: 46px; height: 46px; background: rgba(5, 150, 105, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                            <i class="fa-solid fa-microchip" style="color: #059669; font-size: 1.3rem;"></i>
                         </div>
-                        <h3 class="font-heading" style="font-size: 1.35rem; color: #f8fafc; margin-bottom: 0.6rem;">
+                        <h3 class="font-heading" style="font-size: 1.35rem; color: #0f172a; margin-bottom: 0.6rem;">
                             Sysmon Event Telemetry Engine
                         </h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.65;">
+                        <p style="color: #475569; font-size: 0.95rem; line-height: 1.65;">
                             Monitors Windows Kernel events in real-time: <b>Event ID 1</b> (Process Creation & Command Lines), <b>Event ID 3</b> (Network Sockets), and <b>Event ID 11</b> (File Creation & Ransomware Tracking).
                         </p>
                     </div>
 
                     <!-- Doc 3: Automated Active Response -->
                     <div class="doc-card">
-                        <div style="width: 46px; height: 46px; background: rgba(59, 130, 246, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-                            <i class="fa-solid fa-shield-virus" style="color: #60a5fa; font-size: 1.3rem;"></i>
+                        <div style="width: 46px; height: 46px; background: rgba(220, 38, 38, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                            <i class="fa-solid fa-shield-virus" style="color: #dc2626; font-size: 1.3rem;"></i>
                         </div>
-                        <h3 class="font-heading" style="font-size: 1.35rem; color: #f8fafc; margin-bottom: 0.6rem;">
+                        <h3 class="font-heading" style="font-size: 1.35rem; color: #0f172a; margin-bottom: 0.6rem;">
                             Automated Active Response Engine
                         </h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.65;">
+                        <p style="color: #475569; font-size: 0.95rem; line-height: 1.65;">
                             When ransomware or malicious shellcode is detected, the EDR active-response daemon terminates malicious PIDs and isolates compromised endpoints from the local network in under 500ms.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Google AdSense / Sponsor Banner Slot (Middle Content) -->
-            <div class="ad-container-slot">
-                <span style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">📢 SPONSOR / ADVERTISEMENT CONTAINER</span>
-                <div style="min-height: 100px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.88rem;">
-                    <ins class="adsbygoogle" style="display:block; width:100%; height:90px;" data-ad-client="ca-pub-0000000000000000" data-ad-slot="1111111111"></ins>
-                    <span>Google AdSense / Native Ad Banner Integration</span>
-                </div>
-            </div>
-
             <!-- SPONSORSHIP PORTAL SHOWCASE SECTION -->
-            <div id="section-sponsorship" class="vibrant-panel" style="padding: 2.8rem; margin-bottom: 2.8rem;">
+            <div id="section-sponsorship" class="executive-panel" style="padding: 2.8rem; margin-bottom: 2.8rem; background: #ffffff;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;">
                     <div>
                         <span class="badge-gold" style="margin-bottom: 0.8rem;"><i class="fa-solid fa-handshake-simple"></i> CORPORATE SPONSORSHIP PROGRAM</span>
-                        <h2 class="font-heading" style="font-size: 2.5rem; font-weight: 900; color: #ffffff; margin-top: 0.4rem;">
+                        <h2 class="font-heading" style="font-size: 2.5rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem;">
                             Become an Official ShieldEDR Sponsor
                         </h2>
-                        <p style="color: #cbd5e1; font-size: 1.05rem; max-width: 650px; margin-top: 0.4rem;">
+                        <p style="color: #475569; font-size: 1.05rem; max-width: 650px; margin-top: 0.4rem;">
                             Help us keep cybersecurity 100% free for open-source users worldwide. Contact our founding team directly to become a sponsor!
                         </p>
                     </div>
 
-                    <a href="mailto:hariniathukuri1@gmail.com?subject=ShieldEDR%20Sponsorship%20Inquiry" class="btn-gradient-launch">
+                    <a href="mailto:hariniathukuri1@gmail.com?subject=ShieldEDR%20Sponsorship%20Inquiry" class="btn-royal-blue">
                         <i class="fa-solid fa-envelope"></i> Contact Us: hariniathukuri1@gmail.com
                     </a>
                 </div>
 
                 <!-- Sponsorship Tier Packages -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-                    <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 16px; padding: 1.6rem;">
-                        <span class="badge-vibrant" style="margin-bottom: 0.8rem;">SILVER SPONSOR</span>
-                        <h3 class="font-heading" style="font-size: 1.5rem; color: #ffffff; margin-bottom: 0.5rem;">₹5,000 / month</h3>
-                        <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
+                    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 16px; padding: 1.6rem;">
+                        <span class="badge-blue" style="margin-bottom: 0.8rem;">SILVER SPONSOR</span>
+                        <h3 class="font-heading" style="font-size: 1.5rem; color: #0f172a; margin-bottom: 0.5rem;">₹5,000 / month</h3>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
                             • Logo listed on Website Footer<br>
                             • Mention in Documentation Docs<br>
-                            • Monthly Sponsor Report
+                            • Monthly Sponsor Impact Report
                         </p>
                     </div>
 
-                    <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 16px; padding: 1.6rem;">
+                    <div style="background: #f8fafc; border: 1px solid rgba(217, 119, 6, 0.4); border-radius: 16px; padding: 1.6rem;">
                         <span class="badge-gold" style="margin-bottom: 0.8rem;">GOLD SPONSOR</span>
-                        <h3 class="font-heading" style="font-size: 1.5rem; color: #fbbf24; margin-bottom: 0.5rem;">₹15,000 / month</h3>
-                        <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.6;">
+                        <h3 class="font-heading" style="font-size: 1.5rem; color: #d97706; margin-bottom: 0.5rem;">₹15,000 / month</h3>
+                        <p style="color: #334155; font-size: 0.88rem; line-height: 1.6;">
                             • Featured Logo on Hero Banner<br>
                             • Dedicated Ad Container Spot<br>
                             • Direct Email Sponsor Recognition
                         </p>
                     </div>
 
-                    <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 16px; padding: 1.6rem;">
-                        <span class="badge-vibrant" style="background: rgba(236, 72, 153, 0.2); color: #f472b6; margin-bottom: 0.8rem;">PLATINUM TITLE SPONSOR</span>
-                        <h3 class="font-heading" style="font-size: 1.5rem; color: #f472b6; margin-bottom: 0.5rem;">₹50,000 / month</h3>
-                        <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.6;">
+                    <div style="background: #f8fafc; border: 1px solid rgba(37, 99, 235, 0.4); border-radius: 16px; padding: 1.6rem;">
+                        <span class="badge-free" style="margin-bottom: 0.8rem;">PLATINUM TITLE SPONSOR</span>
+                        <h3 class="font-heading" style="font-size: 1.5rem; color: #059669; margin-bottom: 0.5rem;">₹50,000 / month</h3>
+                        <p style="color: #334155; font-size: 0.88rem; line-height: 1.6;">
                             • Title Partner Branding on All Pages<br>
                             • Custom WAF Security Rules<br>
                             • Direct Founder Contact Support
@@ -460,43 +479,17 @@
                 </div>
             </div>
 
-            <!-- AI PORTFOLIO BUILDING TOOLS & AUTHENTICATION GUIDE SECTION -->
-            <div id="section-tools" class="vibrant-panel" style="padding: 2.5rem; margin-bottom: 2.8rem; background: linear-gradient(135deg, rgba(30, 27, 75, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);">
-                <h2 class="font-heading text-gradient" style="font-size: 2rem; font-weight: 800; margin-bottom: 0.6rem;">
-                    ✨ AI Portfolio Tools & Authentication Guide (Manus AI / 1.6 Lite)
-                </h2>
-                <p style="color: #cbd5e1; font-size: 1rem; margin-bottom: 1.5rem;">
-                    Answers to your questions about the best portfolio tools, Manus AI prompt generation, 1.6 Lite models, and authentication:
-                </p>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 14px; padding: 1.4rem;">
-                        <h4 style="color: #38bdf8; font-size: 1.1rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> 1. Best Portfolio Tools & Manus AI (1.6 Lite)</h4>
-                        <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
-                            <b>Manus AI / Gemini Flash 1.6 Lite</b> are top-tier prompt-driven UI generators. To use them effectively: feed a structured markdown prompt specifying <i>HTML5, Vanilla CSS glassmorphism, responsive grid, and zero external dependencies</i>.
-                        </p>
-                    </div>
-
-                    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 14px; padding: 1.4rem;">
-                        <h4 style="color: #34d399; font-size: 1.1rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-key"></i> 2. How to Authenticate Easily</h4>
-                        <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
-                            Since your software is <b>100% Free to Download</b>, authentication is <b>OPTIONAL for users</b>! You can use Firebase Google One-Tap OAuth or Email Sign-In so users save device settings without blocking downloads.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
             <!-- TERMS OF SERVICE & PRIVACY POLICY LEGAL SECTION -->
-            <div id="section-legal" class="vibrant-panel" style="padding: 2.5rem; margin-bottom: 2.8rem;">
-                <h2 class="font-heading" style="font-size: 2rem; font-weight: 800; color: #ffffff; margin-bottom: 1.2rem;">
+            <div id="section-legal" class="executive-panel" style="padding: 2.5rem; margin-bottom: 2.8rem; background: #ffffff;">
+                <h2 class="font-heading" style="font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 1.2rem;">
                     📜 Terms of Service & Privacy Policy Documents
                 </h2>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem;">
                     <!-- Terms of Service -->
-                    <div style="background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #f8fafc; font-size: 1.3rem; margin-bottom: 0.8rem;">Terms & Conditions</h3>
-                        <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
+                    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; padding: 1.6rem;">
+                        <h3 style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">Terms & Conditions</h3>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
                             1. <b>Free License</b>: ShieldEDR is provided 100% free of charge under the open-source MIT license.<br>
                             2. <b>User Responsibility</b>: Users must run installers with Windows Administrator privileges (`Run as Administrator`).<br>
                             3. <b>Liability Waiver</b>: ShieldEDR provides active response containment without warranty of any kind.
@@ -504,9 +497,9 @@
                     </div>
 
                     <!-- Privacy Policy -->
-                    <div style="background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #f8fafc; font-size: 1.3rem; margin-bottom: 0.8rem;">Privacy Policy</h3>
-                        <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
+                    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; padding: 1.6rem;">
+                        <h3 style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">Privacy Policy</h3>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
                             1. <b>Zero Data Selling</b>: We never sell or share user telemetry data with third parties.<br>
                             2. <b>Encrypted Telemetry</b>: All agent logs transmitted to Wazuh Manager are encrypted via TLS v1.3.<br>
                             3. <b>Contact</b>: Direct privacy inquiries to <code>hariniathukuri1@gmail.com</code>.
@@ -520,37 +513,22 @@
     </div>
 
     <!-- Footer -->
-    <footer style="text-align: center; color: #64748b; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #1e293b; margin-top: 2rem;">
-        <p>© 2026 ShieldEDR Platform · 100% Free Open-Source EDR & WAF · Sponsor Contact: <a href="mailto:hariniathukuri1@gmail.com" style="color: #ec4899;">hariniathukuri1@gmail.com</a></p>
+    <footer style="text-align: center; color: #64748b; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #e2e8f0; margin-top: 2rem;">
+        <p>© 2026 ShieldEDR Platform · 100% Free Open-Source EDR & WAF · Sponsor Contact: <a href="mailto:hariniathukuri1@gmail.com" style="color: #2563eb;">hariniathukuri1@gmail.com</a></p>
     </footer>
 
-    <!-- Firebase SDK Script & Navigation Logic -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDOEUe0o6lJoqo8cv7OwPstE-lkyHqagQw",
-            authDomain: "elite-elevator-472112-s3.firebaseapp.com",
-            projectId: "elite-elevator-472112-s3",
-            storageBucket: "elite-elevator-472112-s3.firebasestorage.app",
-            messagingSenderId: "537133039027",
-            appId: "1:537133039027:web:59547872f73e1ea8101fc6",
-            measurementId: "G-C08VLZRSD7"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
+    <!-- JavaScript Navigation & Free Installer Batch File Generator -->
+    <script>
         const btnHeroFreeDownload = document.getElementById('btn-hero-free-download');
         const btnCardDownload = document.getElementById('btn-card-download');
         const btnTopDownload = document.getElementById('btn-top-download');
 
         const navDocs = document.getElementById('nav-docs');
         const navHow = document.getElementById('nav-how');
+        const navManus = document.getElementById('nav-manus');
         const navSponsor = document.getElementById('nav-sponsor');
-        const navTools = document.getElementById('nav-tools');
         const navLegal = document.getElementById('nav-legal');
+        const btnHeroViewDocs = document.getElementById('btn-hero-view-docs');
 
         const scrollToSection = (id) => {
             const el = document.getElementById(id);
@@ -559,9 +537,10 @@
 
         navDocs.onclick = () => scrollToSection('section-docs');
         navHow.onclick = () => scrollToSection('section-docs');
+        navManus.onclick = () => scrollToSection('section-manus');
         navSponsor.onclick = () => scrollToSection('section-sponsorship');
-        navTools.onclick = () => scrollToSection('section-tools');
         navLegal.onclick = () => scrollToSection('section-legal');
+        btnHeroViewDocs.onclick = () => scrollToSection('section-docs');
 
         // Free Installer Batch File Generator
         const batContent = `@echo off\n:: Free ShieldEDR Windows Agent Installer\nnet session >nul 2>&1\nif %errorlevel% neq 0 (\n    echo Requesting Administrator Privileges...\n    powershell -Command "Start-Process '%~f0' -Verb RunAs"\n    exit /b\n)\necho ========================================================\necho   🛡️ ShieldEDR — 100% Free Agent Setup\necho ========================================================\necho [1/3] Downloading Wazuh EDR Agent package...\npowershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"\necho [2/3] Installing EDR Agent into Group GRP_PUBLIC_FREE...\nmsiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_PUBLIC_FREE"\necho [3/3] Starting ShieldEDR 24/7 Protection Service...\nnet start WazuhSvc\necho.\necho [SUCCESS] ShieldEDR Agent is RUNNING in background kernel services!\npause`;
@@ -569,13 +548,7 @@
         const batHref = "data:text/plain;charset=utf-8," + encodeURIComponent(batContent);
         btnHeroFreeDownload.href = batHref;
         btnCardDownload.href = batHref;
-
-        btnTopDownload.onclick = () => {
-            const a = document.createElement('a');
-            a.href = batHref;
-            a.download = "shield_installer.bat";
-            a.click();
-        };
+        btnTopDownload.href = batHref;
     </script>
 </body>
 </html>
