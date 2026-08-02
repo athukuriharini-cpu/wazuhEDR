@@ -75,7 +75,7 @@
             font-weight: 600;
         }
 
-        /* Technical Navigation Links (Plain Text Technical Style) */
+        /* Technical Navigation Links */
         nav {
             display: flex;
             justify-content: center;
@@ -159,6 +159,8 @@
             color: #38bdf8;
             font-size: 0.88rem;
             overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
         }
 
         /* Plain-Text Technical Documentation Style */
@@ -221,7 +223,7 @@
             </div>
             <p class="header-subtitle">MSME Corporate Fleet Security & Active Directory EDR Architecture</p>
 
-            <!-- Technical Navigation Links (Plain Text Technical Style & Dynamic URL Routes) -->
+            <!-- Technical Navigation Links -->
             <nav>
                 <a class="nav-link active" id="nav-home" href="/"><i class="fa-solid fa-house"></i> Overview</a>
                 <a class="nav-link" id="nav-docs" href="/docs"><i class="fa-solid fa-file-lines"></i> Technical Specs (/docs)</a>
@@ -262,17 +264,23 @@
                 </div>
             </div>
 
-            <!-- MSME Fleet Deployment Command Box -->
+            <!-- MSME Fleet Registration Command Box (PowerShell & CMD Syntax Fixed) -->
             <div class="executive-panel">
-                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 0.8rem;">
-                    💻 MSME Fleet Registration Command
+                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 0.4rem;">
+                    💻 Option A: Run in Windows PowerShell
                 </h3>
-                <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1rem;">
-                    Executes unattended silent agent registration for corporate workstation fleets:
+                <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 0.8rem;">
+                    Copy and paste directly into PowerShell (uses <code>;</code> separator):
                 </p>
-                <div class="code-container">
-                    powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc
-                </div>
+                <div class="code-container">Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile "$env:TEMP\wazuh-agent.msi" ; Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wazuh-agent.msi", '/q', 'WAZUH_MANAGER="10.0.11.57"', 'WAZUH_REGISTRATION_SERVER="10.0.11.57"', 'WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"' -Wait ; net start WazuhSvc</div>
+
+                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.4rem;">
+                    💻 Option B: Run in Windows CMD (Command Prompt)
+                </h3>
+                <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 0.8rem;">
+                    Copy and paste into Command Prompt (uses <code>&&</code> separator):
+                </p>
+                <div class="code-container">powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc</div>
             </div>
         </div>
 
@@ -392,7 +400,7 @@
         <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:hariniathukuri1@gmail.com" style="color: #2563eb;">hariniathukuri1@gmail.com</a></p>
     </footer>
 
-    <!-- Client-Side URL Router & MSME Fleet Installer Script -->
+    <!-- Client-Side Router & MSME Fleet Installer Script -->
     <script>
         const views = {
             '/': document.getElementById('page-home'),
@@ -412,17 +420,14 @@
         };
 
         function routeToPath(path, pushState = true) {
-            // Normalize path
             let targetPath = path;
             if (!views[targetPath]) targetPath = '/';
 
-            // Hide all pages, show target page
             Object.keys(views).forEach(p => {
                 if (views[p]) views[p].classList.add('hidden');
             });
             views[targetPath].classList.remove('hidden');
 
-            // Update nav link active styles
             Object.keys(navLinks).forEach(p => {
                 if (navLinks[p]) {
                     if (p === targetPath || (p === '/terms' && path === '/privacy')) {
@@ -433,7 +438,6 @@
                 }
             });
 
-            // Update browser URL in address bar
             if (pushState && window.location.pathname !== targetPath) {
                 window.history.pushState({ path: targetPath }, '', targetPath);
             }
@@ -441,7 +445,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Bind Nav Link Click Events
         Object.keys(navLinks).forEach(path => {
             if (navLinks[path]) {
                 navLinks[path].onclick = (e) => {
@@ -451,13 +454,10 @@
             }
         });
 
-        // Handle Browser Back/Forward Buttons
         window.onpopstate = (e) => {
-            const currentPath = window.location.pathname;
-            routeToPath(currentPath, false);
+            routeToPath(window.location.pathname, false);
         };
 
-        // Initial Route on Page Load
         routeToPath(window.location.pathname, false);
 
         // MSME Corporate Fleet Installer Batch Generator
