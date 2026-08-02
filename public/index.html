@@ -46,6 +46,7 @@
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-card);
+            position: relative;
         }
 
         .header-brand {
@@ -73,6 +74,11 @@
             color: var(--text-muted);
             font-size: 0.9rem;
             font-weight: 600;
+        }
+
+        /* Top Auth Button Container */
+        .auth-top-btn-container {
+            margin-top: 0.8rem;
         }
 
         /* Technical Navigation Links */
@@ -150,6 +156,24 @@
             background: #047857;
         }
 
+        .btn-royal-blue {
+            background: #2563eb;
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-royal-blue:hover { background: #1d4ed8; }
+
         .code-container {
             background: #0f172a;
             border: 1px solid #334155;
@@ -161,6 +185,12 @@
             overflow-x: auto;
             white-space: pre-wrap;
             word-break: break-all;
+        }
+
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center; z-index: 9999;
         }
 
         /* Plain-Text Technical Documentation Style */
@@ -223,6 +253,13 @@
             </div>
             <p class="header-subtitle">MSME Corporate Fleet Security & Active Directory EDR Architecture</p>
 
+            <!-- Firebase Authentication Header Topbar Button -->
+            <div class="auth-top-btn-container" id="auth-nav-container">
+                <button id="btn-top-auth" class="btn-royal-blue">
+                    <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Account
+                </button>
+            </div>
+
             <!-- Technical Navigation Links -->
             <nav>
                 <a class="nav-link active" id="nav-home" href="/"><i class="fa-solid fa-house"></i> Overview</a>
@@ -264,23 +301,40 @@
                 </div>
             </div>
 
-            <!-- MSME Fleet Registration Command Box (PowerShell & CMD Syntax Fixed) -->
+            <!-- ALL TERMINAL COMMAND SHELL VARIANTS (EXPLICITLY LABELED) -->
             <div class="executive-panel">
-                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 0.4rem;">
-                    💻 Option A: Run in Windows PowerShell
-                </h3>
-                <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 0.8rem;">
-                    Copy and paste directly into PowerShell (uses <code>;</code> separator):
+                <h2 class="font-heading" style="color: #0f172a; font-size: 1.6rem; margin-bottom: 0.4rem;">
+                    💻 Terminal Commands for All Shell Environments
+                </h2>
+                <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.2rem;">
+                    Choose your exact terminal shell environment below to prevent syntax errors:
                 </p>
-                <div class="code-container">Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile "$env:TEMP\wazuh-agent.msi" ; Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wazuh-agent.msi", '/q', 'WAZUH_MANAGER="10.0.11.57"', 'WAZUH_REGISTRATION_SERVER="10.0.11.57"', 'WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"' -Wait ; net start WazuhSvc</div>
 
-                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.4rem;">
-                    💻 Option B: Run in Windows CMD (Command Prompt)
-                </h3>
-                <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 0.8rem;">
-                    Copy and paste into Command Prompt (uses <code>&&</code> separator):
-                </p>
-                <div class="code-container">powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc</div>
+                <!-- Variant 1: PowerShell -->
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="color: #0f172a; font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        <i class="fa-solid fa-terminal" style="color: #2563eb;"></i> Option 1: Windows PowerShell (PowerShell 5.1 / Windows Terminal)
+                    </h4>
+                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;">Use this if you are running inside a standard PowerShell window (uses <code>;</code> separator):</p>
+                    <div class="code-container">Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile "$env:TEMP\wazuh-agent.msi" ; Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wazuh-agent.msi", '/q', 'WAZUH_MANAGER="10.0.11.57"', 'WAZUH_REGISTRATION_SERVER="10.0.11.57"', 'WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"' -Wait ; net start WazuhSvc</div>
+                </div>
+
+                <!-- Variant 2: CMD Command Prompt -->
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="color: #0f172a; font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        <i class="fa-solid fa-terminal" style="color: #059669;"></i> Option 2: Windows Command Prompt (CMD.exe)
+                    </h4>
+                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;">Use this if you are running inside a traditional CMD prompt (uses <code>&&</code> separator):</p>
+                    <div class="code-container">powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc</div>
+                </div>
+
+                <!-- Variant 3: Batch File -->
+                <div>
+                    <h4 style="color: #0f172a; font-size: 1.05rem; margin-bottom: 0.4rem;">
+                        <i class="fa-solid fa-file-code" style="color: #d97706;"></i> Option 3: Double-Click Batch File (`msme_fleet_deploy.bat`)
+                    </h4>
+                    <p style="color: #64748b; font-size: 0.82rem; margin-bottom: 0.4rem;">Simplest option — click the green download button above, right-click file → <b>Run as administrator</b>.</p>
+                </div>
             </div>
         </div>
 
@@ -395,13 +449,142 @@
 
     </div>
 
+    <!-- Firebase Auth Modal -->
+    <div id="auth-modal" class="modal-overlay hidden">
+        <div class="executive-panel" style="width: 420px; position: relative;">
+            <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer;">&times;</button>
+            
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #2563eb; margin-bottom: 0.5rem;"></i>
+                <h2 class="font-heading" style="font-size: 1.8rem; color: #0f172a;">Sign In to ShieldEDR</h2>
+                <p style="color: #64748b; font-size: 0.9rem;">Sign in or Auto-Register Account</p>
+            </div>
+
+            <div id="auth-error" class="hidden" style="background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); color: #dc2626; padding: 0.6rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
+
+            <form id="login-form">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; color: #334155; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Email Address</label>
+                    <input type="email" id="email-input" required placeholder="admin@yourcompany.com" style="width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.7rem; color: #0f172a; outline: none;">
+                </div>
+
+                <div style="margin-bottom: 1.2rem;">
+                    <label style="display: block; color: #334155; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Password</label>
+                    <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.7rem; color: #0f172a; outline: none;">
+                </div>
+
+                <button type="submit" class="btn-royal-blue" style="width: 100%; justify-content: center; margin-bottom: 0.8rem;">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In / Auto-Register
+                </button>
+            </form>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0;">
+                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+                <span style="color: #94a3b8; font-size: 0.75rem; padding: 0 0.8rem; font-weight: 600;">OR</span>
+                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+            </div>
+
+            <button id="btn-google-auth" style="width: 100%; background: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
+            </button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer style="text-align: center; color: #64748b; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #e2e8f0; margin-top: 2rem;">
         <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:hariniathukuri1@gmail.com" style="color: #2563eb;">hariniathukuri1@gmail.com</a></p>
     </footer>
 
-    <!-- Client-Side Router & MSME Fleet Installer Script -->
-    <script>
+    <!-- Firebase SDK v10 Script & Client Router -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDOEUe0o6lJoqo8cv7OwPstE-lkyHqagQw",
+            authDomain: "elite-elevator-472112-s3.firebaseapp.com",
+            projectId: "elite-elevator-472112-s3",
+            storageBucket: "elite-elevator-472112-s3.firebasestorage.app",
+            messagingSenderId: "537133039027",
+            appId: "1:537133039027:web:59547872f73e1ea8101fc6",
+            measurementId: "G-C08VLZRSD7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        const authModal = document.getElementById('auth-modal');
+        const btnTopAuth = document.getElementById('btn-top-auth');
+        const btnCloseModal = document.getElementById('close-modal');
+        const loginForm = document.getElementById('login-form');
+        const btnGoogleAuth = document.getElementById('btn-google-auth');
+        const authError = document.getElementById('auth-error');
+        const authNavContainer = document.getElementById('auth-nav-container');
+
+        btnTopAuth.onclick = () => {
+            authError.classList.add('hidden');
+            authModal.classList.remove('hidden');
+        };
+
+        btnCloseModal.onclick = () => authModal.classList.add('hidden');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                authModal.classList.add('hidden');
+                authNavContainer.innerHTML = `
+                    <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                        <i class="fa-solid fa-user-shield" style="color: #2563eb;"></i>
+                        <span style="font-size: 0.85rem; color: #0f172a; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
+                        <button id="btn-logout" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    </div>
+                `;
+                document.getElementById('btn-logout').onclick = () => signOut(auth);
+            } else {
+                authNavContainer.innerHTML = `
+                    <button id="btn-top-auth" class="btn-royal-blue">
+                        <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Account
+                    </button>
+                `;
+                document.getElementById('btn-top-auth').onclick = () => {
+                    authError.classList.add('hidden');
+                    authModal.classList.remove('hidden');
+                };
+            }
+        });
+
+        loginForm.onsubmit = async (e) => {
+            e.preventDefault();
+            authError.classList.add('hidden');
+            const email = document.getElementById('email-input').value;
+            const pass = document.getElementById('pass-input').value;
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+            } catch (err) {
+                if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
+                    try {
+                        await createUserWithEmailAndPassword(auth, email, pass);
+                    } catch (regErr) {
+                        authError.textContent = regErr.message;
+                        authError.classList.remove('hidden');
+                    }
+                } else {
+                    authError.textContent = err.message;
+                    authError.classList.remove('hidden');
+                }
+            }
+        };
+
+        btnGoogleAuth.onclick = async () => {
+            authError.classList.add('hidden');
+            try {
+                await signInWithPopup(auth, provider);
+            } catch (err) {
+                authError.textContent = err.message;
+                authError.classList.remove('hidden');
+            }
+        };
+
         const views = {
             '/': document.getElementById('page-home'),
             '/docs': document.getElementById('page-docs'),
