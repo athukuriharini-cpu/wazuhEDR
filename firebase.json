@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "shieldedr",
     "public": "public",
     "ignore": [
       "firebase.json",
