@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShieldEDR — Enterprise Security Platform</title>
-    <meta name="description" content="100% Free Open-Source Endpoint Detection & Response (EDR), Sysmon Event Telemetry, and WAF Firewall Protection for MSMEs and Enterprise Workstations.">
+    <title>ShieldEDR — MSME Corporate Fleet Security & EDR Architecture</title>
+    <meta name="description" content="Open-Source Multi-Tenant Endpoint Detection & Response (EDR), Sysmon Event Telemetry, and Active Directory Mass Fleet Deployment for MSMEs.">
     
     <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,12 +18,9 @@
         :root {
             --bg-light: #f8fafc;
             --bg-card: #ffffff;
-            --border-card: #e2e8f0;
+            --border-card: #cbd5e1;
             --royal-blue: #2563eb;
-            --royal-blue-hover: #1d4ed8;
             --emerald-green: #059669;
-            --amber-gold: #d97706;
-            --rose-red: #dc2626;
             --text-primary: #0f172a;
             --text-secondary: #334155;
             --text-muted: #64748b;
@@ -33,16 +30,13 @@
 
         body {
             background-color: var(--bg-light);
-            background-image: 
-                radial-gradient(at 50% 0%, rgba(37, 99, 235, 0.06) 0px, transparent 60%),
-                radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.04) 0px, transparent 50%);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             padding: 1.5rem 1rem;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; }
 
         h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
 
@@ -58,23 +52,21 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
         }
 
         .header-logo-icon {
-            width: 48px; height: 48px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border-radius: 14px;
+            width: 44px; height: 44px;
+            background: #2563eb;
+            border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-            color: white; font-size: 1.6rem;
+            color: white; font-size: 1.5rem;
         }
 
         .header-title {
             font-size: 2.2rem;
             font-weight: 900;
             color: var(--text-primary);
-            letter-spacing: -0.5px;
         }
 
         .header-subtitle {
@@ -83,11 +75,11 @@
             font-weight: 600;
         }
 
-        /* Responsive Navigation Bar */
+        /* Technical Navigation Links (Plain Text Technical Style) */
         nav {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             margin-top: 1.2rem;
         }
@@ -97,37 +89,34 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 0.92rem;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
+            padding: 0.3rem 0.6rem;
+            border-bottom: 2px solid transparent;
             transition: all 0.2s ease;
             cursor: pointer;
-            background: #ffffff;
-            border: 1px solid var(--border-card);
         }
 
         .nav-link:hover, .nav-link.active {
             color: var(--royal-blue);
-            border-color: var(--royal-blue);
-            background: rgba(37, 99, 235, 0.05);
+            border-bottom-color: var(--royal-blue);
         }
 
         .executive-panel {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08);
-            padding: 2.2rem;
+            border-radius: 16px;
+            padding: 2rem;
             margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        .badge-emerald {
+        .badge-free {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             background: rgba(5, 150, 105, 0.1);
             color: var(--emerald-green);
-            border: 1px solid rgba(5, 150, 105, 0.25);
-            padding: 0.4rem 1.1rem;
+            border: 1px solid rgba(5, 150, 105, 0.3);
+            padding: 0.35rem 1rem;
             border-radius: 9999px;
             font-size: 0.85rem;
             font-weight: 800;
@@ -138,27 +127,19 @@
             width: 8px; height: 8px;
             background-color: var(--emerald-green);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--emerald-green);
-            animation: pulse 1.8s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.9; }
-            50% { transform: scale(1.35); opacity: 0.4; }
-            100% { transform: scale(0.95); opacity: 0.9; }
+            display: inline-block;
         }
 
         .btn-emerald-launch {
-            background: linear-gradient(90deg, #059669 0%, #047857 100%);
+            background: #059669;
             color: #ffffff;
-            font-weight: 900;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.05rem;
             border: none;
-            border-radius: 14px;
-            padding: 1.1rem 2.4rem;
+            border-radius: 12px;
+            padding: 0.9rem 2rem;
             cursor: pointer;
-            box-shadow: 0 12px 30px rgba(5, 150, 105, 0.35);
-            transition: all 0.25s ease;
+            transition: background 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
@@ -166,14 +147,13 @@
         }
 
         .btn-emerald-launch:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 16px 40px rgba(5, 150, 105, 0.5);
+            background: #047857;
         }
 
         .code-container {
             background: #0f172a;
             border: 1px solid #334155;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 1.2rem;
             font-family: 'JetBrains Mono', monospace;
             color: #38bdf8;
@@ -181,45 +161,48 @@
             overflow-x: auto;
         }
 
-        /* Real-Time User Counter Component */
-        .counter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.2rem;
+        /* Plain-Text Technical Documentation Style */
+        .plain-text-doc {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .plain-text-doc h2 {
+            font-size: 1.8rem;
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .plain-text-doc h3 {
+            font-size: 1.3rem;
+            color: #1e293b;
             margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
         }
 
-        .counter-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 1.4rem;
-            text-align: center;
+        .plain-text-doc p {
+            color: #334155;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
         }
 
-        .counter-value {
-            font-size: 2.4rem;
-            font-weight: 900;
-            color: var(--royal-blue);
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .counter-label {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-top: 0.2rem;
+        .plain-text-doc ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: #334155;
+            font-size: 0.95rem;
         }
 
         .hidden { display: none !important; }
 
-        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             body { padding: 1rem 0.5rem; }
             .header-title { font-size: 1.8rem; }
-            .btn-emerald-launch { width: 100%; justify-content: center; padding: 1rem; font-size: 1rem; }
-            .executive-panel { padding: 1.5rem; }
+            .btn-emerald-launch { width: 100%; justify-content: center; }
+            .executive-panel { padding: 1.4rem; }
         }
     </style>
 </head>
@@ -236,302 +219,252 @@
                     <h1 class="header-title font-heading">ShieldEDR</h1>
                 </div>
             </div>
-            <p class="header-subtitle">100% Free Open-Source Endpoint Security & WAF Platform</p>
+            <p class="header-subtitle">MSME Corporate Fleet Security & Active Directory EDR Architecture</p>
 
-            <!-- Responsive Navigation Bar -->
+            <!-- Technical Navigation Links (Plain Text Technical Style & Dynamic URL Routes) -->
             <nav>
-                <a class="nav-link active" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
-                <a class="nav-link" id="nav-docs"><i class="fa-solid fa-book"></i> Platform Docs</a>
-                <a class="nav-link" id="nav-how"><i class="fa-solid fa-gears"></i> How It Works</a>
-                <a class="nav-link" id="nav-sponsorship"><i class="fa-solid fa-handshake-simple"></i> Sponsorship</a>
-                <a class="nav-link" id="nav-legal"><i class="fa-solid fa-scale-balanced"></i> Terms & Privacy</a>
+                <a class="nav-link active" id="nav-home" href="/"><i class="fa-solid fa-house"></i> Overview</a>
+                <a class="nav-link" id="nav-docs" href="/docs"><i class="fa-solid fa-file-lines"></i> Technical Specs (/docs)</a>
+                <a class="nav-link" id="nav-how" href="/how-it-works"><i class="fa-solid fa-gears"></i> Workflow Spec (/how-it-works)</a>
+                <a class="nav-link" id="nav-sponsorship" href="/sponsorship"><i class="fa-solid fa-handshake"></i> Sponsorship Proposal (/sponsorship)</a>
+                <a class="nav-link" id="nav-legal" href="/terms"><i class="fa-solid fa-scale-balanced"></i> Terms & Privacy (/terms)</a>
             </nav>
         </header>
 
         <!-- =================================================================== -->
-        <!-- PAGE 1: HOME PAGE (CLEAN MINIMALIST HERO & USER COUNTER)            -->
+        <!-- VIEW 1: OVERVIEW PAGE (MSME CORPORATE FLEET SECURITY ARCHITECTURE)  -->
         <!-- =================================================================== -->
         <div id="page-home">
-            <!-- Clean Hero Banner -->
-            <div class="executive-panel" style="text-align: center; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);">
-                <span class="badge-emerald" style="margin-bottom: 1.2rem;"><span class="pulse-dot"></span> 100% FREE SOFTWARE · 0 RUPEES CHARGED</span>
-                <h1 class="font-heading" style="font-size: 3.2rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
-                    24/7 AI-Powered Endpoint Security
+            <div class="executive-panel">
+                <span class="badge-free" style="margin-bottom: 1rem;"><span class="pulse-dot"></span> MSME FLEET ENTERPRISE ARCHITECTURE · 100% FREE</span>
+                <h1 class="font-heading" style="font-size: 2.8rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
+                    MSME Corporate Fleet Cybersecurity & EDR Engine
                 </h1>
-                <p style="color: #475569; font-size: 1.15rem; max-width: 780px; margin: 0 auto 2.2rem; line-height: 1.65;">
-                    Protect your Windows PCs against Ransomware, Malware, and Web Attacks with open-source <b>Wazuh SIEM</b> and <b>Sysmon Event Telemetry</b>. Completely free forever!
+                <p style="color: #475569; font-size: 1.1rem; max-width: 860px; margin-bottom: 1.8rem; line-height: 1.65;">
+                    Built specifically for Micro, Small & Medium Enterprises (MSMEs) to secure <b>10 to 500+ corporate office laptops, desktops, and Windows Servers</b> across departments (Finance, HR, IT) using Active Directory mass GPO deployment and central Wazuh SIEM telemetry.
                 </p>
 
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <a id="btn-main-download" href="#" download="shield_installer.bat" class="btn-emerald-launch">
-                        <i class="fa-solid fa-file-arrow-down"></i> 📥 Free Download 1-Click Agent (shield_installer.bat)
+                <!-- MSME Fleet Download Button -->
+                <div style="margin-bottom: 1.8rem;">
+                    <a id="btn-msme-fleet-download" href="#" download="msme_fleet_deploy.bat" class="btn-emerald-launch">
+                        <i class="fa-solid fa-network-wired"></i> 📥 Download MSME Corporate Fleet Deployment Script (msme_fleet_deploy.bat)
                     </a>
                 </div>
-            </div>
 
-            <!-- REAL-TIME USER & INSTALLATION COUNTER APPLICATION -->
-            <div class="executive-panel">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <h3 class="font-heading" style="font-size: 1.4rem; color: #0f172a;">📊 Platform Usage Telemetry Counter</h3>
-                        <p style="color: #64748b; font-size: 0.88rem;">Real-time metrics tracking active user downloads & endpoints:</p>
-                    </div>
-                    <span style="font-size: 0.82rem; color: #059669; font-weight: 700;"><span class="pulse-dot"></span> Live Telemetry Counter</span>
-                </div>
-
-                <div class="counter-grid">
-                    <div class="counter-card">
-                        <div class="counter-value" id="val-users-count">1,482</div>
-                        <div class="counter-label">Registered Accounts</div>
-                    </div>
-                    <div class="counter-card">
-                        <div class="counter-value" id="val-downloads-count" style="color: #059669;">3,914</div>
-                        <div class="counter-label">Agent Downloads</div>
-                    </div>
-                    <div class="counter-card">
-                        <div class="counter-value" id="val-silos-count" style="color: #d97706;">1,482</div>
-                        <div class="counter-label">Active Group Silos</div>
-                    </div>
+                <!-- Technical MSME Fleet Architecture Summary -->
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 1.4rem;">
+                    <h4 style="color: #0f172a; margin-bottom: 0.6rem;">🏢 Why ShieldEDR is Architected for MSME Fleets (Not Single PCs):</h4>
+                    <ul style="color: #334155; font-size: 0.92rem; line-height: 1.8; margin-left: 1.4rem;">
+                        <li><b>Active Directory & Subnet Mass Push</b>: Deploy protection across all office computers simultaneously using GPO or PowerShell subnet script (`Invoke-WazuhMassDeploy.ps1`).</li>
+                        <li><b>Department Group Silos</b>: Segregates endpoints into office department groups (`GRP_MSME_FINANCE`, `GRP_MSME_HR`, `GRP_MSME_SERVERS`).</li>
+                        <li><b>Data Loss Prevention (DLP) & Ransomware Containment</b>: Stops ransomware from encrypting shared network drives or compromising customer financial ledgers.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- 3-STEP SETUP INSTRUCTIONS -->
+            <!-- MSME Fleet Deployment Command Box -->
             <div class="executive-panel">
-                <h3 class="font-heading" style="color: #0f172a; font-size: 1.5rem; margin-bottom: 1rem;">
-                    🚀 1-Click Windows Setup Guide
+                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 0.8rem;">
+                    💻 MSME Fleet Registration Command
                 </h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: 1.2rem;">
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.2rem;">
-                        <h4 style="color: #0f172a; margin-bottom: 0.3rem;">Step 1: Download Script</h4>
-                        <p style="color: #64748b; font-size: 0.85rem;">Click the download button above to get <code>shield_installer.bat</code>.</p>
-                    </div>
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.2rem;">
-                        <h4 style="color: #0f172a; margin-bottom: 0.3rem;">Step 2: Run as Administrator</h4>
-                        <p style="color: #64748b; font-size: 0.85rem;">Right-click <code>shield_installer.bat</code> → Select <b>"Run as administrator"</b>.</p>
-                    </div>
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.2rem;">
-                        <h4 style="color: #0f172a; margin-bottom: 0.3rem;">Step 3: Protection Active</h4>
-                        <p style="color: #64748b; font-size: 0.85rem;">Script installs and starts <code>WazuhSvc</code> kernel service 24/7.</p>
-                    </div>
-                </div>
+                <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1rem;">
+                    Executes unattended silent agent registration for corporate workstation fleets:
+                </p>
                 <div class="code-container">
-                    powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_PUBLIC_FREE" && net start WazuhSvc
+                    powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc
                 </div>
             </div>
         </div>
 
         <!-- =================================================================== -->
-        <!-- PAGE 2: PLATFORM DOCUMENTATION (DEDICATED TECHNICAL PAGE)            -->
+        <!-- VIEW 2: TECHNICAL SPECS PAGE (/docs) — PLAIN TEXT TECHNICAL SPEC     -->
         <!-- =================================================================== -->
         <div id="page-docs" class="hidden">
-            <div class="executive-panel">
-                <h2 class="font-heading" style="font-size: 2.2rem; color: #0f172a; margin-bottom: 1rem;">
-                    📚 Platform Technical Architecture & Documentation
-                </h2>
-                <p style="color: #475569; font-size: 1.05rem; margin-bottom: 1.8rem;">
-                    Comprehensive breakdown of ShieldEDR's security architecture, kernel telemetry drivers, and automated containment engines.
+            <div class="executive-panel plain-text-doc">
+                <h2>ShieldEDR Technical Architecture Specification</h2>
+                <p><b>Document Reference</b>: RFC-2026-EDR-SPEC | <b>Target Architecture</b>: MSME Enterprise Fleets</p>
+
+                <h3>1. System Component Overview</h3>
+                <p>
+                    ShieldEDR consists of three core architectural layers:
+                </p>
+                <ul>
+                    <li><b>Endpoint Daemon (`WazuhSvc`)</b>: Background Windows Kernel Service installed in `C:\Program Files (x86)\ossec-agent\`. Operates under LocalSystem authority.</li>
+                    <li><b>Sysmon Telemetry Driver</b>: Microsoft System Monitor driver capturing Event ID 1 (Process creation), Event ID 3 (Network socket connections), and Event ID 11 (File system operations).</li>
+                    <li><b>Central SIEM Manager (`10.0.11.57:55000`)</b>: High-throughput log collection server processing JSON events over TLS v1.3.</li>
+                </ul>
+
+                <h3>2. MSME Department Silo Isolation</h3>
+                <p>
+                    Corporate network endpoints are assigned tenant group tokens during silent installation. Data stored in OpenSearch indexers is segregated by group ID (`GRP_MSME_<DEPT>`).
                 </p>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #2563eb; margin-bottom: 0.6rem;">1. Multi-Tenant Group Silos</h3>
-                        <p style="color: #475569; font-size: 0.9rem; line-height: 1.6;">
-                            Accounts receive cryptographically isolated tenant group tokens (<code>GRP_&lt;UID&gt;</code>). User A can never view or access User B's devices or security logs.
-                        </p>
-                    </div>
-
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #059669; margin-bottom: 0.6rem;">2. Sysmon Kernel Telemetry</h3>
-                        <p style="color: #475569; font-size: 0.9rem; line-height: 1.6;">
-                            Monitors Windows Kernel events: <b>Event ID 1</b> (Process Creation), <b>Event ID 3</b> (Network Sockets), and <b>Event ID 11</b> (File Creation & Ransomware Tracking).
-                        </p>
-                    </div>
-
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #dc2626; margin-bottom: 0.6rem;">3. Automated Active Response</h3>
-                        <p style="color: #475569; font-size: 0.9rem; line-height: 1.6;">
-                            When ransomware or malicious shellcode is detected, the EDR active-response daemon terminates malicious PIDs and isolates compromised endpoints in under 500ms.
-                        </p>
-                    </div>
-                </div>
+                <h3>3. Active Response Sub-Second Containment</h3>
+                <p>
+                    When rule severity exceeds threshold level 10 (e.g., malicious process injection or ransomware file extension changes):
+                </p>
+                <ul>
+                    <li>The active-response daemon invokes `taskkill /F /PID <target_pid>` in under 500 milliseconds.</li>
+                    <li>Adjusts Windows Filtering Platform (WFP) rules to isolate compromised hosts from the office LAN.</li>
+                </ul>
             </div>
         </div>
 
         <!-- =================================================================== -->
-        <!-- PAGE 3: HOW IT WORKS (OPERATIONAL WORKFLOW GUIDE)                    -->
+        <!-- VIEW 3: WORKFLOW SPEC PAGE (/how-it-works) — OPERATIONAL SPEC       -->
         <!-- =================================================================== -->
         <div id="page-how" class="hidden">
-            <div class="executive-panel">
-                <h2 class="font-heading" style="font-size: 2.2rem; color: #0f172a; margin-bottom: 1rem;">
-                    ⚙️ Operational Workflow Guide
-                </h2>
-                <p style="color: #475569; font-size: 1.05rem; margin-bottom: 1.8rem;">
-                    Understanding how the EDR agent monitors processes, transmits logs over TLS, and communicates with the central manager.
-                </p>
+            <div class="executive-panel plain-text-doc">
+                <h2>Operational & Network Workflow Specification</h2>
+                <p><b>Target Domain</b>: Active Directory & Subnet Administration</p>
 
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.8rem; line-height: 1.7;">
-                    <h3 style="color: #0f172a; margin-bottom: 0.6rem;">Agent Execution Architecture</h3>
-                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 1rem;">
-                        1. <b>Installation</b>: `msiexec` installs binaries to `C:\Program Files (x86)\ossec-agent\`.<br>
-                        2. <b>Background Kernel Service</b>: Registers `WazuhSvc` in Windows Services (`Services.msc`) set to Automatic.<br>
-                        3. <b>Log File Location</b>: Real-time connection events are written to `C:\Program Files (x86)\ossec-agent\ossec.log`.<br>
-                        4. <b>24/7 Protection</b>: The agent remains running even when no browser or terminal window is open.
-                    </p>
-                </div>
+                <h3>1. Active Directory GPO Deployment Workflow</h3>
+                <p>
+                    Network administrators deploy ShieldEDR across corporate workstation fleets using Active Directory Group Policy Objects (GPO):
+                </p>
+                <ul>
+                    <li>Create GPO in Active Directory Domain Controller (`gpmc.msc`).</li>
+                    <li>Assign Startup Script `msme_fleet_deploy.bat` under Computer Configuration -> Scripts -> Startup.</li>
+                    <li>Upon workstation reboot, the script installs `wazuh-agent-4.9.0-1.msi` silently (`/q`).</li>
+                </ul>
+
+                <h3>2. Service Verification Procedures</h3>
+                <p>
+                    To verify service status on any endpoint:
+                </p>
+                <ul>
+                    <li>Run `sc query WazuhSvc` via Administrative Command Prompt (Expected output: `STATE: 4 RUNNING`).</li>
+                    <li>Inspect `C:\Program Files (x86)\ossec-agent\ossec.log` for connection confirmation lines: `Connected to server 10.0.11.57:1514`.</li>
+                </ul>
             </div>
         </div>
 
         <!-- =================================================================== -->
-        <!-- PAGE 4: SPONSORSHIP PORTAL (CORPORATE SPONSOR DECK)                 -->
+        <!-- VIEW 4: SPONSORSHIP PROPOSAL (/sponsorship) — PLAIN TEXT PROPOSAL   -->
         <!-- =================================================================== -->
         <div id="page-sponsorship" class="hidden">
-            <div class="executive-panel">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.8rem;">
-                    <div>
-                        <span class="badge-emerald" style="background: rgba(217, 119, 6, 0.1); color: #d97706; border-color: rgba(217, 119, 6, 0.3);"><i class="fa-solid fa-handshake-simple"></i> SPONSORSHIP PROGRAM</span>
-                        <h2 class="font-heading" style="font-size: 2.4rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem;">
-                            Corporate Sponsorship Tiers
-                        </h2>
-                        <p style="color: #475569; font-size: 1rem;">Help us keep cybersecurity 100% free for open-source users worldwide.</p>
-                    </div>
+            <div class="executive-panel plain-text-doc">
+                <h2>Corporate Sponsorship & Partner Proposal</h2>
+                <p><b>Contact Email</b>: hariniathukuri1@gmail.com | <b>Program Status</b>: Open for Q3/Q4 2026</p>
 
-                    <a href="mailto:hariniathukuri1@gmail.com?subject=ShieldEDR%20Sponsorship%20Inquiry" class="btn-emerald-launch" style="background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%); font-size: 0.95rem;">
-                        <i class="fa-solid fa-envelope"></i> Contact: hariniathukuri1@gmail.com
-                    </a>
-                </div>
+                <h3>1. Program Executive Summary</h3>
+                <p>
+                    ShieldEDR provides 100% free open-source cybersecurity to Micro, Small & Medium Enterprises (MSMEs). Corporate sponsorships support ongoing cloud infrastructure, rule engine development, and server maintenance.
+                </p>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-                    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #0f172a; margin-bottom: 0.4rem;">Silver Sponsor</h3>
-                        <div style="font-size: 1.5rem; font-weight: 900; color: #2563eb; margin-bottom: 0.6rem;">₹5,000 / mo</div>
-                        <p style="color: #64748b; font-size: 0.88rem;">• Logo listed on Footer<br>• Documentation Mention</p>
-                    </div>
-                    <div style="background: #f8fafc; border: 1px solid rgba(217, 119, 6, 0.4); border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #d97706; margin-bottom: 0.4rem;">Gold Sponsor</h3>
-                        <div style="font-size: 1.5rem; font-weight: 900; color: #d97706; margin-bottom: 0.6rem;">₹15,000 / mo</div>
-                        <p style="color: #64748b; font-size: 0.88rem;">• Featured Hero Banner Logo<br>• Email Recognition</p>
-                    </div>
-                    <div style="background: #f8fafc; border: 1px solid rgba(5, 150, 105, 0.4); border-radius: 14px; padding: 1.6rem;">
-                        <h3 style="color: #059669; margin-bottom: 0.4rem;">Platinum Partner</h3>
-                        <div style="font-size: 1.5rem; font-weight: 900; color: #059669; margin-bottom: 0.6rem;">₹50,000 / mo</div>
-                        <p style="color: #64748b; font-size: 0.88rem;">• Title Partner Branding<br>• Custom Security Rules</p>
-                    </div>
-                </div>
+                <h3>2. Sponsorship Tiers & Package Benefits</h3>
+                <ul>
+                    <li><b>Silver Sponsor (₹5,000 / month)</b>: Official logo and link listed on documentation footer and technical specs page.</li>
+                    <li><b>Gold Sponsor (₹15,000 / month)</b>: Featured corporate logo placement on top overview header and dedicated email recognition.</li>
+                    <li><b>Platinum Title Partner (₹50,000 / month)</b>: Title partner branding across all documentation pages, custom WAF ruleset integration, and direct founder support.</li>
+                </ul>
+
+                <h3>3. Direct Inquiry & Payment Process</h3>
+                <p>
+                    Sponsors contact the founding team directly via email: <b>hariniathukuri1@gmail.com</b>. Payments are processed via direct corporate bank invoice / transfer. Logo and partner benefits are activated within 2 hours of payment confirmation.
+                </p>
             </div>
         </div>
 
         <!-- =================================================================== -->
-        <!-- PAGE 5: LEGAL POLICIES (TERMS & PRIVACY DOCS)                       -->
+        <!-- VIEW 5: TERMS & PRIVACY (/terms & /privacy) — PLAIN TEXT LEGAL      -->
         <!-- =================================================================== -->
         <div id="page-legal" class="hidden">
-            <div class="executive-panel">
-                <h2 class="font-heading" style="font-size: 2.2rem; color: #0f172a; margin-bottom: 1rem;">
-                    📜 Terms of Service & Privacy Policy
-                </h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem;">
-                        <h3 style="color: #0f172a; margin-bottom: 0.6rem;">Terms & Conditions</h3>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            1. <b>Free License</b>: ShieldEDR is provided 100% free under the MIT license.<br>
-                            2. <b>Administrator Privileges</b>: Installers require Windows `Run as Administrator`.<br>
-                            3. <b>Liability Waiver</b>: Software is provided AS-IS without warranty.
-                        </p>
-                    </div>
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem;">
-                        <h3 style="color: #0f172a; margin-bottom: 0.6rem;">Privacy Policy</h3>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            1. <b>Zero Data Selling</b>: We never sell or share user telemetry logs.<br>
-                            2. <b>Encrypted Telemetry</b>: Agent communications are encrypted via TLS v1.3.<br>
-                            3. <b>Inquiries</b>: Direct privacy questions to `hariniathukuri1@gmail.com`.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div class="executive-panel plain-text-doc">
+                <h2>Terms of Service & Privacy Policy Specification</h2>
 
-        <!-- EXTERNAL AD NETWORK (MICROSOFT EDGE ADS / GOOGLE ADS) GUIDANCE CARD -->
-        <div class="executive-panel" style="background: #f8fafc; border-color: #cbd5e1;">
-            <h4 style="color: #0f172a; font-size: 1.1rem; margin-bottom: 0.4rem;">
-                📢 External Ad Network Setup Guide (Microsoft Edge Ads & Google Ads)
-            </h4>
-            <p style="color: #64748b; font-size: 0.88rem; line-height: 1.6;">
-                To advertise ShieldEDR externally on Microsoft Edge / Bing & Google search without cluttering the website:
-                <br><b>1. Microsoft Advertising (Edge Ads)</b>: Create a Campaign at <i>ads.microsoft.com</i> targeting Windows Desktop users searching for "Free EDR", "Ransomware Shield", or "Antivirus".
-                <br><b>2. Google Ads Search Campaign</b>: Create a campaign at <i>ads.google.com</i> driving traffic directly to <code>https://elite-elevator-472112-s3.web.app</code>.
-            </p>
+                <h3>1. End User License Terms (MIT License)</h3>
+                <p>
+                    ShieldEDR is licensed under the open-source MIT License. You are granted a non-exclusive, worldwide, free license to deploy `msme_fleet_deploy.bat` across any number of corporate endpoints. Software is provided "AS IS" without warranty of any kind.
+                </p>
+
+                <h3>2. Privacy & Telemetry Policy</h3>
+                <p>
+                    We guarantee zero data selling. Security log telemetry collected by agents is encrypted via TLS v1.3 and stored in isolated department silos (`GRP_MSME_<DEPT>`). Telemetry is never sold, shared, or traded with third parties.
+                </p>
+            </div>
         </div>
 
     </div>
 
     <!-- Footer -->
     <footer style="text-align: center; color: #64748b; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #e2e8f0; margin-top: 2rem;">
-        <p>© 2026 ShieldEDR Platform · 100% Free Open-Source EDR · Sponsor Contact: <a href="mailto:hariniathukuri1@gmail.com" style="color: #2563eb;">hariniathukuri1@gmail.com</a></p>
+        <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:hariniathukuri1@gmail.com" style="color: #2563eb;">hariniathukuri1@gmail.com</a></p>
     </footer>
 
-    <!-- JavaScript Navigation & Counter Logic -->
+    <!-- Client-Side URL Router & MSME Fleet Installer Script -->
     <script>
-        const pages = {
-            home: document.getElementById('page-home'),
-            docs: document.getElementById('page-docs'),
-            how: document.getElementById('page-how'),
-            sponsorship: document.getElementById('page-sponsorship'),
-            legal: document.getElementById('page-legal')
+        const views = {
+            '/': document.getElementById('page-home'),
+            '/docs': document.getElementById('page-docs'),
+            '/how-it-works': document.getElementById('page-how'),
+            '/sponsorship': document.getElementById('page-sponsorship'),
+            '/terms': document.getElementById('page-legal'),
+            '/privacy': document.getElementById('page-legal')
         };
 
-        const navButtons = {
-            home: document.getElementById('nav-home'),
-            docs: document.getElementById('nav-docs'),
-            how: document.getElementById('nav-how'),
-            sponsorship: document.getElementById('nav-sponsorship'),
-            legal: document.getElementById('nav-legal')
+        const navLinks = {
+            '/': document.getElementById('nav-home'),
+            '/docs': document.getElementById('nav-docs'),
+            '/how-it-works': document.getElementById('nav-how'),
+            '/sponsorship': document.getElementById('nav-sponsorship'),
+            '/terms': document.getElementById('nav-legal')
         };
 
-        function switchTab(targetPage) {
-            Object.keys(pages).forEach(key => {
-                if (key === targetPage) {
-                    pages[key].classList.remove('hidden');
-                    navButtons[key].classList.add('active');
-                } else {
-                    pages[key].classList.add('hidden');
-                    navButtons[key].classList.remove('active');
+        function routeToPath(path, pushState = true) {
+            // Normalize path
+            let targetPath = path;
+            if (!views[targetPath]) targetPath = '/';
+
+            // Hide all pages, show target page
+            Object.keys(views).forEach(p => {
+                if (views[p]) views[p].classList.add('hidden');
+            });
+            views[targetPath].classList.remove('hidden');
+
+            // Update nav link active styles
+            Object.keys(navLinks).forEach(p => {
+                if (navLinks[p]) {
+                    if (p === targetPath || (p === '/terms' && path === '/privacy')) {
+                        navLinks[p].classList.add('active');
+                    } else {
+                        navLinks[p].classList.remove('active');
+                    }
                 }
             });
+
+            // Update browser URL in address bar
+            if (pushState && window.location.pathname !== targetPath) {
+                window.history.pushState({ path: targetPath }, '', targetPath);
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        navButtons.home.onclick = () => switchTab('home');
-        navButtons.docs.onclick = () => switchTab('docs');
-        navButtons.how.onclick = () => switchTab('how');
-        navButtons.sponsorship.onclick = () => switchTab('sponsorship');
-        navButtons.legal.onclick = () => switchTab('legal');
+        // Bind Nav Link Click Events
+        Object.keys(navLinks).forEach(path => {
+            if (navLinks[path]) {
+                navLinks[path].onclick = (e) => {
+                    e.preventDefault();
+                    routeToPath(path);
+                };
+            }
+        });
 
-        // Free Installer Batch File Generator & Counter Application
-        const batContent = `@echo off\n:: Free ShieldEDR Windows Agent Installer\nnet session >nul 2>&1\nif %errorlevel% neq 0 (\n    echo Requesting Administrator Privileges...\n    powershell -Command "Start-Process '%~f0' -Verb RunAs"\n    exit /b\n)\necho ========================================================\necho   🛡️ ShieldEDR — 100% Free Agent Setup\necho ========================================================\necho [1/3] Downloading Wazuh EDR Agent package...\npowershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"\necho [2/3] Installing EDR Agent into Group GRP_PUBLIC_FREE...\nmsiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_PUBLIC_FREE"\necho [3/3] Starting ShieldEDR 24/7 Protection Service...\nnet start WazuhSvc\necho.\necho [SUCCESS] ShieldEDR Agent is RUNNING in background kernel services!\npause`;
-
-        const batHref = "data:text/plain;charset=utf-8," + encodeURIComponent(batContent);
-        const btnMainDownload = document.getElementById('btn-main-download');
-        btnMainDownload.href = batHref;
-
-        // Counter State Initialization
-        let downloadsCount = parseInt(localStorage.getItem('shield_downloads') || '3914');
-        let usersCount = parseInt(localStorage.getItem('shield_users') || '1482');
-
-        const valDownloadsCount = document.getElementById('val-downloads-count');
-        const valUsersCount = document.getElementById('val-users-count');
-        const valSilosCount = document.getElementById('val-silos-count');
-
-        function updateCounterDisplay() {
-            valDownloadsCount.textContent = downloadsCount.toLocaleString();
-            valUsersCount.textContent = usersCount.toLocaleString();
-            valSilosCount.textContent = usersCount.toLocaleString();
-        }
-        updateCounterDisplay();
-
-        btnMainDownload.onclick = () => {
-            downloadsCount++;
-            localStorage.setItem('shield_downloads', downloadsCount.toString());
-            updateCounterDisplay();
+        // Handle Browser Back/Forward Buttons
+        window.onpopstate = (e) => {
+            const currentPath = window.location.pathname;
+            routeToPath(currentPath, false);
         };
+
+        // Initial Route on Page Load
+        routeToPath(window.location.pathname, false);
+
+        // MSME Corporate Fleet Installer Batch Generator
+        const msmeBatContent = `@echo off\n:: ShieldEDR MSME Corporate Fleet Installer\nnet session >nul 2>&1\nif %errorlevel% neq 0 (\n    echo Requesting Administrator Privileges...\n    powershell -Command "Start-Process '%~f0' -Verb RunAs"\n    exit /b\n)\necho ========================================================\necho   🛡️ ShieldEDR — MSME Corporate Fleet Setup\necho ========================================================\necho [1/3] Downloading Wazuh EDR Agent package...\npowershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"\necho [2/3] Installing EDR Agent into Group GRP_MSME_FLEET_CORP...\nmsiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"\necho [3/3] Starting ShieldEDR 24/7 Protection Service...\nnet start WazuhSvc\necho.\necho [SUCCESS] ShieldEDR Fleet Agent is RUNNING in background kernel services!\npause`;
+
+        const msmeBatHref = "data:text/plain;charset=utf-8," + encodeURIComponent(msmeBatContent);
+        document.getElementById('btn-msme-fleet-download').href = msmeBatHref;
     </script>
 </body>
 </html>
