@@ -139,10 +139,10 @@
             background: #059669;
             color: #ffffff;
             font-weight: 800;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             border: none;
             border-radius: 12px;
-            padding: 0.9rem 2rem;
+            padding: 1rem 2.2rem;
             cursor: pointer;
             transition: background 0.2s ease;
             display: inline-flex;
@@ -173,6 +173,30 @@
 
         .btn-royal-blue:hover { background: #1d4ed8; }
 
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 1.4rem;
+        }
+
+        .feature-icon {
+            width: 40px; height: 40px;
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
         .code-container {
             background: #0f172a;
             border: 1px solid #334155;
@@ -184,7 +208,6 @@
             overflow-x: auto;
             white-space: pre-wrap;
             word-break: break-all;
-            position: relative;
         }
 
         .step-number {
@@ -269,7 +292,7 @@
 
             <!-- Technical Navigation Links -->
             <nav>
-                <a class="nav-link active" id="nav-home" href="/"><i class="fa-solid fa-house"></i> Overview & Deployment Guide</a>
+                <a class="nav-link active" id="nav-home" href="/"><i class="fa-solid fa-house"></i> Overview & Features</a>
                 <a class="nav-link" id="nav-docs" href="/docs"><i class="fa-solid fa-file-lines"></i> Technical Specs (/docs)</a>
                 <a class="nav-link" id="nav-how" href="/how-it-works"><i class="fa-solid fa-gears"></i> Workflow Spec (/how-it-works)</a>
                 <a class="nav-link" id="nav-sponsorship" href="/sponsorship"><i class="fa-solid fa-handshake"></i> Sponsorship Proposal (/sponsorship)</a>
@@ -278,113 +301,158 @@
         </header>
 
         <!-- =================================================================== -->
-        <!-- VIEW 1: OVERVIEW PAGE (MSME CORPORATE FLEET SECURITY ARCHITECTURE)  -->
+        <!-- VIEW 1: OVERVIEW PAGE                                               -->
         <!-- =================================================================== -->
         <div id="page-home">
+            
+            <!-- LANDING HERO: FEATURES & GET STARTED BUTTON (UNAUTHENTICATED) -->
             <div class="executive-panel">
                 <span class="badge-free" style="margin-bottom: 1rem;"><span class="pulse-dot"></span> MSME FLEET ENTERPRISE ARCHITECTURE · 100% FREE</span>
-                <h1 class="font-heading" style="font-size: 2.8rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
-                    MSME Corporate Fleet Cybersecurity & EDR Engine
+                <h1 class="font-heading" style="font-size: 2.6rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
+                    Next-Gen MSME Endpoint Detection & Response (EDR) Platform
                 </h1>
-                <p style="color: #475569; font-size: 1.1rem; max-width: 860px; margin-bottom: 1.8rem; line-height: 1.65;">
-                    Built specifically for Micro, Small & Medium Enterprises (MSMEs) to secure <b>10 to 500+ corporate office laptops, desktops, and Windows Servers</b> across departments (Finance, HR, IT) using Active Directory mass GPO deployment and central Wazuh SIEM telemetry.
+                <p style="color: #475569; font-size: 1.08rem; max-width: 860px; margin-bottom: 1.8rem; line-height: 1.65;">
+                    ShieldEDR protects <b>10 to 500+ corporate office laptops, desktops, and Windows Servers</b> against zero-day malware, ransomware, and unauthorized network intrusions using Sysmon kernel telemetry and Active Directory mass deployment.
                 </p>
 
-                <!-- MSME Fleet Download Button -->
-                <div style="margin-bottom: 1.8rem;">
-                    <a id="btn-msme-fleet-download" href="#" download="msme_fleet_deploy.bat" class="btn-emerald-launch">
-                        <i class="fa-solid fa-network-wired"></i> 📥 Download MSME Corporate Fleet Deployment Script (msme_fleet_deploy.bat)
-                    </a>
+                <!-- GET STARTED BUTTON FOR UNAUTHENTICATED VISITORS -->
+                <div id="landing-get-started-box" style="margin-bottom: 1.8rem;">
+                    <button id="btn-get-started" class="btn-emerald-launch">
+                        <i class="fa-solid fa-rocket"></i> 🚀 Get Started & Unlock Deployment Commands
+                    </button>
+                    <p style="color: #64748b; font-size: 0.85rem; margin-top: 0.5rem;">
+                        🔒 Sign in or register a free account to unlock instant installer scripts and terminal commands.
+                    </p>
                 </div>
 
-                <!-- Technical MSME Fleet Architecture Summary -->
-                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 1.4rem;">
-                    <h4 style="color: #0f172a; margin-bottom: 0.6rem;">🏢 Why ShieldEDR is Architected for MSME Fleets (Not Single PCs):</h4>
-                    <ul style="color: #334155; font-size: 0.92rem; line-height: 1.8; margin-left: 1.4rem;">
-                        <li><b>Active Directory & Subnet Mass Push</b>: Deploy protection across all office computers simultaneously using GPO or PowerShell subnet script (`Invoke-WazuhMassDeploy.ps1`).</li>
-                        <li><b>Department Group Silos</b>: Segregates endpoints into office department groups (`GRP_MSME_FINANCE`, `GRP_MSME_HR`, `GRP_MSME_SERVERS`).</li>
-                        <li><b>Data Loss Prevention (DLP) & Ransomware Containment</b>: Stops ransomware from encrypting shared network drives or compromising customer financial ledgers.</li>
-                    </ul>
+                <!-- KEY PLATFORM FEATURES GRID -->
+                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.8rem;">
+                    🛡️ Core ShieldEDR Security Capabilities
+                </h3>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
+                        <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Active Directory Mass Push</h4>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.5;">Deploy protection across 500+ office computers simultaneously using GPO startup scripts or PowerShell subnet deployment.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Sysmon Kernel Telemetry</h4>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.5;">Captures Event ID 1 (Process creation), Event ID 3 (Network sockets), and Event ID 11 (File system modifications).</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Sub-Second Active Response</h4>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.5;">Instantly kills malicious process IDs (`taskkill /F`) and isolates infected hosts from the LAN in under 500ms.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-fire-burner"></i></div>
+                        <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Dual Firewall Engine</h4>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.5;">Integrates Windows Filtering Platform (WFP) rules and Network Socket Filters on ports 80, 443, 445 (SMB), 3389 (RDP).</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- COMPREHENSIVE STEP-BY-STEP DEPLOYMENT & TROUBLESHOOTING GUIDE -->
-            <div class="executive-panel">
-                <h2 class="font-heading" style="color: #0f172a; font-size: 1.8rem; margin-bottom: 0.6rem;">
-                    📘 Complete Step-by-Step Deployment & Verification Guide
-                </h2>
-                <p style="color: #64748b; font-size: 0.92rem; margin-bottom: 1.8rem;">
-                    Follow these 3 easy steps to deploy ShieldEDR on any Windows workstation, laptop, or server.
-                </p>
-
-                <!-- STEP 1 -->
-                <div style="margin-bottom: 2rem;">
-                    <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
-                        <span class="step-number">1</span>
-                        <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem;">Open Terminal AS ADMINISTRATOR</h3>
-                    </div>
-                    <div style="background: #f1f5f9; border-left: 4px solid #2563eb; padding: 1rem; border-radius: 6px; color: #334155; font-size: 0.9rem;">
-                        <p style="margin-bottom: 0.4rem;"><b>How to open Administrator PowerShell:</b></p>
-                        <ol style="margin-left: 1.4rem;">
-                            <li>Press <b><kbd>Win</kbd> + <kbd>X</kbd></b> on your keyboard.</li>
-                            <li>Select <b>Windows PowerShell (Admin)</b> or <b>Terminal (Admin)</b>.</li>
-                            <li>Click <b>Yes</b> on the Windows Administrator UAC prompt.</li>
-                        </ol>
+            <!-- PROTECTED COMMAND PORTAL (GATED BEHIND AUTHENTICATION) -->
+            <div id="protected-portal-container" class="hidden">
+                
+                <div class="executive-panel" style="background: rgba(5, 150, 105, 0.04); border-color: rgba(5, 150, 105, 0.3);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <span class="badge-free" style="margin-bottom: 0.4rem;"><i class="fa-solid fa-lock-open"></i> AUTHENTICATED DEPLOYMENT PORTAL</span>
+                            <h3 class="font-heading" style="color: #0f172a; font-size: 1.5rem;">Installer Scripts & Command Center Unlocked</h3>
+                            <p style="color: #334155; font-size: 0.92rem;">Your account is verified. You now have full access to download installers and run live terminal commands.</p>
+                        </div>
+                        <a id="btn-msme-fleet-download" href="#" download="msme_fleet_deploy.bat" class="btn-emerald-launch">
+                            <i class="fa-solid fa-network-wired"></i> 📥 Download msme_fleet_deploy.bat
+                        </a>
                     </div>
                 </div>
 
-                <!-- STEP 2 -->
-                <div style="margin-bottom: 2rem;">
-                    <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
-                        <span class="step-number">2</span>
-                        <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem;">Run Your Preferred Shell Command</h3>
+                <!-- COMPREHENSIVE STEP-BY-STEP DEPLOYMENT & TROUBLESHOOTING GUIDE -->
+                <div class="executive-panel">
+                    <h2 class="font-heading" style="color: #0f172a; font-size: 1.8rem; margin-bottom: 0.6rem;">
+                        📘 Complete Step-by-Step Deployment & Verification Guide
+                    </h2>
+                    <p style="color: #64748b; font-size: 0.92rem; margin-bottom: 1.8rem;">
+                        Follow these 3 easy steps to deploy ShieldEDR on any Windows workstation, laptop, or server.
+                    </p>
+
+                    <!-- STEP 1 -->
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
+                            <span class="step-number">1</span>
+                            <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem;">Open Terminal AS ADMINISTRATOR</h3>
+                        </div>
+                        <div style="background: #f1f5f9; border-left: 4px solid #2563eb; padding: 1rem; border-radius: 6px; color: #334155; font-size: 0.9rem;">
+                            <p style="margin-bottom: 0.4rem;"><b>How to open Administrator PowerShell:</b></p>
+                            <ol style="margin-left: 1.4rem;">
+                                <li>Press <b><kbd>Win</kbd> + <kbd>X</kbd></b> on your keyboard.</li>
+                                <li>Select <b>Windows PowerShell (Admin)</b> or <b>Terminal (Admin)</b>.</li>
+                                <li>Click <b>Yes</b> on the Windows Administrator UAC prompt.</li>
+                            </ol>
+                        </div>
                     </div>
 
-                    <!-- Variant 1: PowerShell Admin -->
-                    <div style="margin-bottom: 1.2rem;">
-                        <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">
-                            <i class="fa-solid fa-terminal" style="color: #2563eb;"></i> Option A: Windows PowerShell (Admin)
-                        </h4>
-                        <div class="code-container">Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile "$env:TEMP\wazuh-agent.msi" ; Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wazuh-agent.msi", '/q', 'WAZUH_MANAGER="10.0.11.57"', 'WAZUH_REGISTRATION_SERVER="10.0.11.57"', 'WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"' -Wait ; Start-Service WazuhSvc</div>
+                    <!-- STEP 2 -->
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
+                            <span class="step-number">2</span>
+                            <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem;">Run Your Preferred Shell Command</h3>
+                        </div>
+
+                        <!-- Variant 1: PowerShell Admin -->
+                        <div style="margin-bottom: 1.2rem;">
+                            <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-terminal" style="color: #2563eb;"></i> Option A: Windows PowerShell (Admin)
+                            </h4>
+                            <div class="code-container">Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile "$env:TEMP\wazuh-agent.msi" ; Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wazuh-agent.msi", '/q', 'WAZUH_MANAGER="10.0.11.57"', 'WAZUH_REGISTRATION_SERVER="10.0.11.57"', 'WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"' -Wait ; Start-Service WazuhSvc</div>
+                        </div>
+
+                        <!-- Variant 2: CMD Admin -->
+                        <div style="margin-bottom: 1.2rem;">
+                            <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-terminal" style="color: #059669;"></i> Option B: Command Prompt CMD (Admin)
+                            </h4>
+                            <div class="code-container">powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc</div>
+                        </div>
+
+                        <!-- Variant 3: Batch File -->
+                        <div>
+                            <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-file-code" style="color: #d97706;"></i> Option C: Double-Click Batch File (`msme_fleet_deploy.bat`)
+                            </h4>
+                            <p style="color: #64748b; font-size: 0.85rem;">Download the batch file above, right-click → <b>Run as administrator</b>.</p>
+                        </div>
                     </div>
 
-                    <!-- Variant 2: CMD Admin -->
-                    <div style="margin-bottom: 1.2rem;">
-                        <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">
-                            <i class="fa-solid fa-terminal" style="color: #059669;"></i> Option B: Command Prompt CMD (Admin)
-                        </h4>
-                        <div class="code-container">powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc</div>
-                    </div>
-
-                    <!-- Variant 3: Batch File -->
+                    <!-- STEP 3 -->
                     <div>
-                        <h4 style="color: #0f172a; font-size: 1rem; margin-bottom: 0.4rem;">
-                            <i class="fa-solid fa-file-code" style="color: #d97706;"></i> Option C: Double-Click Batch File (`msme_fleet_deploy.bat`)
-                        </h4>
-                        <p style="color: #64748b; font-size: 0.85rem;">Download the batch file above, right-click → <b>Run as administrator</b>.</p>
+                        <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
+                            <span class="step-number">3</span>
+                            <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem;">Verify Service Status & Connection Logs</h3>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <h4 style="color: #0f172a; font-size: 0.95rem; margin-bottom: 0.4rem;">A. Check Service Status Command:</h4>
+                            <div class="code-container">Get-Service -Name WazuhSvc</div>
+                            <p style="color: #059669; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: Status: Running</p>
+                        </div>
+
+                        <div>
+                            <h4 style="color: #0f172a; font-size: 0.95rem; margin-bottom: 0.4rem;">B. Read Live EDR Connection Logs:</h4>
+                            <div class="code-container">Get-Content "C:\Program Files (x86)\ossec-agent\ossec.log" -Tail 15</div>
+                            <p style="color: #059669; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: wazuh-agent: INFO: Connected to server 10.0.11.57:1514</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- STEP 3 -->
-                <div>
-                    <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
-                        <span class="step-number">3</span>
-                        <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem;">Verify Service Status & Connection Logs</h3>
-                    </div>
-
-                    <div style="margin-bottom: 1rem;">
-                        <h4 style="color: #0f172a; font-size: 0.95rem; margin-bottom: 0.4rem;">A. Check Service Status Command:</h4>
-                        <div class="code-container">Get-Service -Name WazuhSvc</div>
-                        <p style="color: #059669; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: Status: Running</p>
-                    </div>
-
-                    <div>
-                        <h4 style="color: #0f172a; font-size: 0.95rem; margin-bottom: 0.4rem;">B. Read Live EDR Connection Logs:</h4>
-                        <div class="code-container">Get-Content "C:\Program Files (x86)\ossec-agent\ossec.log" -Tail 15</div>
-                        <p style="color: #059669; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: wazuh-agent: INFO: Connected to server 10.0.11.57:1514</p>
-                    </div>
-                </div>
             </div>
+
         </div>
 
         <!-- =================================================================== -->
@@ -405,7 +473,18 @@
                     <li><b>Central SIEM Manager (`10.0.11.57:55000`)</b>: High-throughput log collection server processing JSON events over TLS v1.3.</li>
                 </ul>
 
-                <h3>2. Custom URL Domain Mapping (Changing Site URL Name)</h3>
+                <h3>2. Dual Firewall Engine & Network Security Mechanisms</h3>
+                <p>
+                    ShieldEDR employs four distinct security and firewall control mechanisms:
+                </p>
+                <ul>
+                    <li><b>Windows Filtering Platform (WFP) Firewall API</b>: Dynamically modifies host firewall rules to isolate infected machines from the local office LAN during ransomware events.</li>
+                    <li><b>Network Socket Telemetry (Sysmon Event ID 3)</b>: Monitors all inbound and outbound TCP/UDP connections across critical corporate ports (80, 443, 445 SMB, 3389 RDP).</li>
+                    <li><b>Active Response Daemon (`ossec-execd`)</b>: Automatically executes active mitigation scripts (`taskkill /F /PID`) in under 500ms when threat rule thresholds are breached.</li>
+                    <li><b>Web Application Firewall (WAF) Integration</b>: Filters HTTP/HTTPS traffic to prevent SQL injection, cross-site scripting (XSS), and command injection against internal servers.</li>
+                </ul>
+
+                <h3>3. Custom URL Domain Mapping</h3>
                 <p>
                     To map a custom domain name (such as `shieldedr.com` or `shieldedr.app`) to replace `shieldedr.web.app`:
                 </p>
@@ -414,15 +493,6 @@
                     <li>Click <b>Add Custom Domain</b> and type your registered domain name.</li>
                     <li>Add the provided <b>A Records</b> (`199.36.158.100`) to your domain DNS provider (Cloudflare, GoDaddy, Namecheap).</li>
                     <li>Firebase automatically provisions free SSL/TLS certificates for your custom domain.</li>
-                </ul>
-
-                <h3>3. Active Response Sub-Second Containment</h3>
-                <p>
-                    When rule severity exceeds threshold level 10 (e.g., malicious process injection or ransomware file extension changes):
-                </p>
-                <ul>
-                    <li>The active-response daemon invokes `taskkill /F /PID <target_pid>` in under 500 milliseconds.</li>
-                    <li>Adjusts Windows Filtering Platform (WFP) rules to isolate compromised hosts from the office LAN.</li>
                 </ul>
             </div>
         </div>
@@ -512,7 +582,7 @@
             <div style="text-align: center; margin-bottom: 1.5rem;">
                 <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #2563eb; margin-bottom: 0.5rem;"></i>
                 <h2 class="font-heading" style="font-size: 1.8rem; color: #0f172a;">Sign In to ShieldEDR</h2>
-                <p style="color: #64748b; font-size: 0.9rem;">Sign in or Auto-Register Account</p>
+                <p style="color: #64748b; font-size: 0.9rem;">Sign in or Register to Unlock Portal Commands</p>
             </div>
 
             <div id="auth-error" class="hidden" style="background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); color: #dc2626; padding: 0.6rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
@@ -529,7 +599,7 @@
                 </div>
 
                 <button type="submit" class="btn-royal-blue" style="width: 100%; justify-content: center; margin-bottom: 0.8rem;">
-                    <i class="fa-solid fa-right-to-bracket"></i> Sign In / Auto-Register
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In / Register Account
                 </button>
             </form>
 
@@ -571,40 +641,49 @@
 
         const authModal = document.getElementById('auth-modal');
         const btnTopAuth = document.getElementById('btn-top-auth');
+        const btnGetStarted = document.getElementById('btn-get-started');
         const btnCloseModal = document.getElementById('close-modal');
         const loginForm = document.getElementById('login-form');
         const btnGoogleAuth = document.getElementById('btn-google-auth');
         const authError = document.getElementById('auth-error');
         const authNavContainer = document.getElementById('auth-nav-container');
 
-        btnTopAuth.onclick = () => {
+        const landingGetStartedBox = document.getElementById('landing-get-started-box');
+        const protectedPortalContainer = document.getElementById('protected-portal-container');
+
+        const openAuthModal = () => {
             authError.classList.add('hidden');
             authModal.classList.remove('hidden');
         };
 
+        btnTopAuth.onclick = openAuthModal;
+        if (btnGetStarted) btnGetStarted.onclick = openAuthModal;
         btnCloseModal.onclick = () => authModal.classList.add('hidden');
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 authModal.classList.add('hidden');
+                landingGetStartedBox.classList.add('hidden');
+                protectedPortalContainer.classList.remove('hidden');
+
                 authNavContainer.innerHTML = `
                     <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 0.4rem 1rem; border-radius: 9999px; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
                         <i class="fa-solid fa-user-shield" style="color: #2563eb;"></i>
                         <span style="font-size: 0.85rem; color: #0f172a; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
-                        <button id="btn-logout" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                        <button id="btn-logout" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                     </div>
                 `;
                 document.getElementById('btn-logout').onclick = () => signOut(auth);
             } else {
+                landingGetStartedBox.classList.remove('hidden');
+                protectedPortalContainer.classList.add('hidden');
+
                 authNavContainer.innerHTML = `
                     <button id="btn-top-auth" class="btn-royal-blue">
                         <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Account
                     </button>
                 `;
-                document.getElementById('btn-top-auth').onclick = () => {
-                    authError.classList.add('hidden');
-                    authModal.classList.remove('hidden');
-                };
+                document.getElementById('btn-top-auth').onclick = openAuthModal;
             }
         });
 
