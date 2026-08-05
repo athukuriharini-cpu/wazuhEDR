@@ -43,8 +43,8 @@
         /* Top Centered Header */
         header {
             text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
             border-bottom: 1px solid var(--border-card);
             position: relative;
         }
@@ -219,14 +219,28 @@
             margin-right: 0.6rem;
         }
 
-        /* UPI Micro-Donation Card Styling */
-        .donation-box {
-            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
-            border: 2px dashed #93c5fd;
+        /* TOP PLACED REAL-WORLD UPI PAYMENT BOX */
+        .top-donation-panel {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            border: 2px solid #2563eb;
             border-radius: 16px;
-            padding: 1.6rem;
-            margin: 2rem 0;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.08);
             text-align: center;
+        }
+
+        .upi-badge-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            padding: 0.3rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
         }
 
         .upi-btn-group {
@@ -234,7 +248,7 @@
             justify-content: center;
             gap: 0.8rem;
             flex-wrap: wrap;
-            margin: 1.2rem 0;
+            margin: 1rem 0;
         }
 
         .upi-amount-btn {
@@ -255,14 +269,32 @@
             color: #ffffff;
         }
 
-        .qr-image-frame {
-            max-width: 220px;
+        .real-qr-card {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+            border-radius: 16px;
+            padding: 1.2rem;
+            max-width: 260px;
             margin: 1rem auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border: 4px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
+
+        .real-qr-grid {
+            width: 160px; height: 160px;
+            margin: 0 auto;
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+        }
+
+        .qr-cell {
+            background: #ffffff;
+            border-radius: 2px;
+        }
+        .qr-cell.dark { background: #38bdf8; }
 
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -345,6 +377,42 @@
             </nav>
         </header>
 
+        <!-- TOP PLACED REAL-WORLD UPI MICRO-DONATION PAYMENT BOX -->
+        <div class="top-donation-panel">
+            <span class="upi-badge-row"><i class="fa-solid fa-qrcode"></i> REAL-TIME UPI MICRO-DONATION PAYMENT BOX</span>
+            <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-bottom: 0.3rem;">
+                ☕ Support ShieldEDR Open-Source Development
+            </h3>
+            <p style="color: #475569; font-size: 0.88rem; max-width: 650px; margin: 0 auto;">
+                Select your payment amount below to generate instant mobile UPI link for GPay, PhonePe, Paytm, or BHIM:
+            </p>
+
+            <!-- Settable Amount Preset Buttons (10, 20, 50, Custom) -->
+            <div class="upi-btn-group">
+                <button class="upi-amount-btn active" onclick="setUpiAmount(10)">₹10</button>
+                <button class="upi-amount-btn" onclick="setUpiAmount(20)">₹20</button>
+                <button class="upi-amount-btn" onclick="setUpiAmount(50)">₹50</button>
+                <button class="upi-amount-btn" onclick="setUpiAmount('custom')">Custom Amount</button>
+            </div>
+
+            <!-- Real-World UPI ID Box -->
+            <div class="real-qr-card">
+                <p style="font-size: 0.78rem; color: #64748b; font-weight: 700; margin-bottom: 0.4rem; text-transform: uppercase;">Official UPI VPA Handle</p>
+                <div style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 0.5rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #2563eb; font-size: 0.95rem; margin-bottom: 0.8rem;">
+                    harini.athukuri@upi
+                </div>
+
+                <!-- Interactive Instant Pay Button -->
+                <a id="btn-pay-now" href="upi://pay?pa=harini.athukuri@upi&pn=ShieldEDR&am=10&cu=INR" class="btn-royal-blue" style="width: 100%; justify-content: center; font-size: 0.88rem;">
+                    <i class="fa-solid fa-mobile-screen"></i> Pay <span id="pay-btn-label">₹10</span> via UPI App
+                </a>
+            </div>
+
+            <p style="color: #64748b; font-size: 0.8rem; margin-top: 0.5rem;">
+                <i class="fa-solid fa-shield-check" style="color: #059669;"></i> Direct Merchant Transfer · Support Mail: <a href="mailto:athukuri.harini@gmail.com" style="color: #2563eb;">athukuri.harini@gmail.com</a>
+            </p>
+        </div>
+
         <!-- =================================================================== -->
         <!-- VIEW 1: OVERVIEW PAGE                                               -->
         <!-- =================================================================== -->
@@ -357,7 +425,7 @@
                     Next-Gen MSME Endpoint Detection & Response (EDR) Platform
                 </h1>
                 <p style="color: #475569; font-size: 1.08rem; max-width: 860px; margin-bottom: 1.8rem; line-height: 1.65;">
-                    Built specifically for Micro, Small & Medium Enterprises (MSMEs) to secure <b>10 to 500+ corporate office laptops, desktops, and Windows Servers</b> against zero-day malware, ransomware, and unauthorized network intrusions using Sysmon kernel telemetry and Active Directory mass deployment.
+                    ShieldEDR protects <b>10 to 500+ corporate office laptops, desktops, and Windows Servers</b> against zero-day malware, ransomware, and unauthorized network intrusions using Sysmon kernel telemetry and Active Directory mass deployment.
                 </p>
 
                 <!-- GET STARTED BUTTON FOR UNAUTHENTICATED VISITORS -->
@@ -400,78 +468,43 @@
                         <p style="color: #475569; font-size: 0.88rem; line-height: 1.5;">Integrates Windows Filtering Platform (WFP) rules and Network Socket Filters on ports 80, 443, 445 (SMB), 3389 (RDP).</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- 👥 WHO IS SHIELD EDR BUILT FOR? -->
-                <div style="background: #f1f5f9; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
-                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">
-                        👥 Target Audience: Who is ShieldEDR Built For?
-                    </h3>
-                    <ul style="color: #334155; font-size: 0.92rem; line-height: 1.8; margin-left: 1.4rem;">
-                        <li><b>MSME Business Owners & Founders</b>: Manufacturing, IT Services, CA/Accounting firms, Logistics, Healthcare clinics, and E-commerce businesses needing enterprise cybersecurity without huge license fees.</li>
-                        <li><b>Corporate IT Administrators & Network Engineers</b>: SysAdmins managing 10 to 500+ office laptops and servers across departments (Finance, HR, Sales, IT).</li>
-                        <li><b>Managed Service Providers (MSPs)</b>: IT firms offering cybersecurity management to small and medium business clients.</li>
-                    </ul>
-                </div>
+            <!-- FRONT-PAGE SECTION 1: TECHNICAL DOCS OVERVIEW -->
+            <div class="executive-panel plain-text-doc">
+                <h2>📚 Technical Documentation Overview</h2>
+                <p><b>Core Security Architecture</b>: Multi-Tenant Kernel Agent & Central Telemetry Collector</p>
 
-                <!-- 💥 3 MASSIVE BUSINESS PROBLEMS SOLVED -->
-                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
-                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">
-                        💥 3 Critical Business Problems Solved (Without Dashboard Complexity)
-                    </h3>
-                    
-                    <div style="margin-bottom: 1.2rem;">
-                        <h4 style="color: #dc2626; font-size: 1rem;">1. Ransomware Encrypting Office SMB Shares & Financial Files</h4>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            <b>The Solution</b>: When ransomware attempts mass encryption on Tally ledgers or GST invoices, ShieldEDR's Active Response autokills the process ID (`taskkill /F`) in <b>&lt;500ms</b> and uses Windows Filtering Platform (WFP) to isolate the infected PC from office Wi-Fi/LAN.
-                        </p>
-                    </div>
+                <h3>1. System Component Architecture</h3>
+                <p>
+                    ShieldEDR runs an administrative kernel daemon (`WazuhSvc`) on each endpoint workstation connected to a high-throughput SIEM Manager (`10.0.11.57:55000`).
+                </p>
+                <ul>
+                    <li><b>Sysmon Telemetry Engine</b>: Tracks process injections, suspicious PowerShell executions, and unauthorized network sockets.</li>
+                    <li><b>Sub-Second Threat Containment</b>: Terminates malicious process IDs (`taskkill /F`) in &lt;500ms upon rule violation.</li>
+                    <li><b>Windows Filtering Platform (WFP) Firewall</b>: Isolates infected hosts from office LAN SMB network shares.</li>
+                </ul>
+            </div>
 
-                    <div style="margin-bottom: 1.2rem;">
-                        <h4 style="color: #059669; font-size: 1rem;">2. Zero Budget for Expensive Enterprise EDR Licenses (Saves ₹4L+/yr)</h4>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            <b>The Solution</b>: Enterprise products cost $50 to $120 per PC annually (₹4L+ per year for 50 PCs). ShieldEDR is <b>100% Free & Open-Source</b>, providing enterprise defense without recurring subscription fees.
-                        </p>
-                    </div>
+            <!-- FRONT-PAGE SECTION 2: OPERATIONAL WORKFLOW SPEC -->
+            <div class="executive-panel plain-text-doc">
+                <h2>⚙️ Operational & GPO Workflow Specification</h2>
+                <p><b>Deployment Pipeline</b>: Unattended Active Directory Domain Controller Mass Push</p>
 
-                    <div>
-                        <h4 style="color: #2563eb; font-size: 1rem;">3. Painful Manual Installation on 50+ Employee Laptops</h4>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            <b>The Solution</b>: `msme_fleet_deploy.bat` installs silently (`/q`). Network admins push it via Active Directory GPO, securing all company computers simultaneously.
-                        </p>
-                    </div>
-                </div>
+                <h3>1. Active Directory GPO Mass Push</h3>
+                <p>
+                    Network administrators deploy ShieldEDR across corporate workstation fleets using Active Directory Group Policy Objects (GPO):
+                </p>
+                <ul>
+                    <li>Create GPO in Active Directory Domain Controller (`gpmc.msc`).</li>
+                    <li>Assign Startup Script `msme_fleet_deploy.bat` under Computer Configuration -&gt; Scripts -&gt; Startup.</li>
+                    <li>Upon workstation reboot, the script installs `wazuh-agent-4.9.0-1.msi` silently (`/q`).</li>
+                </ul>
 
-                <!-- ☕ UPI MICRO-DONATION SCANNER BOX (₹10 - ₹50) -->
-                <div class="donation-box">
-                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.4rem;">
-                        ☕ Support ShieldEDR Open-Source Development
-                    </h3>
-                    <p style="color: #475569; font-size: 0.88rem; max-width: 600px; margin: 0 auto;">
-                        ShieldEDR is 100% free for MSMEs. If ShieldEDR saves your company money, consider a quick micro-donation to support ongoing rule engine updates!
-                    </p>
-
-                    <!-- Settable Preset Buttons -->
-                    <div class="upi-btn-group">
-                        <button class="upi-amount-btn active" onclick="setUpiAmount(10)">₹10</button>
-                        <button class="upi-amount-btn" onclick="setUpiAmount(20)">₹20</button>
-                        <button class="upi-amount-btn" onclick="setUpiAmount(50)">₹50</button>
-                        <button class="upi-amount-btn" onclick="setUpiAmount('custom')">Custom Amount</button>
-                    </div>
-
-                    <!-- Display Selected Amount -->
-                    <p style="font-weight: 800; color: #2563eb; font-size: 1.1rem; margin-bottom: 0.6rem;">
-                        Selected Donation: <span id="upi-display-amount">₹10</span>
-                    </p>
-
-                    <!-- Generated QR Code Image Frame -->
-                    <div class="qr-image-frame">
-                        <img src="/upi_qr_scanner.jpg" alt="UPI QR Scanner for Micro Donations" style="width: 100%; display: block;">
-                    </div>
-
-                    <p style="color: #64748b; font-size: 0.82rem; margin-top: 0.6rem;">
-                        <i class="fa-solid fa-mobile-screen-button"></i> Scan with GPay, PhonePe, Paytm, or BHIM UPI (`hariniathukuri1@upi`)
-                    </p>
-                </div>
+                <h3>2. Endpoint Service Status Verification</h3>
+                <p>
+                    Verify endpoint service status via Administrative PowerShell: `Get-Service -Name WazuhSvc` (Expected: `Status: Running`).
+                </p>
             </div>
 
             <!-- PROTECTED COMMAND PORTAL (GATED BEHIND AUTHENTICATION) -->
@@ -606,7 +639,7 @@
                     To map a custom domain name (such as `shieldedr.com` or `shieldedr.app`) to replace `shieldedr.web.app`:
                 </p>
                 <ul>
-                    <li>Go to <b>Firebase Console</b> -> Project Settings -> Hosting.</li>
+                    <li>Go to <b>Firebase Console</b> -&gt; Project Settings -&gt; Hosting.</li>
                     <li>Click <b>Add Custom Domain</b> and type your registered domain name.</li>
                     <li>Add the provided <b>A Records</b> (`199.36.158.100`) to your domain DNS provider (Cloudflare, GoDaddy, Namecheap).</li>
                     <li>Firebase automatically provisions free SSL/TLS certificates for your custom domain.</li>
@@ -628,7 +661,7 @@
                 </p>
                 <ul>
                     <li>Create GPO in Active Directory Domain Controller (`gpmc.msc`).</li>
-                    <li>Assign Startup Script `msme_fleet_deploy.bat` under Computer Configuration -> Scripts -> Startup.</li>
+                    <li>Assign Startup Script `msme_fleet_deploy.bat` under Computer Configuration -&gt; Scripts -&gt; Startup.</li>
                     <li>Upon workstation reboot, the script installs `wazuh-agent-4.9.0-1.msi` silently (`/q`).</li>
                 </ul>
 
@@ -649,7 +682,7 @@
         <div id="page-sponsorship" class="hidden">
             <div class="executive-panel plain-text-doc">
                 <h2>Corporate Sponsorship & Partner Proposal</h2>
-                <p><b>Contact Email</b>: hariniathukuri1@gmail.com | <b>Program Status</b>: Open for Q3/Q4 2026</p>
+                <p><b>Contact Email</b>: athukuri.harini@gmail.com | <b>Program Status</b>: Open for Q3/Q4 2026</p>
 
                 <h3>1. Program Executive Summary</h3>
                 <p>
@@ -665,7 +698,7 @@
 
                 <h3>3. Direct Inquiry & Payment Process</h3>
                 <p>
-                    Sponsors contact the founding team directly via email: <b>hariniathukuri1@gmail.com</b>. Payments are processed via direct corporate bank invoice / transfer. Logo and partner benefits are activated within 2 hours of payment confirmation.
+                    Sponsors contact the founding team directly via email: <b>athukuri.harini@gmail.com</b>. Payments are processed via direct corporate bank invoice / transfer. Logo and partner benefits are activated within 2 hours of payment confirmation.
                 </p>
             </div>
         </div>
@@ -734,7 +767,7 @@
 
     <!-- Footer -->
     <footer style="text-align: center; color: #64748b; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #e2e8f0; margin-top: 2rem;">
-        <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:hariniathukuri1@gmail.com" style="color: #2563eb;">hariniathukuri1@gmail.com</a></p>
+        <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:athukuri.harini@gmail.com" style="color: #2563eb;">athukuri.harini@gmail.com</a></p>
     </footer>
 
     <!-- Global JS Script & Firebase SDK v10 -->
@@ -773,13 +806,19 @@
             btns.forEach(b => b.classList.remove('active'));
             if (event && event.target) event.target.classList.add('active');
             
-            const display = document.getElementById('upi-display-amount');
+            const label = document.getElementById('pay-btn-label');
+            const btnPayNow = document.getElementById('btn-pay-now');
+
+            let numAmt = 10;
             if (val === 'custom') {
                 const entered = prompt('Enter custom donation amount in Rupees (₹):', '100');
-                display.textContent = entered ? `₹${entered}` : '₹10';
+                numAmt = entered ? parseInt(entered, 10) : 10;
             } else {
-                display.textContent = `₹${val}`;
+                numAmt = val;
             }
+
+            label.textContent = `₹${numAmt}`;
+            btnPayNow.href = `upi://pay?pa=harini.athukuri@upi&pn=ShieldEDR&am=${numAmt}&cu=INR`;
         };
 
         const openAuthModal = () => {
