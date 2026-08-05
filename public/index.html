@@ -36,7 +36,7 @@
             padding: 1.5rem 1rem;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; }
+        .container { max-width: 1050px; margin: 0 auto; }
 
         h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
 
@@ -57,22 +57,23 @@
         }
 
         .header-logo-icon {
-            width: 44px; height: 44px;
+            width: 46px; height: 46px;
             background: #2563eb;
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.5rem;
+            color: white; font-size: 1.6rem;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
         }
 
         .header-title {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             font-weight: 900;
             color: var(--text-primary);
         }
 
         .header-subtitle {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 600;
         }
 
@@ -84,7 +85,7 @@
         nav {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
             margin-top: 1.2rem;
         }
@@ -94,15 +95,15 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 0.92rem;
-            padding: 0.3rem 0.6rem;
-            border-bottom: 2px solid transparent;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
             transition: all 0.2s ease;
             cursor: pointer;
         }
 
         .nav-link:hover, .nav-link.active {
             color: var(--royal-blue);
-            border-bottom-color: var(--royal-blue);
+            background: rgba(37, 99, 235, 0.08);
         }
 
         .executive-panel {
@@ -139,10 +140,10 @@
             background: #059669;
             color: #ffffff;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             border: none;
             border-radius: 12px;
-            padding: 1rem 2.2rem;
+            padding: 0.9rem 1.8rem;
             cursor: pointer;
             transition: background 0.2s ease;
             display: inline-flex;
@@ -151,27 +152,32 @@
             text-decoration: none;
         }
 
-        .btn-emerald-launch:hover {
-            background: #047857;
-        }
+        .btn-emerald-launch:hover { background: #047857; }
 
         .btn-royal-blue {
             background: #2563eb;
             color: #ffffff;
-            font-weight: 700;
+            font-weight: 800;
             border: none;
-            border-radius: 10px;
-            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            padding: 0.9rem 1.8rem;
             cursor: pointer;
             transition: background 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1.05rem;
         }
 
         .btn-royal-blue:hover { background: #1d4ed8; }
+
+        .hero-btn-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
 
         .feature-grid {
             display: grid;
@@ -274,7 +280,7 @@
             border: 2px solid #cbd5e1;
             border-radius: 16px;
             padding: 1.2rem;
-            max-width: 260px;
+            max-width: 280px;
             margin: 1rem auto;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
@@ -324,7 +330,7 @@
         @media (max-width: 768px) {
             body { padding: 1rem 0.5rem; }
             .header-title { font-size: 1.8rem; }
-            .btn-emerald-launch { width: 100%; justify-content: center; }
+            .btn-emerald-launch, .btn-royal-blue { width: 100%; justify-content: center; }
             .executive-panel { padding: 1.4rem; }
         }
     </style>
@@ -345,15 +351,15 @@
             <p class="header-subtitle">MSME Corporate Fleet Security & Active Directory EDR Architecture</p>
 
             <div class="auth-top-btn-container" id="auth-nav-container">
-                <button id="btn-top-auth" class="btn-royal-blue">
-                    <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Account
+                <button id="btn-top-auth" class="btn-royal-blue" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Sign Up
                 </button>
             </div>
 
             <!-- Technical Navigation Links -->
             <nav>
-                <a class="nav-link active" id="nav-home" href="/"><i class="fa-solid fa-house"></i> Overview & Features</a>
-                <a class="nav-link" id="nav-docs" href="/docs"><i class="fa-solid fa-file-lines"></i> Technical Specs (/docs)</a>
+                <a class="nav-link active" id="nav-home" href="/"><i class="fa-solid fa-house"></i> Home</a>
+                <a class="nav-link" id="nav-docs" href="/docs"><i class="fa-solid fa-file-lines"></i> Technical Docs (/docs)</a>
                 <a class="nav-link" id="nav-how" href="/how-it-works"><i class="fa-solid fa-gears"></i> Workflow Spec (/how-it-works)</a>
                 <a class="nav-link" id="nav-sponsorship" href="/sponsorship"><i class="fa-solid fa-handshake"></i> Sponsorship Proposal (/sponsorship)</a>
                 <a class="nav-link" id="nav-legal" href="/terms"><i class="fa-solid fa-scale-balanced"></i> Terms & Privacy (/terms)</a>
@@ -386,7 +392,7 @@
                 </div>
 
                 <!-- Interactive Instant Pay Button -->
-                <a id="btn-pay-now" href="upi://pay?pa=6305001481@ybl&pn=ShieldEDR&am=10&cu=INR" class="btn-royal-blue" style="width: 100%; justify-content: center; font-size: 0.88rem;">
+                <a id="btn-pay-now" href="upi://pay?pa=6305001481@ybl&pn=ShieldEDR&am=10&cu=INR" class="btn-royal-blue" style="width: 100%; justify-content: center; font-size: 0.88rem; padding: 0.7rem 1.2rem;">
                     <i class="fa-solid fa-mobile-screen"></i> Pay <span id="pay-btn-label">₹10</span> via UPI App
                 </a>
             </div>
@@ -397,32 +403,35 @@
         </div>
 
         <!-- =================================================================== -->
-        <!-- VIEW 1: OVERVIEW PAGE                                               -->
+        <!-- VIEW 1: OVERVIEW & WELCOME SCREEN (HERO PAGE)                       -->
         <!-- =================================================================== -->
         <div id="page-home">
             
-            <!-- LANDING HERO: FEATURES & GET STARTED BUTTON (UNAUTHENTICATED) -->
+            <!-- FRESH WELCOME SCREEN HERO SECTION -->
             <div class="executive-panel">
                 <span class="badge-free" style="margin-bottom: 1rem;"><span class="pulse-dot"></span> MSME FLEET ENTERPRISE ARCHITECTURE · 100% FREE</span>
-                <h1 class="font-heading" style="font-size: 2.6rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
-                    Next-Gen MSME Endpoint Detection & Response (EDR) Platform
+                <h1 class="font-heading" style="font-size: 2.7rem; font-weight: 900; color: #0f172a; margin-top: 0.4rem; margin-bottom: 1rem; line-height: 1.25;">
+                    Next-Gen Enterprise MSME Endpoint Detection & Response Engine
                 </h1>
-                <p style="color: #475569; font-size: 1.08rem; max-width: 860px; margin-bottom: 1.8rem; line-height: 1.65;">
+                <p style="color: #475569; font-size: 1.1rem; max-width: 880px; margin-bottom: 1.8rem; line-height: 1.65;">
                     ShieldEDR protects <b>10 to 500+ corporate office laptops, desktops, and Windows Servers</b> against zero-day malware, ransomware, and unauthorized network intrusions using Sysmon kernel telemetry and Active Directory mass deployment.
                 </p>
 
-                <!-- GET STARTED BUTTON FOR UNAUTHENTICATED VISITORS -->
-                <div id="landing-get-started-box" style="margin-bottom: 1.8rem;">
-                    <button id="btn-get-started" class="btn-emerald-launch">
-                        <i class="fa-solid fa-rocket"></i> 🚀 Get Started & Unlock Deployment Commands
+                <!-- HERO ACTION BUTTON ROW (MAIN SIGNUP + DOCS + INSTALLER) -->
+                <div class="hero-btn-row">
+                    <button id="btn-hero-signup" class="btn-royal-blue">
+                        <i class="fa-solid fa-user-plus"></i> 🔐 Sign Up / Get Started
                     </button>
-                    <p style="color: #64748b; font-size: 0.85rem; margin-top: 0.5rem;">
-                        🔒 Sign in or register a free account to unlock instant installer scripts and terminal commands.
-                    </p>
+                    <a href="/docs" onclick="routeToPath('/docs'); return false;" class="btn-royal-blue" style="background: #334155;">
+                        <i class="fa-solid fa-file-lines"></i> 📚 Technical Docs
+                    </a>
+                    <a id="btn-hero-download" href="#" download="msme_fleet_deploy.bat" class="btn-emerald-launch">
+                        <i class="fa-solid fa-download"></i> 📥 Download msme_fleet_deploy.bat
+                    </a>
                 </div>
 
                 <!-- KEY PLATFORM FEATURES GRID -->
-                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.8rem;">
+                <h3 class="font-heading" style="color: #0f172a; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem;">
                     🛡️ Core ShieldEDR Security Capabilities
                 </h3>
 
@@ -449,46 +458,6 @@
                         <div class="feature-icon"><i class="fa-solid fa-fire-burner"></i></div>
                         <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Dual Firewall Engine</h4>
                         <p style="color: #475569; font-size: 0.88rem; line-height: 1.5;">Integrates Windows Filtering Platform (WFP) rules and Network Socket Filters on ports 80, 443, 445 (SMB), 3389 (RDP).</p>
-                    </div>
-                </div>
-
-                <!-- 👥 WHO IS SHIELD EDR BUILT FOR? -->
-                <div style="background: #f1f5f9; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
-                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">
-                        👥 Target Audience: Who is ShieldEDR Built For?
-                    </h3>
-                    <ul style="color: #334155; font-size: 0.92rem; line-height: 1.8; margin-left: 1.4rem;">
-                        <li><b>MSME Business Owners & Founders</b>: Manufacturing, IT Services, CA/Accounting firms, Logistics, Healthcare clinics, and E-commerce businesses needing enterprise cybersecurity without huge license fees.</li>
-                        <li><b>Corporate IT Administrators & Network Engineers</b>: SysAdmins managing 10 to 500+ office laptops and servers across departments (Finance, HR, Sales, IT).</li>
-                        <li><b>Managed Service Providers (MSPs)</b>: IT firms offering cybersecurity management to small and medium business clients.</li>
-                    </ul>
-                </div>
-
-                <!-- 💥 3 MASSIVE BUSINESS PROBLEMS SOLVED -->
-                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
-                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">
-                        💥 3 Critical Business Problems Solved (Without Dashboard Complexity)
-                    </h3>
-                    
-                    <div style="margin-bottom: 1.2rem;">
-                        <h4 style="color: #dc2626; font-size: 1rem;">1. Ransomware Encrypting Office SMB Shares & Financial Files</h4>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            <b>The Solution</b>: When ransomware attempts mass encryption on Tally ledgers or GST invoices, ShieldEDR's Active Response autokills the process ID (`taskkill /F`) in <b>&lt;500ms</b> and uses Windows Filtering Platform (WFP) to isolate the infected PC from office Wi-Fi/LAN.
-                        </p>
-                    </div>
-
-                    <div style="margin-bottom: 1.2rem;">
-                        <h4 style="color: #059669; font-size: 1rem;">2. Zero Budget for Expensive Enterprise EDR Licenses (Saves ₹4L+/yr)</h4>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            <b>The Solution</b>: Enterprise products cost $50 to $120 per PC annually (₹4L+ per year for 50 PCs). ShieldEDR is <b>100% Free & Open-Source</b>, providing enterprise defense without recurring subscription fees.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h4 style="color: #2563eb; font-size: 1rem;">3. Painful Manual Installation on 50+ Employee Laptops</h4>
-                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
-                            <b>The Solution</b>: `msme_fleet_deploy.bat` installs silently (`/q`). Network admins push it via Active Directory GPO, securing all company computers simultaneously.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -771,7 +740,7 @@
                     <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 0.7rem; color: #0f172a; outline: none;">
                 </div>
 
-                <button type="submit" class="btn-royal-blue" style="width: 100%; justify-content: center; margin-bottom: 0.8rem;">
+                <button type="submit" class="btn-royal-blue" style="width: 100%; justify-content: center; margin-bottom: 0.8rem; font-size: 0.95rem; padding: 0.75rem;">
                     <i class="fa-solid fa-right-to-bracket"></i> Sign In / Register Account
                 </button>
             </form>
@@ -800,7 +769,7 @@
 
         const firebaseConfig = {
             apiKey: "AIzaSyDOEUe0o6lJoqo8cv7OwPstE-lkyHqagQw",
-            authDomain: "elite-elevator-472112-s3.firebaseapp.com",
+            authDomain: window.location.hostname.includes('shieldedr') ? window.location.hostname : "elite-elevator-472112-s3.firebaseapp.com",
             projectId: "elite-elevator-472112-s3",
             storageBucket: "elite-elevator-472112-s3.firebasestorage.app",
             messagingSenderId: "537133039027",
@@ -814,14 +783,13 @@
 
         const authModal = document.getElementById('auth-modal');
         const btnTopAuth = document.getElementById('btn-top-auth');
-        const btnGetStarted = document.getElementById('btn-get-started');
+        const btnHeroSignup = document.getElementById('btn-hero-signup');
         const btnCloseModal = document.getElementById('close-modal');
         const loginForm = document.getElementById('login-form');
         const btnGoogleAuth = document.getElementById('btn-google-auth');
         const authError = document.getElementById('auth-error');
         const authNavContainer = document.getElementById('auth-nav-container');
 
-        const landingGetStartedBox = document.getElementById('landing-get-started-box');
         const protectedPortalContainer = document.getElementById('protected-portal-container');
 
         window.setUpiAmount = (val) => {
@@ -849,14 +817,13 @@
             authModal.classList.remove('hidden');
         };
 
-        btnTopAuth.onclick = openAuthModal;
-        if (btnGetStarted) btnGetStarted.onclick = openAuthModal;
+        if (btnTopAuth) btnTopAuth.onclick = openAuthModal;
+        if (btnHeroSignup) btnHeroSignup.onclick = openAuthModal;
         btnCloseModal.onclick = () => authModal.classList.add('hidden');
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 authModal.classList.add('hidden');
-                landingGetStartedBox.classList.add('hidden');
                 protectedPortalContainer.classList.remove('hidden');
 
                 authNavContainer.innerHTML = `
@@ -868,12 +835,11 @@
                 `;
                 document.getElementById('btn-logout').onclick = () => signOut(auth);
             } else {
-                landingGetStartedBox.classList.remove('hidden');
                 protectedPortalContainer.classList.add('hidden');
 
                 authNavContainer.innerHTML = `
-                    <button id="btn-top-auth" class="btn-royal-blue">
-                        <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Account
+                    <button id="btn-top-auth" class="btn-royal-blue" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+                        <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Sign Up
                     </button>
                 `;
                 document.getElementById('btn-top-auth').onclick = openAuthModal;
@@ -929,7 +895,7 @@
             '/terms': document.getElementById('nav-legal')
         };
 
-        function routeToPath(path, pushState = true) {
+        window.routeToPath = (path, pushState = true) => {
             let targetPath = path;
             if (!views[targetPath]) targetPath = '/';
 
@@ -953,7 +919,7 @@
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        };
 
         Object.keys(navLinks).forEach(path => {
             if (navLinks[path]) {
@@ -974,6 +940,7 @@
         const msmeBatContent = `@echo off\n:: ShieldEDR MSME Corporate Fleet Installer\nnet session >nul 2>&1\nif %errorlevel% neq 0 (\n    echo Requesting Administrator Privileges...\n    powershell -Command "Start-Process '%~f0' -Verb RunAs"\n    exit /b\n)\necho ========================================================\necho   🛡️ ShieldEDR — MSME Corporate Fleet Setup\necho ========================================================\necho [1/3] Downloading Wazuh EDR Agent package...\npowershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\\wazuh-agent.msi'"\necho [2/3] Installing EDR Agent into Group GRP_MSME_FLEET_CORP...\nmsiexec.exe /i "%TEMP%\\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"\necho [3/3] Starting ShieldEDR 24/7 Protection Service...\nnet start WazuhSvc\necho.\necho [SUCCESS] ShieldEDR Fleet Agent is RUNNING in background kernel services!\npause`;
 
         const msmeBatHref = "data:text/plain;charset=utf-8," + encodeURIComponent(msmeBatContent);
+        document.getElementById('btn-hero-download').href = msmeBatHref;
         document.getElementById('btn-msme-fleet-download').href = msmeBatHref;
     </script>
 </body>
