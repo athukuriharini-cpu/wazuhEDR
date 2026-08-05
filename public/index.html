@@ -279,23 +279,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .real-qr-grid {
-            width: 160px; height: 160px;
-            margin: 0 auto;
-            background: #0f172a;
-            border-radius: 8px;
-            padding: 10px;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 4px;
-        }
-
-        .qr-cell {
-            background: #ffffff;
-            border-radius: 2px;
-        }
-        .qr-cell.dark { background: #38bdf8; }
-
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(8px);
@@ -384,7 +367,7 @@
                 ☕ Support ShieldEDR Open-Source Development
             </h3>
             <p style="color: #475569; font-size: 0.88rem; max-width: 650px; margin: 0 auto;">
-                Select your payment amount below to generate instant mobile UPI link for GPay, PhonePe, Paytm, or BHIM:
+                Select your payment amount below to generate instant mobile UPI link for PhonePe, GPay, Paytm, or BHIM:
             </p>
 
             <!-- Settable Amount Preset Buttons (10, 20, 50, Custom) -->
@@ -397,19 +380,19 @@
 
             <!-- Real-World UPI ID Box -->
             <div class="real-qr-card">
-                <p style="font-size: 0.78rem; color: #64748b; font-weight: 700; margin-bottom: 0.4rem; text-transform: uppercase;">Official UPI VPA Handle</p>
-                <div style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 0.5rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #2563eb; font-size: 0.95rem; margin-bottom: 0.8rem;">
-                    harini.athukuri@upi
+                <p style="font-size: 0.78rem; color: #64748b; font-weight: 700; margin-bottom: 0.4rem; text-transform: uppercase;">Official PhonePe / YBL UPI ID</p>
+                <div style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 0.55rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #2563eb; font-size: 1.05rem; margin-bottom: 0.8rem;">
+                    6305001481@ybl
                 </div>
 
                 <!-- Interactive Instant Pay Button -->
-                <a id="btn-pay-now" href="upi://pay?pa=harini.athukuri@upi&pn=ShieldEDR&am=10&cu=INR" class="btn-royal-blue" style="width: 100%; justify-content: center; font-size: 0.88rem;">
+                <a id="btn-pay-now" href="upi://pay?pa=6305001481@ybl&pn=ShieldEDR&am=10&cu=INR" class="btn-royal-blue" style="width: 100%; justify-content: center; font-size: 0.88rem;">
                     <i class="fa-solid fa-mobile-screen"></i> Pay <span id="pay-btn-label">₹10</span> via UPI App
                 </a>
             </div>
 
             <p style="color: #64748b; font-size: 0.8rem; margin-top: 0.5rem;">
-                <i class="fa-solid fa-shield-check" style="color: #059669;"></i> Direct Merchant Transfer · Support Mail: <a href="mailto:athukuri.harini@gmail.com" style="color: #2563eb;">athukuri.harini@gmail.com</a>
+                <i class="fa-solid fa-shield-check" style="color: #059669;"></i> Direct Merchant Transfer · Support Mail: <a href="mailto:athukuriharini@gmail.com" style="color: #2563eb;">athukuriharini@gmail.com</a>
             </p>
         </div>
 
@@ -466,6 +449,46 @@
                         <div class="feature-icon"><i class="fa-solid fa-fire-burner"></i></div>
                         <h4 style="color: #0f172a; margin-bottom: 0.4rem;">Dual Firewall Engine</h4>
                         <p style="color: #475569; font-size: 0.88rem; line-height: 1.5;">Integrates Windows Filtering Platform (WFP) rules and Network Socket Filters on ports 80, 443, 445 (SMB), 3389 (RDP).</p>
+                    </div>
+                </div>
+
+                <!-- 👥 WHO IS SHIELD EDR BUILT FOR? -->
+                <div style="background: #f1f5f9; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
+                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">
+                        👥 Target Audience: Who is ShieldEDR Built For?
+                    </h3>
+                    <ul style="color: #334155; font-size: 0.92rem; line-height: 1.8; margin-left: 1.4rem;">
+                        <li><b>MSME Business Owners & Founders</b>: Manufacturing, IT Services, CA/Accounting firms, Logistics, Healthcare clinics, and E-commerce businesses needing enterprise cybersecurity without huge license fees.</li>
+                        <li><b>Corporate IT Administrators & Network Engineers</b>: SysAdmins managing 10 to 500+ office laptops and servers across departments (Finance, HR, Sales, IT).</li>
+                        <li><b>Managed Service Providers (MSPs)</b>: IT firms offering cybersecurity management to small and medium business clients.</li>
+                    </ul>
+                </div>
+
+                <!-- 💥 3 MASSIVE BUSINESS PROBLEMS SOLVED -->
+                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
+                    <h3 class="font-heading" style="color: #0f172a; font-size: 1.3rem; margin-bottom: 0.8rem;">
+                        💥 3 Critical Business Problems Solved (Without Dashboard Complexity)
+                    </h3>
+                    
+                    <div style="margin-bottom: 1.2rem;">
+                        <h4 style="color: #dc2626; font-size: 1rem;">1. Ransomware Encrypting Office SMB Shares & Financial Files</h4>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
+                            <b>The Solution</b>: When ransomware attempts mass encryption on Tally ledgers or GST invoices, ShieldEDR's Active Response autokills the process ID (`taskkill /F`) in <b>&lt;500ms</b> and uses Windows Filtering Platform (WFP) to isolate the infected PC from office Wi-Fi/LAN.
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 1.2rem;">
+                        <h4 style="color: #059669; font-size: 1rem;">2. Zero Budget for Expensive Enterprise EDR Licenses (Saves ₹4L+/yr)</h4>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
+                            <b>The Solution</b>: Enterprise products cost $50 to $120 per PC annually (₹4L+ per year for 50 PCs). ShieldEDR is <b>100% Free & Open-Source</b>, providing enterprise defense without recurring subscription fees.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 style="color: #2563eb; font-size: 1rem;">3. Painful Manual Installation on 50+ Employee Laptops</h4>
+                        <p style="color: #475569; font-size: 0.88rem; line-height: 1.6;">
+                            <b>The Solution</b>: `msme_fleet_deploy.bat` installs silently (`/q`). Network admins push it via Active Directory GPO, securing all company computers simultaneously.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -682,7 +705,7 @@
         <div id="page-sponsorship" class="hidden">
             <div class="executive-panel plain-text-doc">
                 <h2>Corporate Sponsorship & Partner Proposal</h2>
-                <p><b>Contact Email</b>: athukuri.harini@gmail.com | <b>Program Status</b>: Open for Q3/Q4 2026</p>
+                <p><b>Contact Email</b>: athukuriharini@gmail.com | <b>Program Status</b>: Open for Q3/Q4 2026</p>
 
                 <h3>1. Program Executive Summary</h3>
                 <p>
@@ -698,7 +721,7 @@
 
                 <h3>3. Direct Inquiry & Payment Process</h3>
                 <p>
-                    Sponsors contact the founding team directly via email: <b>athukuri.harini@gmail.com</b>. Payments are processed via direct corporate bank invoice / transfer. Logo and partner benefits are activated within 2 hours of payment confirmation.
+                    Sponsors contact the founding team directly via email: <b>athukuriharini@gmail.com</b>. Payments are processed via direct corporate bank invoice / transfer. Logo and partner benefits are activated within 2 hours of payment confirmation.
                 </p>
             </div>
         </div>
@@ -767,7 +790,7 @@
 
     <!-- Footer -->
     <footer style="text-align: center; color: #64748b; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #e2e8f0; margin-top: 2rem;">
-        <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:athukuri.harini@gmail.com" style="color: #2563eb;">athukuri.harini@gmail.com</a></p>
+        <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:athukuriharini@gmail.com" style="color: #2563eb;">athukuriharini@gmail.com</a></p>
     </footer>
 
     <!-- Global JS Script & Firebase SDK v10 -->
@@ -818,7 +841,7 @@
             }
 
             label.textContent = `₹${numAmt}`;
-            btnPayNow.href = `upi://pay?pa=harini.athukuri@upi&pn=ShieldEDR&am=${numAmt}&cu=INR`;
+            btnPayNow.href = `upi://pay?pa=6305001481@ybl&pn=ShieldEDR&am=${numAmt}&cu=INR`;
         };
 
         const openAuthModal = () => {
