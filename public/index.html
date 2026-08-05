@@ -16,20 +16,20 @@
     
     <style>
         :root {
-            --bg-light: #0f172a;
-            --bg-card: #1e293b;
-            --border-card: #334155;
-            --royal-blue: #3b82f6;
-            --emerald-green: #10b981;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
+            --bg-almond: #fcf8f2;
+            --bg-card: #ffffff;
+            --border-card: #e5d8c5;
+            --royal-blue: #2563eb;
+            --emerald-green: #059669;
+            --text-primary: #1c1917;
+            --text-secondary: #44403c;
+            --text-muted: #78716c;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-light);
+            background-color: var(--bg-almond);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -40,12 +40,12 @@
 
         h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
 
-        /* Top Centered Header */
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid var(--border-card);
             position: relative;
         }
 
@@ -53,23 +53,22 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.4rem;
         }
 
         .header-logo-icon {
-            width: 50px; height: 50px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border-radius: 14px;
+            width: 48px; height: 48px;
+            background: #2563eb;
+            border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.8rem;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            color: white; font-size: 1.6rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
         }
 
         .header-title {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 900;
             color: var(--text-primary);
-            letter-spacing: -0.5px;
         }
 
         .header-subtitle {
@@ -79,34 +78,32 @@
         }
 
         .auth-top-btn-container {
-            margin-top: 1rem;
+            margin-top: 0.8rem;
         }
 
-        /* Technical Navigation Links */
+        /* Navigation Links */
         nav {
             display: flex;
             justify-content: center;
-            gap: 1.2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 1.4rem;
+            margin-top: 1.2rem;
         }
 
         .nav-link {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
+            font-size: 0.92rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
             transition: all 0.2s ease;
             cursor: pointer;
-            border: 1px solid transparent;
         }
 
         .nav-link:hover, .nav-link.active {
-            color: #ffffff;
-            background: rgba(59, 130, 246, 0.15);
-            border-color: rgba(59, 130, 246, 0.3);
+            color: #2563eb;
+            background: #f1e6d3;
         }
 
         .executive-panel {
@@ -115,79 +112,94 @@
             border-radius: 20px;
             padding: 2.2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 25px rgba(120, 100, 80, 0.05);
+            position: relative;
         }
 
         .badge-free {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.15);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 0.4rem 1.2rem;
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--emerald-green);
+            border: 1px solid rgba(5, 150, 105, 0.3);
+            padding: 0.4rem 1.1rem;
             border-radius: 9999px;
             font-size: 0.85rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .pulse-dot {
             width: 8px; height: 8px;
-            background-color: #34d399;
+            background-color: var(--emerald-green);
             border-radius: 50%;
             display: inline-block;
-            box-shadow: 0 0 8px #34d399;
         }
 
-        .btn-emerald-launch {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        .btn-master-auth {
+            background: #2563eb;
             color: #ffffff;
-            font-weight: 800;
-            font-size: 1.05rem;
+            font-weight: 900;
+            font-size: 1.15rem;
             border: none;
             border-radius: 12px;
-            padding: 0.95rem 2rem;
+            padding: 1.05rem 2.2rem;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
-        .btn-emerald-launch:hover {
+        .btn-master-auth:hover {
+            background: #1d4ed8;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
-        .btn-royal-blue {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        .btn-docs-sec {
+            background: #44403c;
             color: #ffffff;
             font-weight: 800;
+            font-size: 1.05rem;
             border: none;
             border-radius: 12px;
-            padding: 0.95rem 2rem;
+            padding: 1.05rem 1.8rem;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.7rem;
             text-decoration: none;
-            font-size: 1.05rem;
-            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
         }
 
-        .btn-royal-blue:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        .btn-docs-sec:hover { background: #292524; }
+
+        .btn-emerald-launch {
+            background: #059669;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 12px;
+            padding: 1.05rem 1.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
         }
+
+        .btn-emerald-launch:hover { background: #047857; }
 
         .hero-btn-row {
             display: flex;
-            gap: 1.2rem;
+            gap: 1rem;
             flex-wrap: wrap;
             margin: 1.8rem 0 0.5rem 0;
         }
@@ -200,25 +212,25 @@
         }
 
         .feature-card {
-            background: #0f172a;
-            border: 1px solid #334155;
+            background: #faf5ed;
+            border: 1px solid #e5d8c5;
             border-radius: 14px;
             padding: 1.5rem;
         }
 
         .feature-icon {
             width: 44px; height: 44px;
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.3rem;
-            margin-bottom: 0.9rem;
+            margin-bottom: 0.8rem;
         }
 
         .code-container {
-            background: #090d16;
-            border: 1px solid #334155;
+            background: #1c1917;
+            border: 1px solid #44403c;
             border-radius: 12px;
             padding: 1.2rem;
             font-family: 'JetBrains Mono', monospace;
@@ -231,37 +243,56 @@
 
         .step-number {
             width: 34px; height: 34px;
-            background: #3b82f6; color: white;
+            background: #2563eb; color: white;
             border-radius: 50%;
             display: inline-flex; align-items: center; justify-content: center;
             font-weight: 800; font-size: 1.05rem;
             margin-right: 0.8rem;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
         }
 
-        /* TOP PLACED REAL-WORLD UPI PAYMENT BOX */
-        .top-donation-panel {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 2px solid #3b82f6;
+        /* DISMISSABLE DONATE SCREEN / PANEL WITH CLOSE BUTTON */
+        .donate-panel {
+            background: linear-gradient(135deg, #ffffff 0%, #fefcf9 100%);
+            border: 2px solid #2563eb;
             border-radius: 20px;
             padding: 1.8rem;
             margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.08);
             text-align: center;
+            position: relative;
+        }
+
+        .close-donate-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: #f1e6d3;
+            border: none;
+            color: #44403c;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .close-donate-btn:hover {
+            background: #e5d8c5;
+            color: #1c1917;
         }
 
         .upi-badge-row {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
             padding: 0.4rem 1.1rem;
             border-radius: 9999px;
             font-size: 0.85rem;
             font-weight: 800;
-            margin-bottom: 0.9rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-bottom: 0.8rem;
         }
 
         .upi-btn-group {
@@ -273,9 +304,9 @@
         }
 
         .upi-amount-btn {
-            background: #0f172a;
-            border: 2px solid #334155;
-            color: #f8fafc;
+            background: #ffffff;
+            border: 2px solid #e5d8c5;
+            color: #1c1917;
             font-weight: 800;
             font-size: 1.05rem;
             padding: 0.6rem 1.5rem;
@@ -285,51 +316,50 @@
         }
 
         .upi-amount-btn:hover, .upi-amount-btn.active {
-            border-color: #3b82f6;
-            background: #3b82f6;
+            border-color: #2563eb;
+            background: #2563eb;
             color: #ffffff;
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
         }
 
         .real-qr-card {
-            background: #0f172a;
-            border: 2px solid #334155;
+            background: #ffffff;
+            border: 2px solid #e5d8c5;
             border-radius: 16px;
             padding: 1.4rem;
             max-width: 300px;
             margin: 1.2rem auto;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px);
+            background: rgba(28, 25, 23, 0.65); backdrop-filter: blur(8px);
             display: flex; align-items: center; justify-content: center; z-index: 9999;
         }
 
         .plain-text-doc {
             font-family: 'Inter', -apple-system, sans-serif;
-            color: #cbd5e1;
+            color: #44403c;
             line-height: 1.7;
         }
 
         .plain-text-doc h2 {
             font-size: 1.8rem;
-            color: #f8fafc;
-            border-bottom: 2px solid #334155;
+            color: #1c1917;
+            border-bottom: 2px solid #e5d8c5;
             padding-bottom: 0.5rem;
             margin-bottom: 1.2rem;
         }
 
         .plain-text-doc h3 {
             font-size: 1.3rem;
-            color: #f8fafc;
+            color: #1c1917;
             margin-top: 1.5rem;
             margin-bottom: 0.6rem;
         }
 
         .plain-text-doc p {
-            color: #cbd5e1;
+            color: #44403c;
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
@@ -337,7 +367,7 @@
         .plain-text-doc ul {
             margin-left: 1.5rem;
             margin-bottom: 1.2rem;
-            color: #cbd5e1;
+            color: #44403c;
             font-size: 0.95rem;
         }
 
@@ -346,8 +376,8 @@
         @media (max-width: 768px) {
             body { padding: 1rem 0.5rem; }
             .header-title { font-size: 1.9rem; }
-            .btn-emerald-launch, .btn-royal-blue { width: 100%; justify-content: center; }
-            .executive-panel { padding: 1.5rem; }
+            .btn-master-auth, .btn-docs-sec, .btn-emerald-launch { width: 100%; justify-content: center; }
+            .executive-panel { padding: 1.4rem; }
         }
     </style>
 </head>
@@ -367,8 +397,8 @@
             <p class="header-subtitle">MSME Corporate Fleet Security & Active Directory EDR Architecture</p>
 
             <div class="auth-top-btn-container" id="auth-nav-container">
-                <button id="btn-top-auth" class="btn-royal-blue" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
-                    <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Sign Up
+                <button id="btn-top-auth" class="btn-master-auth" style="padding: 0.6rem 1.4rem; font-size: 0.95rem;">
+                    <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Get Started
                 </button>
             </div>
 
@@ -382,13 +412,14 @@
             </nav>
         </header>
 
-        <!-- TOP PLACED REAL-WORLD UPI MICRO-DONATION PAYMENT BOX -->
-        <div class="top-donation-panel">
-            <span class="upi-badge-row"><i class="fa-solid fa-qrcode"></i> REAL-TIME UPI MICRO-DONATION PAYMENT BOX</span>
-            <h3 class="font-heading" style="color: #f8fafc; font-size: 1.5rem; margin-bottom: 0.4rem;">
-                ☕ Support ShieldEDR Open-Source Development
+        <!-- DISMISSABLE DONATE SCREEN / PANEL WITH CLOSE BUTTON -->
+        <div id="donate-panel-container" class="donate-panel">
+            <button class="close-donate-btn" title="Close Donate Panel" onclick="document.getElementById('donate-panel-container').classList.add('hidden')">&times;</button>
+            <span class="upi-badge-row"><i class="fa-solid fa-qrcode"></i> SUPPORT SHIELD EDR DEVELOPMENT</span>
+            <h3 class="font-heading" style="color: #1c1917; font-size: 1.5rem; margin-bottom: 0.4rem;">
+                ☕ Micro-Donation Payment Box
             </h3>
-            <p style="color: #cbd5e1; font-size: 0.92rem; max-width: 650px; margin: 0 auto;">
+            <p style="color: #44403c; font-size: 0.92rem; max-width: 650px; margin: 0 auto;">
                 Select your donation amount below to trigger instant mobile payment via PhonePe, GPay, Paytm, or BHIM:
             </p>
 
@@ -402,43 +433,46 @@
 
             <!-- Real-World UPI ID Box -->
             <div class="real-qr-card">
-                <p style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; margin-bottom: 0.4rem; text-transform: uppercase;">Official PhonePe / YBL VPA</p>
-                <div style="background: #090d16; border: 1px solid #334155; padding: 0.6rem; border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #38bdf8; font-size: 1.1rem; margin-bottom: 0.9rem;">
+                <p style="font-size: 0.8rem; color: #78716c; font-weight: 700; margin-bottom: 0.4rem; text-transform: uppercase;">Official PhonePe / YBL VPA</p>
+                <div style="background: #fcf8f2; border: 1px solid #e5d8c5; padding: 0.6rem; border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #2563eb; font-size: 1.1rem; margin-bottom: 0.9rem;">
                     6305001481@ybl
                 </div>
 
                 <!-- Interactive Instant Pay Button -->
-                <a id="btn-pay-now" href="upi://pay?pa=6305001481@ybl&pn=ShieldEDR&am=10&cu=INR" class="btn-royal-blue" style="width: 100%; justify-content: center; font-size: 0.92rem; padding: 0.75rem 1.2rem;">
+                <a id="btn-pay-now" href="upi://pay?pa=6305001481@ybl&pn=ShieldEDR&am=10&cu=INR" class="btn-master-auth" style="width: 100%; justify-content: center; font-size: 0.92rem; padding: 0.75rem 1.2rem;">
                     <i class="fa-solid fa-mobile-screen"></i> Pay <span id="pay-btn-label">₹10</span> via UPI App
                 </a>
             </div>
 
-            <p style="color: #94a3b8; font-size: 0.82rem; margin-top: 0.6rem;">
-                <i class="fa-solid fa-shield-check" style="color: #34d399;"></i> Direct Merchant Transfer · Support Email: <a href="mailto:athukuriharini@gmail.com" style="color: #60a5fa;">athukuriharini@gmail.com</a>
+            <p style="color: #78716c; font-size: 0.82rem; margin-top: 0.6rem;">
+                <i class="fa-solid fa-shield-check" style="color: #059669;"></i> Direct Merchant Transfer · Support Email: <a href="mailto:athukuriharini@gmail.com" style="color: #2563eb;">athukuriharini@gmail.com</a>
             </p>
         </div>
 
         <!-- =================================================================== -->
-        <!-- VIEW 1: OVERVIEW & WELCOME SCREEN (HERO PAGE)                       -->
+        <!-- VIEW 1: OVERVIEW & WELCOME SCREEN HERO AT BEGINNING                 -->
         <!-- =================================================================== -->
         <div id="page-home">
             
-            <!-- FRESH WELCOME SCREEN HERO SECTION -->
+            <!-- FRESH WELCOME SCREEN HERO (ALMOND WHITE BACKGROUND CARD) -->
             <div class="executive-panel">
                 <span class="badge-free" style="margin-bottom: 1rem;"><span class="pulse-dot"></span> MSME FLEET ENTERPRISE ARCHITECTURE · 100% FREE</span>
-                <h1 class="font-heading" style="font-size: 2.8rem; font-weight: 900; color: #f8fafc; margin-top: 0.5rem; margin-bottom: 1rem; line-height: 1.25;">
+                
+                <!-- BIG TITLE -->
+                <h1 class="font-heading" style="font-size: 2.9rem; font-weight: 900; color: #1c1917; margin-top: 0.5rem; margin-bottom: 1.1rem; line-height: 1.2;">
                     Next-Gen Enterprise MSME Endpoint Detection & Response Engine
                 </h1>
-                <p style="color: #cbd5e1; font-size: 1.12rem; max-width: 880px; margin-bottom: 1.8rem; line-height: 1.65;">
+                
+                <p style="color: #44403c; font-size: 1.12rem; max-width: 880px; margin-bottom: 1.8rem; line-height: 1.65;">
                     ShieldEDR protects <b>10 to 500+ corporate office laptops, desktops, and Windows Servers</b> against zero-day malware, ransomware, and unauthorized network intrusions using Sysmon kernel telemetry and Active Directory mass deployment.
                 </p>
 
-                <!-- HERO ACTION BUTTON ROW (MAIN SIGNUP + DOCS + INSTALLER) -->
+                <!-- HERO BUTTON ROW: MASTER AUTH BUTTON + DOCS + BATCH FILE ICON DOWNLOAD -->
                 <div class="hero-btn-row">
-                    <button id="btn-hero-signup" class="btn-royal-blue">
-                        <i class="fa-solid fa-user-plus"></i> 🔐 Sign Up / Get Started
+                    <button id="btn-hero-master-auth" class="btn-master-auth">
+                        <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Get Started
                     </button>
-                    <a href="/docs" onclick="routeToPath('/docs'); return false;" class="btn-royal-blue" style="background: #334155; border: 1px solid #475569;">
+                    <a href="/docs" onclick="routeToPath('/docs'); return false;" class="btn-docs-sec">
                         <i class="fa-solid fa-file-lines"></i> 📚 Technical Docs
                     </a>
                     <a id="btn-hero-download" href="#" download="msme_fleet_deploy.bat" class="btn-emerald-launch">
@@ -446,34 +480,34 @@
                     </a>
                 </div>
 
-                <!-- KEY PLATFORM FEATURES GRID -->
-                <h3 class="font-heading" style="color: #f8fafc; font-size: 1.45rem; margin-top: 2.2rem; margin-bottom: 1rem;">
-                    🛡️ Core ShieldEDR Security Capabilities
+                <!-- ABOUT THE WEBSITE SECTION -->
+                <h3 class="font-heading" style="color: #1c1917; font-size: 1.5rem; margin-top: 2.2rem; margin-bottom: 1rem;">
+                    ℹ️ About ShieldEDR & Core Security Capabilities
                 </h3>
 
                 <div class="feature-grid">
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
-                        <h4 style="color: #f8fafc; margin-bottom: 0.4rem;">Active Directory Mass Push</h4>
-                        <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5;">Deploy protection across 500+ office computers simultaneously using GPO startup scripts or PowerShell subnet deployment.</p>
+                        <h4 style="color: #1c1917; margin-bottom: 0.4rem;">Active Directory Mass Push</h4>
+                        <p style="color: #44403c; font-size: 0.88rem; line-height: 1.5;">Deploy protection across 500+ office computers simultaneously using GPO startup scripts or PowerShell subnet deployment.</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
-                        <h4 style="color: #f8fafc; margin-bottom: 0.4rem;">Sysmon Kernel Telemetry</h4>
-                        <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5;">Captures Event ID 1 (Process creation), Event ID 3 (Network sockets), and Event ID 11 (File system modifications).</p>
+                        <h4 style="color: #1c1917; margin-bottom: 0.4rem;">Sysmon Kernel Telemetry</h4>
+                        <p style="color: #44403c; font-size: 0.88rem; line-height: 1.5;">Captures Event ID 1 (Process creation), Event ID 3 (Network sockets), and Event ID 11 (File system modifications).</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <h4 style="color: #f8fafc; margin-bottom: 0.4rem;">Sub-Second Active Response</h4>
-                        <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5;">Instantly kills malicious process IDs (`taskkill /F`) and isolates infected hosts from the LAN in under 500ms.</p>
+                        <h4 style="color: #1c1917; margin-bottom: 0.4rem;">Sub-Second Active Response</h4>
+                        <p style="color: #44403c; font-size: 0.88rem; line-height: 1.5;">Instantly kills malicious process IDs (`taskkill /F`) and isolates infected hosts from the LAN in under 500ms.</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-fire-burner"></i></div>
-                        <h4 style="color: #f8fafc; margin-bottom: 0.4rem;">Dual Firewall Engine</h4>
-                        <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5;">Integrates Windows Filtering Platform (WFP) rules and Network Socket Filters on ports 80, 443, 445 (SMB), 3389 (RDP).</p>
+                        <h4 style="color: #1c1917; margin-bottom: 0.4rem;">Dual Firewall Engine</h4>
+                        <p style="color: #44403c; font-size: 0.88rem; line-height: 1.5;">Integrates Windows Filtering Platform (WFP) rules and Network Socket Filters on ports 80, 443, 445 (SMB), 3389 (RDP).</p>
                     </div>
                 </div>
             </div>
@@ -518,12 +552,12 @@
             <!-- PROTECTED COMMAND PORTAL (GATED BEHIND AUTHENTICATION) -->
             <div id="protected-portal-container" class="hidden">
                 
-                <div class="executive-panel" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.3);">
+                <div class="executive-panel" style="background: rgba(5, 150, 105, 0.05); border-color: rgba(5, 150, 105, 0.3);">
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
                         <div>
                             <span class="badge-free" style="margin-bottom: 0.4rem;"><i class="fa-solid fa-lock-open"></i> AUTHENTICATED DEPLOYMENT PORTAL</span>
-                            <h3 class="font-heading" style="color: #f8fafc; font-size: 1.5rem;">Installer Scripts & Command Center Unlocked</h3>
-                            <p style="color: #cbd5e1; font-size: 0.92rem;">Your account is verified. You now have full access to download installers and run live terminal commands.</p>
+                            <h3 class="font-heading" style="color: #1c1917; font-size: 1.5rem;">Installer Scripts & Command Center Unlocked</h3>
+                            <p style="color: #44403c; font-size: 0.92rem;">Your account is verified. You now have full access to download installers and run live terminal commands.</p>
                         </div>
                         <a id="btn-msme-fleet-download" href="#" download="msme_fleet_deploy.bat" class="btn-emerald-launch">
                             <i class="fa-solid fa-network-wired"></i> 📥 Download msme_fleet_deploy.bat
@@ -533,10 +567,10 @@
 
                 <!-- COMPREHENSIVE STEP-BY-STEP DEPLOYMENT & TROUBLESHOOTING GUIDE -->
                 <div class="executive-panel">
-                    <h2 class="font-heading" style="color: #f8fafc; font-size: 1.8rem; margin-bottom: 0.6rem;">
+                    <h2 class="font-heading" style="color: #1c1917; font-size: 1.8rem; margin-bottom: 0.6rem;">
                         📘 Complete Step-by-Step Deployment & Verification Guide
                     </h2>
-                    <p style="color: #94a3b8; font-size: 0.92rem; margin-bottom: 1.8rem;">
+                    <p style="color: #78716c; font-size: 0.92rem; margin-bottom: 1.8rem;">
                         Follow these 3 easy steps to deploy ShieldEDR on any Windows workstation, laptop, or server.
                     </p>
 
@@ -544,9 +578,9 @@
                     <div style="margin-bottom: 2rem;">
                         <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
                             <span class="step-number">1</span>
-                            <h3 class="font-heading" style="color: #f8fafc; font-size: 1.3rem;">Open Terminal AS ADMINISTRATOR</h3>
+                            <h3 class="font-heading" style="color: #1c1917; font-size: 1.3rem;">Open Terminal AS ADMINISTRATOR</h3>
                         </div>
-                        <div style="background: #0f172a; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 8px; color: #cbd5e1; font-size: 0.9rem;">
+                        <div style="background: #faf5ed; border-left: 4px solid #2563eb; padding: 1rem; border-radius: 8px; color: #44403c; font-size: 0.9rem;">
                             <p style="margin-bottom: 0.4rem;"><b>How to open Administrator PowerShell:</b></p>
                             <ol style="margin-left: 1.4rem;">
                                 <li>Press <b><kbd>Win</kbd> + <kbd>X</kbd></b> on your keyboard.</li>
@@ -560,31 +594,31 @@
                     <div style="margin-bottom: 2rem;">
                         <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
                             <span class="step-number">2</span>
-                            <h3 class="font-heading" style="color: #f8fafc; font-size: 1.3rem;">Run Your Preferred Shell Command</h3>
+                            <h3 class="font-heading" style="color: #1c1917; font-size: 1.3rem;">Run Your Preferred Shell Command</h3>
                         </div>
 
                         <!-- Variant 1: PowerShell Admin -->
                         <div style="margin-bottom: 1.2rem;">
-                            <h4 style="color: #f8fafc; font-size: 1rem; margin-bottom: 0.4rem;">
-                                <i class="fa-solid fa-terminal" style="color: #60a5fa;"></i> Option A: Windows PowerShell (Admin)
+                            <h4 style="color: #1c1917; font-size: 1rem; margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-terminal" style="color: #2563eb;"></i> Option A: Windows PowerShell (Admin)
                             </h4>
                             <div class="code-container">Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile "$env:TEMP\wazuh-agent.msi" ; Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wazuh-agent.msi", '/q', 'WAZUH_MANAGER="10.0.11.57"', 'WAZUH_REGISTRATION_SERVER="10.0.11.57"', 'WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP"' -Wait ; Start-Service WazuhSvc</div>
                         </div>
 
                         <!-- Variant 2: CMD Admin -->
                         <div style="margin-bottom: 1.2rem;">
-                            <h4 style="color: #f8fafc; font-size: 1rem; margin-bottom: 0.4rem;">
-                                <i class="fa-solid fa-terminal" style="color: #34d399;"></i> Option B: Command Prompt CMD (Admin)
+                            <h4 style="color: #1c1917; font-size: 1rem; margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-terminal" style="color: #059669;"></i> Option B: Command Prompt CMD (Admin)
                             </h4>
                             <div class="code-container">powershell -Command "Invoke-WebRequest -Uri 'https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi' -OutFile '%TEMP%\wazuh-agent.msi'" && msiexec.exe /i "%TEMP%\wazuh-agent.msi" /q WAZUH_MANAGER="10.0.11.57" WAZUH_REGISTRATION_SERVER="10.0.11.57" WAZUH_AGENT_GROUP="GRP_MSME_FLEET_CORP" && net start WazuhSvc</div>
                         </div>
 
                         <!-- Variant 3: Batch File -->
                         <div>
-                            <h4 style="color: #f8fafc; font-size: 1rem; margin-bottom: 0.4rem;">
-                                <i class="fa-solid fa-file-code" style="color: #fbbf24;"></i> Option C: Double-Click Batch File (`msme_fleet_deploy.bat`)
+                            <h4 style="color: #1c1917; font-size: 1rem; margin-bottom: 0.4rem;">
+                                <i class="fa-solid fa-file-code" style="color: #d97706;"></i> Option C: Double-Click Batch File (`msme_fleet_deploy.bat`)
                             </h4>
-                            <p style="color: #94a3b8; font-size: 0.85rem;">Download the batch file above, right-click → <b>Run as administrator</b>.</p>
+                            <p style="color: #78716c; font-size: 0.85rem;">Download the batch file above, right-click → <b>Run as administrator</b>.</p>
                         </div>
                     </div>
 
@@ -592,19 +626,19 @@
                     <div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.8rem;">
                             <span class="step-number">3</span>
-                            <h3 class="font-heading" style="color: #f8fafc; font-size: 1.3rem;">Verify Service Status & Connection Logs</h3>
+                            <h3 class="font-heading" style="color: #1c1917; font-size: 1.3rem;">Verify Service Status & Connection Logs</h3>
                         </div>
 
                         <div style="margin-bottom: 1rem;">
-                            <h4 style="color: #f8fafc; font-size: 0.95rem; margin-bottom: 0.4rem;">A. Check Service Status Command:</h4>
+                            <h4 style="color: #1c1917; font-size: 0.95rem; margin-bottom: 0.4rem;">A. Check Service Status Command:</h4>
                             <div class="code-container">Get-Service -Name WazuhSvc</div>
-                            <p style="color: #34d399; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: Status: Running</p>
+                            <p style="color: #059669; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: Status: Running</p>
                         </div>
 
                         <div>
-                            <h4 style="color: #f8fafc; font-size: 0.95rem; margin-bottom: 0.4rem;">B. Read Live EDR Connection Logs:</h4>
+                            <h4 style="color: #1c1917; font-size: 0.95rem; margin-bottom: 0.4rem;">B. Read Live EDR Connection Logs:</h4>
                             <div class="code-container">Get-Content "C:\Program Files (x86)\ossec-agent\ossec.log" -Tail 15</div>
-                            <p style="color: #34d399; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: wazuh-agent: INFO: Connected to server 10.0.11.57:1514</p>
+                            <p style="color: #059669; font-size: 0.82rem; font-weight: 700; margin-top: 0.3rem;">✓ Expected Output: wazuh-agent: INFO: Connected to server 10.0.11.57:1514</p>
                         </div>
                     </div>
                 </div>
@@ -734,48 +768,48 @@
 
     <!-- Firebase Auth Modal -->
     <div id="auth-modal" class="modal-overlay hidden">
-        <div class="executive-panel" style="width: 420px; position: relative;">
-            <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">&times;</button>
+        <div class="executive-panel" style="width: 420px; position: relative; background: #ffffff;">
+            <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #78716c; font-size: 1.4rem; cursor: pointer;">&times;</button>
             
             <div style="text-align: center; margin-bottom: 1.5rem;">
-                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #3b82f6; margin-bottom: 0.5rem;"></i>
-                <h2 class="font-heading" style="font-size: 1.8rem; color: #f8fafc;">Sign In to ShieldEDR</h2>
-                <p style="color: #94a3b8; font-size: 0.9rem;">Sign in or Register to Unlock Portal Commands</p>
+                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: #2563eb; margin-bottom: 0.5rem;"></i>
+                <h2 class="font-heading" style="font-size: 1.8rem; color: #1c1917;">Sign In to ShieldEDR</h2>
+                <p style="color: #78716c; font-size: 0.9rem;">Sign in or Register to Unlock Portal Commands</p>
             </div>
 
-            <div id="auth-error" class="hidden" style="background: rgba(220, 38, 38, 0.15); border: 1px solid rgba(220, 38, 38, 0.3); color: #f87171; padding: 0.65rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
+            <div id="auth-error" class="hidden" style="background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); color: #dc2626; padding: 0.65rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
 
             <form id="login-form">
                 <div style="margin-bottom: 1rem;">
-                    <label style="display: block; color: #cbd5e1; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Email Address</label>
-                    <input type="email" id="email-input" required placeholder="admin@yourcompany.com" style="width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 0.75rem; color: #f8fafc; outline: none;">
+                    <label style="display: block; color: #44403c; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Email Address</label>
+                    <input type="email" id="email-input" required placeholder="admin@yourcompany.com" style="width: 100%; background: #fcf8f2; border: 1px solid #e5d8c5; border-radius: 10px; padding: 0.75rem; color: #1c1917; outline: none;">
                 </div>
 
                 <div style="margin-bottom: 1.2rem;">
-                    <label style="display: block; color: #cbd5e1; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Password</label>
-                    <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 0.75rem; color: #f8fafc; outline: none;">
+                    <label style="display: block; color: #44403c; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem;">Password</label>
+                    <input type="password" id="pass-input" required placeholder="••••••••••••" style="width: 100%; background: #fcf8f2; border: 1px solid #e5d8c5; border-radius: 10px; padding: 0.75rem; color: #1c1917; outline: none;">
                 </div>
 
-                <button type="submit" class="btn-royal-blue" style="width: 100%; justify-content: center; margin-bottom: 0.8rem; font-size: 0.95rem; padding: 0.75rem;">
+                <button type="submit" class="btn-master-auth" style="width: 100%; justify-content: center; margin-bottom: 0.8rem; font-size: 0.95rem; padding: 0.75rem;">
                     <i class="fa-solid fa-right-to-bracket"></i> Sign In / Register Account
                 </button>
             </form>
 
             <div style="display: flex; align-items: center; margin: 1rem 0;">
-                <div style="flex: 1; height: 1px; background: #334155;"></div>
-                <span style="color: #64748b; font-size: 0.75rem; padding: 0 0.8rem; font-weight: 600;">OR</span>
-                <div style="flex: 1; height: 1px; background: #334155;"></div>
+                <div style="flex: 1; height: 1px; background: #e5d8c5;"></div>
+                <span style="color: #a8a29e; font-size: 0.75rem; padding: 0 0.8rem; font-weight: 600;">OR</span>
+                <div style="flex: 1; height: 1px; background: #e5d8c5;"></div>
             </div>
 
-            <button id="btn-google-auth" style="width: 100%; background: #0f172a; color: #f8fafc; border: 1px solid #334155; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+            <button id="btn-google-auth" style="width: 100%; background: #ffffff; color: #1c1917; border: 1px solid #e5d8c5; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
                 <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Google
             </button>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer style="text-align: center; color: #94a3b8; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #334155; margin-top: 2rem;">
-        <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:athukuriharini@gmail.com" style="color: #60a5fa;">athukuriharini@gmail.com</a></p>
+    <footer style="text-align: center; color: #78716c; font-size: 0.85rem; padding: 2rem 0; border-top: 1px solid #e5d8c5; margin-top: 2rem;">
+        <p>© 2026 ShieldEDR Platform · MSME Corporate Fleet EDR Architecture · Sponsor Contact: <a href="mailto:athukuriharini@gmail.com" style="color: #2563eb;">athukuriharini@gmail.com</a></p>
     </footer>
 
     <!-- Global JS Script & Firebase SDK v10 -->
@@ -799,7 +833,7 @@
 
         const authModal = document.getElementById('auth-modal');
         const btnTopAuth = document.getElementById('btn-top-auth');
-        const btnHeroSignup = document.getElementById('btn-hero-signup');
+        const btnHeroMasterAuth = document.getElementById('btn-hero-master-auth');
         const btnCloseModal = document.getElementById('close-modal');
         const loginForm = document.getElementById('login-form');
         const btnGoogleAuth = document.getElementById('btn-google-auth');
@@ -834,7 +868,7 @@
         };
 
         if (btnTopAuth) btnTopAuth.onclick = openAuthModal;
-        if (btnHeroSignup) btnHeroSignup.onclick = openAuthModal;
+        if (btnHeroMasterAuth) btnHeroMasterAuth.onclick = openAuthModal;
         btnCloseModal.onclick = () => authModal.classList.add('hidden');
 
         onAuthStateChanged(auth, (user) => {
@@ -843,10 +877,10 @@
                 protectedPortalContainer.classList.remove('hidden');
 
                 authNavContainer.innerHTML = `
-                    <div style="background: #1e293b; border: 1px solid #334155; padding: 0.4rem 1rem; border-radius: 9999px; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                        <i class="fa-solid fa-user-shield" style="color: #60a5fa;"></i>
-                        <span style="font-size: 0.85rem; color: #f8fafc; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
-                        <button id="btn-logout" style="background: none; border: none; color: #f87171; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                    <div style="background: #ffffff; border: 1px solid #e5d8c5; padding: 0.4rem 1rem; border-radius: 9999px; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                        <i class="fa-solid fa-user-shield" style="color: #2563eb;"></i>
+                        <span style="font-size: 0.85rem; color: #1c1917; font-weight: 600;">${user.email || user.uid.substring(0, 10)}</span>
+                        <button id="btn-logout" style="background: none; border: none; color: #dc2626; margin-left: 0.5rem; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                     </div>
                 `;
                 document.getElementById('btn-logout').onclick = () => signOut(auth);
@@ -854,8 +888,8 @@
                 protectedPortalContainer.classList.add('hidden');
 
                 authNavContainer.innerHTML = `
-                    <button id="btn-top-auth" class="btn-royal-blue" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
-                        <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Sign Up
+                    <button id="btn-top-auth" class="btn-master-auth" style="padding: 0.6rem 1.4rem; font-size: 0.95rem;">
+                        <i class="fa-solid fa-user-shield"></i> 🔐 Sign In / Get Started
                     </button>
                 `;
                 document.getElementById('btn-top-auth').onclick = openAuthModal;
